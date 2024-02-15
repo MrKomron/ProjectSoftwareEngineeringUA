@@ -17,7 +17,7 @@ set(CMAKE_EXE_LINKER_FLAGS -pthread)
 # Set source files for RELEASE target
 # Only add cpp files, no h files!
 # Only add files with functionality here, no test files!
-set(RELEASE_SOURCE_FILES tinystr.cpp tinyxml.cpp tinyxmlerror.cpp tinyxmlparser.cpp)
+set(RELEASE_SOURCE_FILES tinystr.cpp tinyxml.cpp main.cpp tinyxmlerror.cpp tinyxmlparser.cpp)
 
 # Set source files for DEBUG target
 # Only add cpp files, no h files!
