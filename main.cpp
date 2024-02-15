@@ -6,13 +6,13 @@ using namespace std;
 int main () {
     TiXmlDocument doc;
     if(!doc.LoadFile("test.xml")) {
-        std::cerr << doc.ErrorDesc() << std::endl;
+        cerr << doc.ErrorDesc() << endl;
         return 1;
     }
 
     TiXmlElement* root = doc.FirstChildElement();
     if(root == NULL) {
-        std::cerr << "Failed to load file: No root element." << std::endl;
+        cerr << "Failed to load file: No root element." << endl;
         doc.Clear();
         return 1;
     }
