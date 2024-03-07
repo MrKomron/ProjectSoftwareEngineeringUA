@@ -19,6 +19,7 @@ private:
 public:
     // de constructor initialiseert een printer met een naam, CO2-uitstoot en print snelheid
     Device(const string& name, int emissions, int printSpeed);
+
     // getters
     string getName() const;
     int getEmissions() const;
