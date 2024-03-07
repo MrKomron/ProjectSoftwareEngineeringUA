@@ -21,7 +21,9 @@ set(RELEASE_SOURCE_FILES src/main.cpp)
 
 # Set source files for DEBUG target
 # Only add cpp files, no h files!
-set(DEBUG_SOURCE_FILES src/tests.cpp)
+set(DEBUG_SOURCE_FILES src/tests.cpp
+        src/PrintSystem.cpp
+        src/PrintSystem.h)
 
 # Create RELEASE target
 add_executable(release_target ${RELEASE_SOURCE_FILES})
