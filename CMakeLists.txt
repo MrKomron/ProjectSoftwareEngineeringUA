@@ -17,16 +17,11 @@ link_directories(./gtest/lib)
 # Set source files for RELEASE target
 # Only add cpp files, no h files!
 # Only add files with functionality here, no test files!
-set(RELEASE_SOURCE_FILES src/Fighterplane.cpp src/Largest.cpp src/main.cpp)
+set(RELEASE_SOURCE_FILES src/main.cpp)
 
 # Set source files for DEBUG target
 # Only add cpp files, no h files!
-set(DEBUG_SOURCE_FILES src/Fighterplane.cpp src/Largest.cpp src/tests.cpp
-        src/XMLPrinterSystemReader.cpp
-        src/XMLPrinterSystemReader.h
-        src/XMLPrinterSystemReader.h
-        src/Printer.cpp
-        src/Printer.h)
+set(DEBUG_SOURCE_FILES src/tests.cpp)
 
 # Create RELEASE target
 add_executable(release_target ${RELEASE_SOURCE_FILES})
