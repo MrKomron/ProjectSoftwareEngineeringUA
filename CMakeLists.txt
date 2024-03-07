@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.6)
-project(ProjectTitle)
+project(ProjectSoftwareEngineeringUA)
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
@@ -17,13 +17,11 @@ link_directories(./gtest/lib)
 # Set source files for RELEASE target
 # Only add cpp files, no h files!
 # Only add files with functionality here, no test files!
-set(RELEASE_SOURCE_FILES src/main.cpp)
+set(RELEASE_SOURCE_FILES  src/main.cpp src/tinyxml.cpp src/tinystr.cpp src/tinyxml.cpp src/tinyxmlerror.cpp src/tinyxmlparser.cpp)
 
 # Set source files for DEBUG target
 # Only add cpp files, no h files!
-set(DEBUG_SOURCE_FILES src/tests.cpp
-        src/PrintSystem.cpp
-        src/PrintSystem.h)
+set(DEBUG_SOURCE_FILES src/tests.cpp )
 
 # Create RELEASE target
 add_executable(release_target ${RELEASE_SOURCE_FILES})

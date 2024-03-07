@@ -1,45 +1,83 @@
-
+#include "tinyxml.h"
 #include <iostream>
-#include <vector>
 #include <string>
-#include <sstream>
-
-#include "Exceptions.h"
 
 
+using namespace std;
 
+int main() {
+    TiXmlDocument doc;
+    if (!doc.LoadFile("C:\\Users\\Dell\\Desktop\\university 2023-2024\\semester 2\\week2\\src\\data.xml")) {
+        cerr << "Failed to load file: " << doc.ErrorDesc() << endl;
+        return 1;
+    }
 
-/**
- * Een voorbeeld van een functie met een contract.
- */
-//std::string simple_function_with_contract(int value_a, std::string value_b) {
-//    REQUIRE(value_a > 0, "Value a must be bigger than zero");
-//    REQUIRE(value_b.length() >= 4, "Value b must have more than 3 characters.");
-//
-//    std::stringstream str_value;
-//    str_value << value_a;
-//
-//    // works fine
-//    std::string return_value = value_b + " -> " + str_value.str();
-//
-//    // if you do this, the 'ENSURE' will fail
-////    std::string return_value = "";
-//
-//    ENSURE(return_value != "", "Return value must never be the empty string.");
-//
-//    return return_value;
-//}
+    TiXmlElement* root = doc.FirstChildElement("SYSTEM");
+    if (!root) {
+        cerr << "Failed to find root element SYSTEM." << endl;
+        return 1;
+    }
 
+    // Get DEVICE element
+    TiXmlElement* deviceElement = root->FirstChildElement("DEVICE");
+    if (!deviceElement) {
+        cerr << "Failed to find DEVICE element." << endl;
+        return 1;
+    }
 
-/**
- * Eenvoudige main functie.
- */
-int main(int argc, const char * argv[])
-{
-    std::vector<int>* listOfNumbers = new std::vector<int>();
-    listOfNumbers->push_back(5);
-    listOfNumbers->push_back(7);
-    listOfNumbers->push_back(3);
-    listOfNumbers->push_back(1);
-    listOfNumbers->push_back(-1);
+    // Get name element from DEVICE
+    TiXmlElement* nameElement = deviceElement->FirstChildElement("name");
+    if (!nameElement) {
+        cerr << "Failed to find NAME element." << endl;
+        return 1;
+    }
+
+    // Get name element from DEVICE
+    TiXmlElement* emissionsElement = deviceElement->FirstChildElement("emissions");
+    if (!emissionsElement) {
+        cerr << "Failed to find EMISSIONS element." << endl;
+        return 1;
+    }
+
+    // Get name element from DEVICE
+    TiXmlElement* speedElement = deviceElement->FirstChildElement("speed");
+    if (!speedElement) {
+        cerr << "Failed to find SPEED element." << endl;
+        return 1;
+    }
+
+    string device = nameElement->GetText(); // Get name text from nameElement
+    string emissions = emissionsElement->GetText();
+    string speed = speedElement->GetText();
+
+    if (device.empty()) {
+        cerr << "Device name is empty." << endl;
+        return 1;
+    }
+
+    cout << "DEVICE: " << device << endl;
+    cout << "Emissions: " << emissions << endl;
+    cout << "Speed: " << speed << endl;
+
+    // Loop through JOB elements
+    for (TiXmlElement* jobElement = root->FirstChildElement("JOB"); jobElement; jobElement = jobElement->NextSiblingElement("JOB")) {
+        // Get jobNumber, pageCount, and userName elements from JOB
+        TiXmlElement* jobNumberElement = jobElement->FirstChildElement("jobNumber");
+        TiXmlElement* pageCountElement = jobElement->FirstChildElement("pageCount");
+        TiXmlElement* userNameElement = jobElement->FirstChildElement("userName");
+
+        if (jobNumberElement && pageCountElement && userNameElement) {
+            string jobNumber = jobNumberElement->GetText();
+            string pageCount = pageCountElement->GetText();
+            string userName = userNameElement->GetText();
+
+            cout << "JOB Number: " << jobNumber << endl;
+            cout << "Page Count: " << pageCount << endl;
+            cout << "User Name: " << userName << endl;
+        } else {
+            cerr << "Missing elements in JOB." << endl;
+        }
+    }
+
+    return 0;
 }
