@@ -5,7 +5,7 @@
 #include <sstream>
 
 #include "Exceptions.h"
-
+#include "XMLPrinterSystemReader.h"
 
 
 
@@ -34,6 +34,8 @@
 /**
  * Eenvoudige main functie.
  */
+
+/*
 int main(int argc, const char * argv[])
 {
     std::vector<int>* listOfNumbers = new std::vector<int>();
@@ -43,3 +45,17 @@ int main(int argc, const char * argv[])
     listOfNumbers->push_back(1);
     listOfNumbers->push_back(-1);
 }
+*/
+
+/*
+int main() {
+    XMLPrinterSystemReader reader;
+    try {
+        reader.parseFile("path/to/your/xmlfile.xml");
+    } catch (const std::exception& e) {
+        std::cerr << "Error occurred: " << e.what() << std::endl;
+    }
+    // Further processing or user interaction
+    return 0;
+}
+*/
