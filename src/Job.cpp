@@ -1,5 +1,7 @@
 #include "Job.h"
 
+using namespace std;
+
 // Constructor definition
 Job::Job(const std::string& name, int priority, int pages)
         : jobName(name), jobPriority(priority), jobPages(pages), jobPrinted(false) {}
