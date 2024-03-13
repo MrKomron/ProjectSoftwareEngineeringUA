@@ -1,0 +1,3 @@
+C:/Users/Boss/Desktop/A.J._23-24/PSE/testFolder/cmake-build-debug/CMakeFiles/testFolder.dir
+C:/Users/Boss/Desktop/A.J._23-24/PSE/testFolder/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Boss/Desktop/A.J._23-24/PSE/testFolder/cmake-build-debug/CMakeFiles/rebuild_cache.dir

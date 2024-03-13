@@ -1,0 +1,9 @@
+# ninja log v5
+11	468	7319352377361688	CMakeFiles/untitled.dir/jobFunctionality.cpp.obj	4d8600ce10db28e
+2	210	7320199262143959	build.ninja	ec8a2a19e4a9c5c6
+11	515	7319394068561221	CMakeFiles/untitled.dir/main.cpp.obj	5b1b4c7d9478976
+4	622	7319409497517432	CMakeFiles/testFolder.dir/XMLREADER/XMLReader.cpp.obj	1b641fec8829b13d
+4	416	7319394067561237	CMakeFiles/untitled.dir/Job.cpp.obj	2391cde31f510252
+7	430	7319404027454513	CMakeFiles/testFolder.dir/Job.cpp.obj	33bcf0065eb49426
+5	641	7319403032745473	CMakeFiles/untitled.dir/XMLREADER/XMLReader.cpp.obj	8b7d013bc0e605dc
+1	537	7319404028534542	CMakeFiles/testFolder.dir/main.cpp.obj	7b4464eb239fe68d

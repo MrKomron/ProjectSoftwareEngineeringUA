@@ -1,0 +1,3 @@
+Office_Printer1(C02: 3g/page): 
+	* Queue:
+		[There is no more job in the queue.]
