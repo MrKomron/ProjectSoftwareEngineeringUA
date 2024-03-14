@@ -24,10 +24,20 @@ set(RELEASE_SOURCE_FILES  src/main.cpp src/tinyxml.cpp src/tinystr.cpp src/tinyx
 set(DEBUG_SOURCE_FILES src/tests.cpp )
 
 # Create RELEASE target
-add_executable(release_target ${RELEASE_SOURCE_FILES})
+#add_executable(release_target ${RELEASE_SOURCE_FILES})
 
 # Create DEBUG target
-add_executable(debug_target ${DEBUG_SOURCE_FILES})
+add_executable(debug_target src/main.cpp
+                            src/Job.cpp
+                            src/Device.cpp
+                            src/StatusReport.cpp
+                            src/XMLREADER/XMLReader.cpp
+                            src/XMLREADER/tinystr.cpp
+                            src/XMLREADER/tinyxml.cpp
+                            src/XMLREADER/tinyxmlerror.cpp
+                            src/XMLREADER/tinyxmlparser.cpp
+                            src/SystemProcessing.cpp
+)
 
 # Link library
 target_link_libraries(debug_target gtest)

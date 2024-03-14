@@ -1,83 +1,63 @@
-#include "tinyxml.h"
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////THIS IS THE MAIN SRC FILE TO TEST THE COMPONENTS OF THE SYSTEM///////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #include <iostream>
-#include <string>
+#include "XMLREADER/XMLReader.h"    ////////////////////////////
+#include "Device.h"                 ///Including the headers////
+#include "Job.h"                    ///that are going to be/////
+#include "StatusReport.h"           /////////used here//////////
+#include "SystemProcessing.h"       ////////////////////////////
 
-
-using namespace std;
+using namespace std;                // Using namespace std to have a much simpler code without redundant "std::".
 
 int main() {
-    TiXmlDocument doc;
-    if (!doc.LoadFile("C:\\Users\\Dell\\Desktop\\university 2023-2024\\semester 2\\week2\\src\\data.xml")) {
-        cerr << "Failed to load file: " << doc.ErrorDesc() << endl;
+    // Load and parse XML file
+    XMLReader xmlReader;
+    // Initialized the first reading of the XML file. This function is located in XMLREADER/XMLReader.cpp.
+    if (!xmlReader.readerXML()) {
+        cerr << "Failed to load XML file." << endl;
+        return 1;                   // Return a 1 to exit the program because it couldn't open the XML file.
+    }                               // Without the parsing of the XML, the program wouldn't work.
+    cout << "__________________________________________________________________" << endl; // For better readability and separates every component.
+    // Process the parsed data after populating the vectors.
+    Device::populateFromXMLReader(xmlReader);
+    cout << "Device List:" << endl;
+    bool foundDevice = false;
+    // Populate devices from XMLReader.
+    for (const auto& device : Device::devices) {
+        // Call the print function.
+        device.printDeviceInfo();
+        // Add a newline for better readability
+        cout << endl;
+        foundDevice = true;
+    }
+    if (!foundDevice) {
+        cerr << "No device found." << endl;
+    }
+    cout << "__________________________________________________________________" << endl;
+    // Process the parsed data after populating the vectors
+    Job::populateFromXMLReader(xmlReader);
+    cout << "Job List:"<< endl;
+    // Populate jobs from XMLReader.
+    for (const auto& job : Job::jobs) {
+        // Call the print function.
+        job.printJobInfo();
+        // Add a newline for better readability.
+        cout << endl;
+    }
+    cout << "__________________________________________________________________" << endl;
+    if (System::manualProcess(Device::devices, Job::jobs) == 0){
+        cout << "__________________________________________________________________" << endl;
+    }
+
+    else {
+        cerr << "Failed to process the request." << endl;
+    }
+    if (StatusReport::generateStatusReport(Device::devices, Job::jobs) == 0) {
+        cout << "Status report generated successfully." << endl;
+        return 0;
+    } else {
+        cerr << "Failed to generate status report." << endl;
         return 1;
     }
-
-    TiXmlElement* root = doc.FirstChildElement("SYSTEM");
-    if (!root) {
-        cerr << "Failed to find root element SYSTEM." << endl;
-        return 1;
-    }
-
-    // Get DEVICE element
-    TiXmlElement* deviceElement = root->FirstChildElement("DEVICE");
-    if (!deviceElement) {
-        cerr << "Failed to find DEVICE element." << endl;
-        return 1;
-    }
-
-    // Get name element from DEVICE
-    TiXmlElement* nameElement = deviceElement->FirstChildElement("name");
-    if (!nameElement) {
-        cerr << "Failed to find NAME element." << endl;
-        return 1;
-    }
-
-    // Get name element from DEVICE
-    TiXmlElement* emissionsElement = deviceElement->FirstChildElement("emissions");
-    if (!emissionsElement) {
-        cerr << "Failed to find EMISSIONS element." << endl;
-        return 1;
-    }
-
-    // Get name element from DEVICE
-    TiXmlElement* speedElement = deviceElement->FirstChildElement("speed");
-    if (!speedElement) {
-        cerr << "Failed to find SPEED element." << endl;
-        return 1;
-    }
-
-    string device = nameElement->GetText(); // Get name text from nameElement
-    string emissions = emissionsElement->GetText();
-    string speed = speedElement->GetText();
-
-    if (device.empty()) {
-        cerr << "Device name is empty." << endl;
-        return 1;
-    }
-
-    cout << "DEVICE: " << device << endl;
-    cout << "Emissions: " << emissions << endl;
-    cout << "Speed: " << speed << endl;
-
-    // Loop through JOB elements
-    for (TiXmlElement* jobElement = root->FirstChildElement("JOB"); jobElement; jobElement = jobElement->NextSiblingElement("JOB")) {
-        // Get jobNumber, pageCount, and userName elements from JOB
-        TiXmlElement* jobNumberElement = jobElement->FirstChildElement("jobNumber");
-        TiXmlElement* pageCountElement = jobElement->FirstChildElement("pageCount");
-        TiXmlElement* userNameElement = jobElement->FirstChildElement("userName");
-
-        if (jobNumberElement && pageCountElement && userNameElement) {
-            string jobNumber = jobNumberElement->GetText();
-            string pageCount = pageCountElement->GetText();
-            string userName = userNameElement->GetText();
-
-            cout << "JOB Number: " << jobNumber << endl;
-            cout << "Page Count: " << pageCount << endl;
-            cout << "User Name: " << userName << endl;
-        } else {
-            cerr << "Missing elements in JOB." << endl;
-        }
-    }
-
-    return 0;
 }

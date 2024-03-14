@@ -1,33 +1,28 @@
-// Job.h
-
-#ifndef PROJECTFIRST_JOBFUNCTIONALITY_H
-#define PROJECTFIRST_JOBFUNCTIONALITY_H
-
+#ifndef TESTFOLDER_JOB_H
+#define TESTFOLDER_JOB_H
+#include <fstream>
+#include <iostream>
+#include "XMLREADER/XMLReader.h"
 #include <string>
+#include <vector>
 
 class Job {
 private:
-    std::string jobName;
-    int jobPriority;
-    int jobPages;
-    bool jobPrinted;
+    int jobNumber;
+    int pageCount;
+    std::string userName;
 
 public:
     // Constructor
-    Job(const std::string& name, int priority, int pages);
+    Job(int number = 0, int count = 0, const std::string& name = "");
 
-    // Member function declarations
-    void setName(const std::string& name);
-    std::string getName() const;
-
-    void setPriority(int priority);
-    int getPriority() const;
-
-    void setPages(int pages);
-    int getPages() const;
-
-    void markPrinted();
-    bool isPrinted() const;
+    // Function to populate jobs from XMLReader
+    static void populateFromXMLReader(const XMLReader& xmlReader);
+    void printJobInfo() const;
+    void getJobInfo(std::ofstream& outputFile) const;
+    void giveJobInfo(const std::string& deviceName) const;
+    static std::vector<Job> jobs;
+    int getPageCount() const;
 };
 
-#endif //PROJECTFIRST_JOBFUNCTIONALITY_H
+#endif //TESTFOLDER_JOB_H
