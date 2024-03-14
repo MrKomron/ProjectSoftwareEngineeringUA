@@ -1,3 +1,10 @@
+//============================================================================
+// Name        : Device.h
+// Author      : Soliman Blanco, Oubayy Ahale, Komronjon Vosidov
+// Version     :
+// Copyright   : Project Software Engineering - BA1 Informatica - Soliman Blanco, Oubayy Ahale, Komronjon Vosidov - University of Antwerp
+// Description : Declarations for design by contract in C++
+//============================================================================
 #ifndef TESTFOLDER_DEVICE_H
 #define TESTFOLDER_DEVICE_H
 #include <fstream>

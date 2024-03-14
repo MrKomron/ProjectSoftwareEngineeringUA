@@ -1,3 +1,10 @@
+//============================================================================
+// Name        : Device.cpp
+// Author      : Soliman Blanco, Oubayy Ahale, Komronjon Vosidov
+// Version     :
+// Copyright   : Project Software Engineering - BA1 Informatica - Soliman Blanco, Oubayy Ahale, Komronjon Vosidov - University of Antwerp
+// Description : Declarations for design by contract in C++
+//============================================================================
 #include <fstream>
 #include <iostream>
 #include "Device.h"
