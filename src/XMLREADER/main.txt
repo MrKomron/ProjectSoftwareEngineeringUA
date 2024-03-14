@@ -1,0 +1,23 @@
+#include <iostream>
+#include "Job.h"
+#include "XMLREADER/XMLReader.h"
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<Job> jobs; // Vector to store all jobs
+
+    if (readerXML(jobs)) {
+        // Display information for each job
+        for (const auto& job : jobs) {
+            cout << "Number: " << job.getNumber() << endl;
+            cout << "Job Name: " << job.getName() << endl;
+            cout << "Number of Pages: " << job.getPages() << endl;
+            cout << endl; // Add empty line between jobs
+        }
+    } else {
+        cerr << "Failed to read XML." << endl;
+    }
+
+    return 0;
+}
