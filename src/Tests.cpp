@@ -42,8 +42,6 @@ TEST_F(TestXMLReader, TestName) {
     reader.readerXML("XMLDataVoorTests/NoName.xml");
     //std::cout << reader.getDeviceInfoList().front().deviceName;
     EXPECT_TRUE(reader.getDeviceInfoList().empty());
-
-    //EXPECT_EQ();
 }
 
 TEST_F(TestXMLReader, TestEmissions) {
@@ -93,11 +91,23 @@ TEST_F(TestXMLReader, TestSuccessfulParse) {
     size_t expectedDevices = 2;
     size_t expectedJobs = 2;
 
-    // Controlleren of de grootte van jobInfoList = 2, wat zou betekenen dat er inderdaad 2 devices zijn ingelezen.
+    // Controlleren of de grootte van deviceInfoList = 2, wat zou betekenen dat er inderdaad 2 devices zijn ingelezen.
     ASSERT_EQ(deviceInfoList.size(), expectedDevices);
+
+    // deviceName, emmisions & speed van het eerste Device checken
+    EXPECT_EQ(deviceInfoList.front().deviceName, "Office_Printer1");
+    EXPECT_EQ(deviceInfoList.front().emissions, 1);
+    EXPECT_EQ(deviceInfoList.front().speed, 10);
 
     // Controlleren of de grootte van jobInfoList = 2, wat zou betekenen dat er inderdaad 2 jobs zijn ingelezen.
     ASSERT_EQ(jobInfoList.size(), expectedJobs);
+
+    // deviceName, emmisions & speed van het eerste Device checken
+    EXPECT_EQ(jobInfoList.front().jobNumber, 1111);
+    EXPECT_EQ(jobInfoList.front().pageCount, 1);
+    EXPECT_EQ(jobInfoList.front().userName, "MelonMan");
+
+    //EXPECT_FALSE
 }
 
 
@@ -107,3 +117,4 @@ int main(int argc, char *argv[])
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
+

@@ -20,34 +20,34 @@ XMLReader::XMLReader() {
 bool XMLReader::readerXML(string filename) {
     // Creates an instance of TiXmlDocument class named "doc"
 
-
     //TiXmlDocument doc1;
     // Loads the file to start the parsing.
     if (!doc.LoadFile(filename.c_str())) {
-        if (logerrors)
-      if (logerrors) cerr << "Failed to load file: " << doc.ErrorDesc() << endl;
+        if (logerrors) cerr << "Failed to load file: " << doc.ErrorDesc() << endl;
         // Returns a false if unable to open the file. (This then would be used to exit the program in main.cpp)
         return false;
     }
+
     // Checks the root of the XML file if it is "SYSTEM"
     TiXmlElement* root = doc.FirstChildElement("SYSTEM");
     if (!root) {
-        if (logerrors)
-      if (logerrors) cerr << "Failed to find root element SYSTEM." << endl;
+        if (logerrors) cerr << "Failed to find root element SYSTEM." << endl;
         // Returns a false if root is not SYSTEM. (Without the system, the program is pretty much useless)
         return false;
     }
+
     // Sets a variable to be used later for the checking of the availability of any printing device in the system.
     bool foundDevice = false;
+
     // Loop through DEVICE elements
     for (TiXmlElement* deviceElement = root->FirstChildElement("DEVICE"); deviceElement; deviceElement = deviceElement->NextSiblingElement("DEVICE")) {
         // Create a new vector instance for every device found.
         DeviceInfo deviceInfo;
+
         // Get name element from DEVICE.
         TiXmlElement* nameElement = deviceElement->FirstChildElement("name");
         if (!nameElement) {
-            if (logerrors)
-          if (logerrors) cerr << "Failed to find NAME element for the device. Continuing onto the next attribute." << endl;
+            if (logerrors) cerr << "Failed to find NAME element for the device. Continuing onto the next attribute." << endl;
             continue;
         }
         // Get emissions element from DEVICE.
@@ -62,6 +62,7 @@ bool XMLReader::readerXML(string filename) {
         if (logerrors) cerr << "Failed to find SPEED element for the device. Continuing onto the next attribute." << endl;
             continue;
         }
+
         // Extract and convert values to integers if needed.
         const char* deviceNameText = nameElement->GetText();
         if (!deviceNameText) {
@@ -102,10 +103,12 @@ bool XMLReader::readerXML(string filename) {
         // Initialize the value to true.
         foundDevice = true;
     }
+
     // Checks the value of the foundDevice.
     if (!foundDevice) {
     if (logerrors) cerr << "There is no device in the system." << endl;
     }
+
     // Loop through JOB elements.
     for (TiXmlElement* jobElement = root->FirstChildElement("JOB"); jobElement; jobElement = jobElement->NextSiblingElement("JOB")) {
         // Create a new Job object for each JOB element.
