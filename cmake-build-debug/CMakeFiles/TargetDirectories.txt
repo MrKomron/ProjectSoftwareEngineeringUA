@@ -1,0 +1,3 @@
+C:/Users/Oubay/CLionProjects/ProjectSoftwareEngineeringUA/cmake-build-debug/CMakeFiles/debug_target.dir
+C:/Users/Oubay/CLionProjects/ProjectSoftwareEngineeringUA/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Oubay/CLionProjects/ProjectSoftwareEngineeringUA/cmake-build-debug/CMakeFiles/rebuild_cache.dir

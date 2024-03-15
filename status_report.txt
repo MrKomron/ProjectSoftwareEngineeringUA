@@ -1,0 +1,5 @@
+Office_Printer1(C02: 3g/page): 
+	* Current:
+		[# 2189|anonymous_user]
+	* Queue:
+		[# 2189|anonymous_user]
