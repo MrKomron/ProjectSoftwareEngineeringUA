@@ -1,9 +1,9 @@
 //============================================================================
-// Name        : StatusReport.cpp
+// Name        : Tests.cpp
 // Author      : Soliman Blanco, Oubayy Ahale, Komronjon Vosidov
 // Version     :
 // Copyright   : Project Software Engineering - BA1 Informatica - Soliman Blanco, Oubayy Ahale, Komronjon Vosidov - University of Antwerp
-// Description : Declarations for design by contract in C++
+// Description : This code tests various things
 //============================================================================
 
 #include <iostream>
@@ -55,8 +55,6 @@ TEST_F(TestXMLReader, TestName) {
     reader.readerXML("XMLDataVoorTests/NoName.xml");
     //cout << reader.getDeviceInfoList().front().deviceName;
     EXPECT_TRUE(reader.getDeviceInfoList().empty());
-
-    //EXPECT_EQ();
 }
 
 TEST_F(TestXMLReader, TestEmissions) {
@@ -73,56 +71,59 @@ TEST_F(TestXMLReader, TestSpeed) {
     EXPECT_TRUE(reader.getDeviceInfoList().empty());
 }
 
-
-/*
-class EmissionTest: public ::testing::Test {
-protected:
-    friend class XMLReader;
-
-    // virtual void SetUp() will be called before each test is run.  You
-    // should define it if you need to initialize the variables.
-    // Otherwise, this can be skipped.
-    virtual void SetUp() {
-    }
-
-    // virtual void TearDown() will be called after each test is run.
-    // You should define it if there is cleanup work to do.  Otherwise,
-    // you don't have to provide it.
-    virtual void TearDown() {
-    }
-
-    // XMLReader ttt_;
-};
-
-TEST_F(EmissionTest, CheckName) {
-    EXPECT_TRUE();
-    EXPECT_EQ();
+TEST_F(TestXMLReader, TestJobNumber) {
+    EXPECT_TRUE(reader.getJobInfoList().empty());
+    reader.readerXML("XMLDataVoorTests/NoJobNumber.xml");
+    //std::cout << reader.getDeviceInfoList().front().deviceName;
+    EXPECT_TRUE(reader.getJobInfoList().empty());
 }
 
-class SpeedTest: public ::testing::Test {
-protected:
-    friend class XMLReader;
-
-    // virtual void SetUp() will be called before each test is run.  You
-    // should define it if you need to initialize the variables.
-    // Otherwise, this can be skipped.
-    virtual void SetUp() {
-    }
-
-    // virtual void TearDown() will be called after each test is run.
-    // You should define it if there is cleanup work to do.  Otherwise,
-    // you don't have to provide it.
-    virtual void TearDown() {
-    }
-
-    // XMLReader ttt_;
-};
-
-TEST_F(EmissionTest, CheckName) {
-    EXPECT_TRUE();
-    EXPECT_EQ();
+TEST_F(TestXMLReader, TestPageCount) {
+    EXPECT_TRUE(reader.getJobInfoList().empty());
+    reader.readerXML("XMLDataVoorTests/NoPageCount.xml");
+    //std::cout << reader.getDeviceInfoList().front().deviceName;
+    EXPECT_TRUE(reader.getJobInfoList().empty());
 }
-*/
+
+TEST_F(TestXMLReader, TestUserName) {
+    EXPECT_TRUE(reader.getJobInfoList().empty());
+    reader.readerXML("XMLDataVoorTests/NoUserName.xml");
+    //std::cout << reader.getDeviceInfoList().front().deviceName;
+    EXPECT_TRUE(reader.getJobInfoList().empty());
+}
+
+TEST_F(TestXMLReader, TestSuccessfulParse) {
+    reader.readerXML("XMLDataVoorTests/ValidData.xml");
+    auto deviceInfoList = reader.getDeviceInfoList();
+    auto jobInfoList = reader.getJobInfoList();
+
+    // We nemen aan dat ValidData.XML precies 2 devices en 2 jobs bevat.
+    // getDeviceInfoList() en getJobInfoList() retourneren de lijsten met device- en jobinformatie die door de XMLReader zijn ingelezen en verwerkt.
+
+    // consistent typegebruik fixen
+    size_t expectedDevices = 2;
+    size_t expectedJobs = 2;
+
+    // Controlleren of de grootte van deviceInfoList = 2, wat zou betekenen dat er inderdaad 2 devices zijn ingelezen.
+    ASSERT_EQ(deviceInfoList.size(), expectedDevices);
+
+    // deviceName, emmisions & speed van het eerste Device checken
+    EXPECT_EQ(deviceInfoList.front().deviceName, "Office_Printer1");
+    EXPECT_EQ(deviceInfoList.front().emissions, 1);
+    EXPECT_EQ(deviceInfoList.front().speed, 10);
+
+    // Controlleren of de grootte van jobInfoList = 2, wat zou betekenen dat er inderdaad 2 jobs zijn ingelezen.
+    ASSERT_EQ(jobInfoList.size(), expectedJobs);
+
+    // deviceName, emmisions & speed van het eerste Device checken
+    EXPECT_EQ(jobInfoList.front().jobNumber, 1111);
+    EXPECT_EQ(jobInfoList.front().pageCount, 1);
+    EXPECT_EQ(jobInfoList.front().userName, "MelonMan");
+
+    //EXPECT_FALSE
+}
+
+
 
 int main(int argc, char *argv[])
 {

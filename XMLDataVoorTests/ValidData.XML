@@ -1,0 +1,22 @@
+<SYSTEM>
+    <DEVICE>
+        <name>Office_Printer1</name>
+        <emissions>1</emissions>
+        <speed>10</speed>
+    </DEVICE>
+    <DEVICE>
+        <name>Office_Printer2</name>
+        <emissions>4</emissions>
+        <speed>45</speed>
+    </DEVICE>
+    <JOB>
+        <jobNumber>1111</jobNumber>
+        <pageCount>1</pageCount>
+        <userName>MelonMan</userName>
+    </JOB>
+    <JOB>
+        <jobNumber>2222</jobNumber>
+        <pageCount>12</pageCount>
+        <userName>Waterman</userName>
+    </JOB>
+</SYSTEM>
