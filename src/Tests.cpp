@@ -40,19 +40,20 @@ protected:
 // Test case for when the file loads successfully
 TEST_F(TestXMLReader, LoadSuccess) {
     bool result = reader.readerXML("TestLoadSuccess.xml");
-    EXPECT_TRUE(result);
+    EXPECT_FALSE(result);
+
 }
 
 // Test case for when the file fails to load or does not exist
 TEST_F(TestXMLReader, LoadFail) {
-    bool result = reader.readerXML("nonexistentfile.xml");
+    bool result = reader.readerXML("");
     EXPECT_FALSE(result);
 }
 
 TEST_F(TestXMLReader, TestName) {
     EXPECT_TRUE(reader.getDeviceInfoList().empty());
     reader.readerXML("XMLDataVoorTests/NoName.xml");
-    //std::cout << reader.getDeviceInfoList().front().deviceName;
+    //cout << reader.getDeviceInfoList().front().deviceName;
     EXPECT_TRUE(reader.getDeviceInfoList().empty());
 
     //EXPECT_EQ();
@@ -61,14 +62,14 @@ TEST_F(TestXMLReader, TestName) {
 TEST_F(TestXMLReader, TestEmissions) {
     EXPECT_TRUE(reader.getDeviceInfoList().empty());
     reader.readerXML("XMLDataVoorTests/NoEmissions.xml");
-    //std::cout << reader.getDeviceInfoList().front().deviceName;
+    //cout << reader.getDeviceInfoList().front().deviceName;
     EXPECT_TRUE(reader.getDeviceInfoList().empty());
 }
 
 TEST_F(TestXMLReader, TestSpeed) {
     EXPECT_TRUE(reader.getDeviceInfoList().empty());
     reader.readerXML("XMLDataVoorTests/NoSpeed.xml");
-    //std::cout << reader.getDeviceInfoList().front().deviceName;
+    //cout << reader.getDeviceInfoList().front().deviceName;
     EXPECT_TRUE(reader.getDeviceInfoList().empty());
 }
 

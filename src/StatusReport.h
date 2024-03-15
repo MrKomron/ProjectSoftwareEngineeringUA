@@ -17,6 +17,8 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 class StatusReport{
 public:
 
@@ -24,6 +26,6 @@ public:
 \n REQUIRE(! this->generateStatusReport(), "A valid printing system is loaded.");
 \n ENSURE(this->generateStatusReport(), "The system has created a text file (ASCII) that contains all the necessary information about the system");
 */
-    static int generateStatusReport(const std::vector<Device>& devices, const std::vector<Job>& jobs);
+    static int generateStatusReport(const vector<Device>& devices, const vector<Job>& jobs);
 };
 #endif //TESTFOLDER_STATUSREPORT_H

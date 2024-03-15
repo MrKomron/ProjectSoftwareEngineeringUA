@@ -16,7 +16,7 @@ using namespace std;
 
 int System::manualProcess(std::vector<Device>& devices, std::vector<Job>& jobs){
     if (jobs.empty()) {
-        std::cerr << "No jobs to process." << std::endl;
+        cerr << "No jobs to process." << std::endl;
         return 1; // Return an error code indicating no jobs to process
     }
     // Process the first job in the job list
@@ -36,7 +36,7 @@ int System::manualProcess(std::vector<Device>& devices, std::vector<Job>& jobs){
         }
 
         // Assuming devices vector is not empty
-        const std::string& deviceName = devices.front().getDeviceName();
+        const string& deviceName = devices.front().getDeviceName();
         // Call giveJobInfo() with the device name
         firstJob.giveJobInfo(deviceName);
 

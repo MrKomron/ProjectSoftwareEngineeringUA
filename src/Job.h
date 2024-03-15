@@ -13,22 +13,24 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 class Job {
 private:
     int jobNumber;
     int pageCount;
-    std::string userName;
+    string userName;
 
 public:
     // Constructor
-    Job(int number = 0, int count = 0, const std::string& name = "");
+    Job(int number = 0, int count = 0, const string& name = "");
 
     // Function to populate jobs from XMLReader
-    static void populateFromXMLReader(const XMLReader& xmlReader);
-    void printJobInfo() const;
-    void getJobInfo(std::ofstream& outputFile) const;
-    void giveJobInfo(const std::string& deviceName) const;
-    static std::vector<Job> jobs;
+//    static void populateFromXMLReader(const XMLReader& xmlReader);
+//    void printJobInfo() const;
+    void getJobInfo(ofstream& outputFile) const;
+    void giveJobInfo(const string& deviceName) const;
+    static vector<Job> jobs;
     int getPageCount() const;
 };
 
