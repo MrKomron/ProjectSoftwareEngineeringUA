@@ -37,6 +37,18 @@ protected:
 
 };
 
+// Test case for when the file loads successfully
+TEST_F(TestXMLReader, LoadSuccess) {
+    bool result = reader.readerXML("TestLoadSuccess.xml");
+    EXPECT_TRUE(result);
+}
+
+// Test case for when the file fails to load or does not exist
+TEST_F(TestXMLReader, LoadFail) {
+    bool result = reader.readerXML("nonexistentfile.xml");
+    EXPECT_FALSE(result);
+}
+
 TEST_F(TestXMLReader, TestName) {
     EXPECT_TRUE(reader.getDeviceInfoList().empty());
     reader.readerXML("XMLDataVoorTests/NoName.xml");

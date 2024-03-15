@@ -1,0 +1,12 @@
+<Devices>
+    <Device>
+        <Name>Device1</Name>
+        <Type>Sensor</Type>
+        <Location>Office</Location>
+    </Device>
+    <Device>
+        <Name>Device2</Name>
+        <Type>Actuator</Type>
+        <Location>Warehouse</Location>
+    </Device>
+</Devices>
