@@ -60,6 +60,27 @@ TEST_F(TestXMLReader, TestSpeed) {
     EXPECT_TRUE(reader.getDeviceInfoList().empty());
 }
 
+TEST_F(TestXMLReader, TestJobNumber) {
+    EXPECT_TRUE(reader.getJobInfoList().empty());
+    reader.readerXML("XMLDataVoorTests/NoJobNumber.xml");
+    //std::cout << reader.getDeviceInfoList().front().deviceName;
+    EXPECT_TRUE(reader.getJobInfoList().empty());
+}
+
+TEST_F(TestXMLReader, TestPageCount) {
+    EXPECT_TRUE(reader.getJobInfoList().empty());
+    reader.readerXML("XMLDataVoorTests/NoPageCount.xml");
+    //std::cout << reader.getDeviceInfoList().front().deviceName;
+    EXPECT_TRUE(reader.getJobInfoList().empty());
+}
+
+TEST_F(TestXMLReader, TestUserName) {
+    EXPECT_TRUE(reader.getJobInfoList().empty());
+    reader.readerXML("XMLDataVoorTests/NoUserName.xml");
+    //std::cout << reader.getDeviceInfoList().front().deviceName;
+    EXPECT_TRUE(reader.getJobInfoList().empty());
+}
+
 /*
 class EmissionTest: public ::testing::Test {
 protected:
