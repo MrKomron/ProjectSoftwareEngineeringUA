@@ -1,9 +1,9 @@
 //============================================================================
-// Name        : StatusReport.cpp
+// Name        : Tests.cpp
 // Author      : Soliman Blanco, Oubayy Ahale, Komronjon Vosidov
 // Version     :
 // Copyright   : Project Software Engineering - BA1 Informatica - Soliman Blanco, Oubayy Ahale, Komronjon Vosidov - University of Antwerp
-// Description : Declarations for design by contract in C++
+// Description : This code tests various things
 //============================================================================
 
 #include <iostream>
@@ -81,55 +81,26 @@ TEST_F(TestXMLReader, TestUserName) {
     EXPECT_TRUE(reader.getJobInfoList().empty());
 }
 
-/*
-class EmissionTest: public ::testing::Test {
-protected:
-    friend class XMLReader;
+TEST_F(TestXMLReader, TestSuccessfulParse) {
+    reader.readerXML("XMLDataVoorTests/ValidData.xml");
+    auto deviceInfoList = reader.getDeviceInfoList();
+    auto jobInfoList = reader.getJobInfoList();
 
-    // virtual void SetUp() will be called before each test is run.  You
-    // should define it if you need to initialize the variables.
-    // Otherwise, this can be skipped.
-    virtual void SetUp() {
-    }
+    // We nemen aan dat ValidData.XML precies 2 devices en 2 jobs bevat.
+    // getDeviceInfoList() en getJobInfoList() retourneren de lijsten met device- en jobinformatie die door de XMLReader zijn ingelezen en verwerkt.
 
-    // virtual void TearDown() will be called after each test is run.
-    // You should define it if there is cleanup work to do.  Otherwise,
-    // you don't have to provide it.
-    virtual void TearDown() {
-    }
+    // consistent typegebruik fixen
+    size_t expectedDevices = 2;
+    size_t expectedJobs = 2;
 
-    // XMLReader ttt_;
-};
+    // Controlleren of de grootte van jobInfoList = 2, wat zou betekenen dat er inderdaad 2 devices zijn ingelezen.
+    ASSERT_EQ(deviceInfoList.size(), expectedDevices);
 
-TEST_F(EmissionTest, CheckName) {
-    EXPECT_TRUE();
-    EXPECT_EQ();
+    // Controlleren of de grootte van jobInfoList = 2, wat zou betekenen dat er inderdaad 2 jobs zijn ingelezen.
+    ASSERT_EQ(jobInfoList.size(), expectedJobs);
 }
 
-class SpeedTest: public ::testing::Test {
-protected:
-    friend class XMLReader;
 
-    // virtual void SetUp() will be called before each test is run.  You
-    // should define it if you need to initialize the variables.
-    // Otherwise, this can be skipped.
-    virtual void SetUp() {
-    }
-
-    // virtual void TearDown() will be called after each test is run.
-    // You should define it if there is cleanup work to do.  Otherwise,
-    // you don't have to provide it.
-    virtual void TearDown() {
-    }
-
-    // XMLReader ttt_;
-};
-
-TEST_F(EmissionTest, CheckName) {
-    EXPECT_TRUE();
-    EXPECT_EQ();
-}
-*/
 
 int main(int argc, char *argv[])
 {
