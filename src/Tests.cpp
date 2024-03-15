@@ -46,7 +46,7 @@ TEST_F(TestXMLReader, LoadSuccess) {
 
 // Test case for when the file fails to load or does not exist
 TEST_F(TestXMLReader, LoadFail) {
-    bool result = reader.readerXML("");
+    bool result = reader.readerXML("TestFileDoesNotExist.xml");
     EXPECT_FALSE(result);
 }
 

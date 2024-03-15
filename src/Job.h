@@ -26,8 +26,8 @@ public:
     Job(int number = 0, int count = 0, const string& name = "");
 
     // Function to populate jobs from XMLReader
-//    static void populateFromXMLReader(const XMLReader& xmlReader);
-//    void printJobInfo() const;
+    static void populateFromXMLReader(const XMLReader& xmlReader);
+    void printJobInfo() const;
     void getJobInfo(ofstream& outputFile) const;
     void giveJobInfo(const string& deviceName) const;
     static vector<Job> jobs;
