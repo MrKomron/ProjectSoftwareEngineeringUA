@@ -39,10 +39,14 @@ private:
 public:
     XMLReader(); // Constructor
     /**
-    \n REQUIRE(! this->readerXML(), "Will require a valid filepath. The XML file
-needs to contain information about the devices and jobs");
-    \n ENSURE(this->readerXML(), "The system contains a printing system with printer devices and printing jobs");
-    */
+      * Leest en verwerkt een XML-bestand.
+      *
+      * @param filename De naam van het XML-bestand dat moet worden gelezen.
+      * @return Een boolean die aangeeft of het lezen succesvol was.
+      *
+      * @pre Er moet een geldig XML-bestand op het opgegeven pad bestaan dat informatie bevat over apparaten en taken.
+      * @post Indien succesvol, bevat `deviceInfoList` informatie over de apparaten en `jobInfoList` informatie over de taken.
+      */
      bool readerXML(string filename);
 
     const vector<DeviceInfo> &getDeviceInfoList() const { return deviceInfoList; }

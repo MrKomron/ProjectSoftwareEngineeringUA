@@ -73,6 +73,7 @@ TEST_F(TestXMLReader, TestSpeed) {
     EXPECT_TRUE(reader.getDeviceInfoList().empty());
 }
 
+
 /*
 class EmissionTest: public ::testing::Test {
 protected:

@@ -22,10 +22,16 @@ using namespace std;
 class StatusReport{
 public:
 
-    /**
-\n REQUIRE(! this->generateStatusReport(), "A valid printing system is loaded.");
-\n ENSURE(this->generateStatusReport(), "The system has created a text file (ASCII) that contains all the necessary information about the system");
-*/
+/**
+     * Genereert een statusrapport voor de gegeven apparaten en jobs.
+     * @param devices Een vector van Device-objecten.
+     * @param jobs Een vector van Job-objecten.
+     *
+     * @pre Er wordt aangenomen dat een geldig afdruksysteem is geladen (d.w.z. de vector van apparaten en jobs bevat geldige gegevens).
+     * @post Een tekstbestand (ASCII) is gecreëerd dat alle noodzakelijke informatie over het systeem bevat.
+     *
+     * @return Een integer waarde die de status van het rapportgeneratieproces aangeeft (bijvoorbeeld 0 voor succes).
+     */
     static int generateStatusReport(const vector<Device>& devices, const vector<Job>& jobs);
 };
 #endif //TESTFOLDER_STATUSREPORT_H
