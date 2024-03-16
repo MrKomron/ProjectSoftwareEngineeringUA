@@ -16,11 +16,11 @@ Job::Job(int number, int count, const string& name)
         : jobNumber(number), pageCount(count), userName(name) {}
 
 // Static member function to populate jobs from XMLReader
-void Job::populateFromXMLReader(const XMLReader& xmlReader) {
+vector<Job> Job::populateFromXMLReader(const XMLReader& xmlReader) {
     // Access vectors from XMLReader
     const vector<JobInfo>& jobInfoList = xmlReader.getJobInfoList();
     // Print the size of jobInfoList to verify if it's populated correctly
-    cout << "Number of Job entries: " << jobInfoList.size() << endl;
+    if (logerrors) cout << "Number of Job entries: " << jobInfoList.size() << endl;
     // Clear any existing jobs before populating new ones
     jobs.clear();
     // Populate Job objects using data from jobInfoList vector
@@ -28,12 +28,13 @@ void Job::populateFromXMLReader(const XMLReader& xmlReader) {
         Job job(jobInfo.jobNumber, jobInfo.pageCount, jobInfo.userName);
         jobs.push_back(job);
     }
+    return jobs;
 }
 // This is a function use to print each one of the contents in the list of Jobs.
 void Job::printJobInfo() const {
-    cout << "Job Number: " << jobNumber << endl;
-    cout << "Page Count: " << pageCount << endl;
-    cout << "User Name: " << userName << endl;
+    if (logerrors) cout << "Job Number: " << jobNumber << endl;
+    if (logerrors) cout << "Page Count: " << pageCount << endl;
+    if (logerrors) cout << "User Name: " << userName << endl;
 }
 void Job::getJobInfo(ofstream& outputFile) const {
     outputFile << "\t\t[# " << jobNumber << "|" << userName << "]" << endl;
@@ -46,10 +47,10 @@ void Job::giveJobInfo(const std::string& deviceName) const{
     //Number: 13989
     //Submitted by "John Doe"
     //3 pages
-    cout << "Printer \"" << deviceName << "\" finished job:" << endl;
-    cout << "\tNumber: " << jobNumber << endl;
-    cout << "\tSubmitted by \"" << userName << "\"" << endl;
-    cout << "\t" <<pageCount << " pages" << endl;
+    if (logerrors) cout << "Printer \"" << deviceName << "\" finished job:" << endl;
+    if (logerrors) cout << "\tNumber: " << jobNumber << endl;
+    if (logerrors) cout << "\tSubmitted by \"" << userName << "\"" << endl;
+    if (logerrors) cout << "\t" <<pageCount << " pages" << endl;
 }
 
 int Job::getPageCount() const{

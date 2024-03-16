@@ -20,6 +20,8 @@
 using namespace std;
 
 class StatusReport{
+private:
+    bool logerrors = false;
 public:
 
 /**
@@ -32,6 +34,7 @@ public:
      *
      * @return Een integer waarde die de status van het rapportgeneratieproces aangeeft (bijvoorbeeld 0 voor succes).
      */
-    static int generateStatusReport(const vector<Device>& devices, const vector<Job>& jobs);
+    bool generateStatusReport(const vector<Device>& devices, const vector<Job>& jobs);
+    void setlogerrors(bool log) { logerrors = log; }
 };
 #endif //TESTFOLDER_STATUSREPORT_H

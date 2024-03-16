@@ -20,6 +20,7 @@ private:
     int jobNumber;
     int pageCount;
     string userName;
+    bool logerrors = false;
 
 public:
     /**
@@ -40,7 +41,7 @@ public:
      * @pre xmlReader moet geïnitialiseerd zijn en een geldige XML-structuur geladen hebben.
      * @post De statische lijst met jobs is gevuld met jobs uit de XMLReader.
      */
-    static void populateFromXMLReader(const XMLReader& xmlReader);
+    vector<Job> populateFromXMLReader(const XMLReader& xmlReader);
     /**
      * Print de informatie van de job.
      *
@@ -73,6 +74,7 @@ public:
     */
     int getPageCount() const;
     static vector<Job> jobs;
+    void setlogerrors(bool log) { logerrors = log; }
 };
 
 #endif //TESTFOLDER_JOB_H

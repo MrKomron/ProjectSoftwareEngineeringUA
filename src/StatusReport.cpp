@@ -18,17 +18,17 @@
 
 using namespace std;
 
-int StatusReport::generateStatusReport(const vector<Device>& devices, const vector<Job>& jobs) {
+bool StatusReport::generateStatusReport(const vector<Device>& devices, const vector<Job>& jobs) {
     // Create a text file and open it in write mode.
     ofstream outputFile("status_report.txt");
     // Check if the file is opened successfully
     if (!outputFile.is_open()) {
-        cerr << "Error: Unable to open output file." << endl;
-        return 1; // Return non-zero to indicate failure
+        if (logerrors) cerr << "Error: Unable to open output file." << endl;
+        return false; // Return non-zero to indicate failure
     }
     else if (outputFile.is_open()) {
-        cout << "Successfully opened output file." << endl;
-        cout<< endl;
+        if (logerrors) cout << "Successfully opened output file." << endl;
+        if (logerrors) cout<< endl;
     }
     bool foundDevice = false;
     // Generate status report for devices
@@ -38,7 +38,7 @@ int StatusReport::generateStatusReport(const vector<Device>& devices, const vect
     }
     if (!foundDevice) {
         outputFile << "No device available at the moment." << endl;
-        return 1;
+        return false;
     }
     // Process first job separately
     if (!jobs.empty() || jobs.size() == 1) {
@@ -59,5 +59,5 @@ int StatusReport::generateStatusReport(const vector<Device>& devices, const vect
     }
 
     outputFile.close();
-    return 0;
+    return true;
 }

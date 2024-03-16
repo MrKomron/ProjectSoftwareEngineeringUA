@@ -16,6 +16,8 @@
 #include "Job.h"
 
 class System{
+private:
+    bool logerrors = false;
 public:
     /**
  * @brief Voert handmatige verwerking uit op een verzameling van apparaten en taken.
@@ -32,9 +34,11 @@ public:
  *       De `jobs` vector kan worden gemodificeerd, taken kunnen worden gemarkeerd als voltooid of verwijderd, afhankelijk van de logica van de verwerking.
  *       De functie retourneert een integer die aangeeft of de verwerking succesvol was (bijvoorbeeld `0` voor succes, andere waarden kunnen duiden op verschillende fouten of resultaten).
  */
-    static int manualProcess(std::vector<Device>& devices, std::vector<Job>& jobs);
+    bool manualProcess(std::vector<Device>& devices, std::vector<Job>& jobs);
 //    static int automatedProcess(std::vector<Device>& devices, std::vector<Job>& jobs);
-//    int automatedProcess(std::vector<Device>& devices, std::vector<Job>& jobs);
+    bool automatedProcess(std::vector<Device>& devices, std::vector<Job>& jobs);
+
+    void setlogerrors(bool log) { logerrors = log; }
 
 };
 

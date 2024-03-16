@@ -16,11 +16,11 @@ Device::Device(const string &name, int emissions, int speed)
         : deviceName(name), emissions(emissions), speed(speed) {}
 
 // Static member function to populate jobs from XMLReader
-void Device::populateFromXMLReader(const XMLReader& xmlReader) {
+vector<Device> Device::populateFromXMLReader(const XMLReader& xmlReader) {
     // Access vectors from XMLReader
     const vector<DeviceInfo>& deviceInfoList = xmlReader.getDeviceInfoList();
     // Print the size of jobInfoList to verify if it's populated correctly
-    cout << "Number of Device entries: " << deviceInfoList.size() << endl;
+    if (logerrors) cout << "Number of Device entries: " << deviceInfoList.size() << endl;
     // Clear any existing jobs before populating new ones
     // Assuming jobs is a static vector declared somewhere outside the class
     devices.clear();
@@ -29,12 +29,13 @@ void Device::populateFromXMLReader(const XMLReader& xmlReader) {
         Device device(deviceInfo.deviceName, deviceInfo.emissions, deviceInfo.speed);
         devices.push_back(device);
     }
+    return devices;
 }
 // This is a function use to print each one of the contents in the list of Devices.
 void Device::printDeviceInfo() const {
-    cout << "Device Name: " << deviceName << endl;
-    cout << "Emissions: " << emissions << endl;
-    cout << "Speed: " << speed << endl;
+    if (logerrors) cout << "Device Name: " << deviceName << endl;
+    if (logerrors) cout << "Emissions: " << emissions << endl;
+    if (logerrors) cout << "Speed: " << speed << endl;
 }
 // This function would be used to write the top part in the status report output.
 void Device::getDeviceInfo(ofstream& outputFile) const {

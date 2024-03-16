@@ -28,6 +28,7 @@ private:
     string deviceName;
     int emissions;
     int speed;
+    bool logerrors = false;
 
 public:
     // Constructor
@@ -40,7 +41,7 @@ public:
      * @post De statische lijst met apparaten is gevuld met apparaten uit de XMLReader.
      */
 
-    static void populateFromXMLReader(const XMLReader& xmlReader);
+    vector<Device> populateFromXMLReader(const XMLReader& xmlReader);
     /**
      * Print de informatie van het apparaat.
      *
@@ -68,6 +69,7 @@ public:
 
     string getDeviceName() const;
     static vector<Device> devices;
+    void setlogerrors(bool log) { logerrors = log; }
 };
 
 #endif //TESTFOLDER_DEVICE_H

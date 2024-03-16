@@ -14,10 +14,10 @@
 
 using namespace std;
 
-int System::manualProcess(std::vector<Device>& devices, std::vector<Job>& jobs){
+bool System::manualProcess(vector<Device>& devices, vector<Job>& jobs){
     if (jobs.empty()) {
-        cerr << "No jobs to process." << std::endl;
-        return 1; // Return an error code indicating no jobs to process
+        if (logerrors) cerr << "No jobs to process." << std::endl;
+        return false; // Return an error code indicating no jobs to process
     }
     // Process the first job in the job list
     const Job& firstJob = jobs.front();
@@ -26,11 +26,11 @@ int System::manualProcess(std::vector<Device>& devices, std::vector<Job>& jobs){
         int pageCount = firstJob.getPageCount();
         while (printedPages < pageCount) {
             ++printedPages; // Increment printed pages
-            cout << "Printed pages: " << printedPages << endl;
+            if (logerrors) cout << "Printed pages: " << printedPages << endl;
 
             // Check if all pages have been printed
             if (printedPages == pageCount) {
-                cout << "All pages printed." << endl;
+                if (logerrors) cout << "All pages printed." << endl;
                 break; // Exit the loop
             }
         }
@@ -41,33 +41,32 @@ int System::manualProcess(std::vector<Device>& devices, std::vector<Job>& jobs){
         firstJob.giveJobInfo(deviceName);
 
     } else {
-        cerr << "No devices available. Cancelling the process" << endl;
-        return 1;
+        if (logerrors) cerr << "No devices available. Cancelling the process" << endl;
+        return false;
     }
     // Remove the first job so that the next job would be ready to be process
     jobs.erase(jobs.begin());
     // Additional processing logic for the first job can be added here
 
-    return 0;
+    return true;
 }
 //
-//int System::automatedProcess(std::vector<Device>& devices, std::vector<Job>& jobs) {
-//    if (jobs.empty()) {
-//        // If the list of jobs is empty
-//        cout << "No jobs to perform." << endl;
-//        return 1; // Return an error code indicating no jobs to perform
-//    } else {
-//        // Perform manual processing on each job in the list
-//        for (auto& job : jobs) {
-//            int result = manualProcess(devices, jobs);
-//            if (result != 0) {
-//                // If manual processing encounters an error, return immediately
-//                cerr << "Error processing job." << endl;
-//                return result;
-//            }
-//        }
-//        // All jobs processed successfully
-//        cout << "All jobs processed successfully." << endl;
-//        return 0;
-//    }
-//}
+bool System::automatedProcess(std::vector<Device>& devices, std::vector<Job>& jobs) {
+    if (jobs.empty()) {
+        // If the list of jobs is empty
+       if (logerrors) cout << "No jobs to perform." << endl;
+        return false; // Return an error code indicating no jobs to perform
+    } else {
+        // Perform manual processing on each job in the list
+        bool result = manualProcess(devices, jobs);
+        if (result != 0) {
+            // If manual processing encounters an error, return immediately
+            if (logerrors) cerr << "Error processing job." << endl;
+            return result;
+        }
+    }
+    // All jobs processed successfully
+    if (logerrors) cout << "All jobs processed successfully." << endl;
+    return true;
+
+}

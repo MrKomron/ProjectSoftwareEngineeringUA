@@ -23,6 +23,13 @@ protected:
     friend class XMLReader;
      XMLReader reader;
 
+    friend class System;
+     System system;
+    friend class Device;
+     Device device;
+    friend class Job;
+     Job job;
+
     // virtual void SetUp() will be called before each test is run.  You
     // should define it if you need to initialize the variables.
     // Otherwise, this can be skipped.
@@ -120,6 +127,38 @@ TEST_F(TestXMLReader, TestSuccessfulParse) {
     EXPECT_EQ(jobInfoList.front().userName, "MelonMan");
 
     //EXPECT_FALSE
+}
+
+
+TEST_F(TestXMLReader, TestManualProcess) {
+    reader.readerXML("XMLDataVoorTests/testManualProcess.xml");
+    vector<Device> tempDevices = device.populateFromXMLReader(reader);
+    vector<Job> tempJobs = job.populateFromXMLReader(reader);
+    size_t jobExpected = 0;
+
+    bool result = false;
+    if (!tempDevices.empty()) {
+        result = system.manualProcess(tempDevices, tempJobs);
+    }
+
+    ASSERT_EQ(tempJobs.size(), jobExpected);
+    EXPECT_TRUE(result);
+}
+
+TEST_F(TestXMLReader, TestAutomatedProcess) {
+    reader.readerXML("XMLDataVoorTests/testAutomatedProcess.xml");
+    vector<Device> tempDevices = device.populateFromXMLReader(reader);
+    vector<Job> tempJobs = job.populateFromXMLReader(reader);
+    size_t jobCurrent = 2;
+    ASSERT_EQ(tempJobs.size(), jobCurrent);
+
+    bool result = false;
+    if (!tempDevices.empty()) {
+        result = system.automatedProcess(tempDevices, tempJobs);
+    }
+    ASSERT_NE(tempJobs.size(), jobCurrent);
+    EXPECT_TRUE(result);
+
 }
 
 // happy day test
