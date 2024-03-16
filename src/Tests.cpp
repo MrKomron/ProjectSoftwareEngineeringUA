@@ -41,7 +41,6 @@ protected:
 TEST_F(TestXMLReader, LoadSuccess) {
     bool result = reader.readerXML("TestLoadSuccess.xml");
     EXPECT_FALSE(result);
-
 }
 
 // Test case for when the file fails to load or does not exist
@@ -123,6 +122,8 @@ TEST_F(TestXMLReader, TestSuccessfulParse) {
     //EXPECT_FALSE
 }
 
+// happy day test
+// lege file test
 
 
 int main(int argc, char *argv[])
