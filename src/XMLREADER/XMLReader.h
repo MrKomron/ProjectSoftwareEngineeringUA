@@ -47,11 +47,12 @@ public:
       * @pre Er moet een geldig XML-bestand op het opgegeven pad bestaan dat informatie bevat over apparaten en taken.
       * @post Indien succesvol, bevat `deviceInfoList` informatie over de apparaten en `jobInfoList` informatie over de taken.
       */
+
      bool readerXML(string filename);
 
-    const vector<DeviceInfo> &getDeviceInfoList() const { return deviceInfoList; }
+     const vector<DeviceInfo> &getDeviceInfoList() const { return deviceInfoList; }
 
-    const vector<JobInfo> &getJobInfoList() const { return jobInfoList; }
+     const vector<JobInfo> &getJobInfoList() const { return jobInfoList; }
 
 
     void setlogerrors(bool log) { logerrors = log; }

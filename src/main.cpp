@@ -17,8 +17,9 @@ using namespace std;                // Using namespace std to have a much simple
 int main() {
     // Load and parse XML file
     XMLReader xmlReader;
+    TiXmlDocument doc;
     // Initialized the first reading of the XML file. This function is located in XMLREADER/XMLReader.cpp.
-    if (!xmlReader.readerXML("XMLDataVoorTests/NoDAta.xml")) {
+    if (!xmlReader.readerXML("XMLDataVoorTests/ValidData.xml")) {
         cerr << "Failed to load XML file." << endl;
         return 1;                   // Return a 1 to exit the program because it couldn't open the XML file.
     }                               // Without the parsing of the XML, the program wouldn't work.
@@ -29,13 +30,16 @@ int main() {
     System system;
     StatusReport report;
     // Process the parsed data after populating the vectors.
-    device.populateFromXMLReader(xmlReader);
+    vector<Device> devices = device.populateFromXMLReader(xmlReader);
     cout << "Device List:" << endl;
     bool foundDevice = false;
     // Populate devices from XMLReader.
-    for (const auto& device1 : Device::devices) {
+    for (auto& device1 : Device::devices) {
+        device1.setlogerrors(true);
         // Call the print function.
         device1.printDeviceInfo();
+
+        device1.setlogerrors(false);
         // Add a newline for better readability
         cout << endl;
         foundDevice = true;
@@ -45,24 +49,27 @@ int main() {
     }
     cout << "__________________________________________________________________" << endl;
     // Process the parsed data after populating the vectors
-    job.populateFromXMLReader(xmlReader);
+    vector<Job> jobs = job.populateFromXMLReader(xmlReader);
     cout << "Job List:"<< endl;
     // Populate jobs from XMLReader.
-    for (const auto& job1 : Job::jobs) {
+    for (auto& job1 : Job::jobs) {
+        job1.setlogerrors(true);
         // Call the print function.
         job1.printJobInfo();
+        job1.setlogerrors(false);
         // Add a newline for better readability.
         cout << endl;
     }
     cout << "__________________________________________________________________" << endl;
-    if (system.manualProcess(Device::devices, Job::jobs) == 0){
+    system.setlogerrors(true);
+    if (system.manualProcess(devices, jobs)){
         cout << "__________________________________________________________________" << endl;
+        system.setlogerrors(false);
     }
-
     else {
         cerr << "Failed to process the request." << endl;
     }
-    if (report.generateStatusReport(Device::devices, Job::jobs) == 0) {
+    if (report.generateStatusReport(devices, jobs)) {
         cout << "Status report generated successfully." << endl;
         return 0;
     } else {

@@ -17,29 +17,46 @@ link_directories(./gtest/lib)
 # Set source files for RELEASE target
 # Only add cpp files, no h files!
 # Only add files with functionality here, no test files!
-set(RELEASE_SOURCE_FILES  src/main.cpp src/tinyxml.cpp src/tinystr.cpp src/tinyxml.cpp src/tinyxmlerror.cpp src/tinyxmlparser.cpp
-        src/XMLParsingLogic.cpp
-        src/XMLParsingLogic.h)
+set(RELEASE_SOURCE_FILES
+        src/main.cpp
+        src/tinyxml.cpp
+        src/tinystr.cpp
+        src/tinyxml.cpp
+        src/tinyxmlerror.cpp
+        src/tinyxmlparser.cpp
+
+)
 
 # Set source files for DEBUG target
 # Only add cpp files, no h files!
 set(DEBUG_SOURCE_FILES src/tests.cpp )
 
 # Create RELEASE target
-#add_executable(release_target ${RELEASE_SOURCE_FILES})
+add_executable(release_target
+        src/main.cpp
+        src/XMLREADER/tinyxml.cpp
+        src/XMLREADER/tinystr.cpp
+        src/XMLREADER/tinyxmlerror.cpp
+        src/XMLREADER/tinyxmlparser.cpp
+        src/XMLREADER/XMLReader.cpp
+        src/Job.cpp
+        src/Device.cpp
+        src/StatusReport.cpp
+        src/SystemProcessing.cpp
+)
 
 # Create DEBUG target
 add_executable(debug_target
-                            src/Tests.cpp
-                            src/Job.cpp
-                            src/Device.cpp
-                            src/StatusReport.cpp
-                            src/XMLREADER/XMLReader.cpp
-                            src/XMLREADER/tinystr.cpp
-                            src/XMLREADER/tinyxml.cpp
-                            src/XMLREADER/tinyxmlerror.cpp
-                            src/XMLREADER/tinyxmlparser.cpp
-                            src/SystemProcessing.cpp
+        src/Tests.cpp
+        src/Job.cpp
+        src/Device.cpp
+        src/StatusReport.cpp
+        src/XMLREADER/XMLReader.cpp
+        src/XMLREADER/tinystr.cpp
+        src/XMLREADER/tinyxml.cpp
+        src/XMLREADER/tinyxmlerror.cpp
+        src/XMLREADER/tinyxmlparser.cpp
+        src/SystemProcessing.cpp
 )
 
 # Link library

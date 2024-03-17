@@ -57,4 +57,6 @@ int Job::getPageCount() const{
     return pageCount;
 }
 
-
+void Job::setLogerrors(bool logerrors) {
+    Job::logerrors = logerrors;
+}

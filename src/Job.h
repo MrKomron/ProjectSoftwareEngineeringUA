@@ -20,6 +20,10 @@ private:
     int jobNumber;
     int pageCount;
     string userName;
+public:
+    void setLogerrors(bool logerrors);
+
+private:
     bool logerrors = false;
 
 public:

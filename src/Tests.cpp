@@ -32,7 +32,6 @@ protected:
     friend class StatusReport;
      StatusReport report;
 
-
     // virtual void SetUp() will be called before each test is run.  You
     // should define it if you need to initialize the variables.
     // Otherwise, this can be skipped.
@@ -163,6 +162,7 @@ TEST_F(TestXMLReader, TestAutomatedProcess) {
     EXPECT_TRUE(result);
 
 }
+
 TEST_F(TestXMLReader, TestStatusReport) {
     reader.readerXML("XMLDataVoorTests/NoDAta.xml");
     const vector<Device> NoDataDevices = device.populateFromXMLReader(reader);
