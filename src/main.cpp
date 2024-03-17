@@ -33,9 +33,9 @@ int main() {
     cout << "Device List:" << endl;
     bool foundDevice = false;
     // Populate devices from XMLReader.
-    for (const auto& device : Device::devices) {
+    for (const auto& device1 : Device::devices) {
         // Call the print function.
-        device.printDeviceInfo();
+        device1.printDeviceInfo();
         // Add a newline for better readability
         cout << endl;
         foundDevice = true;
@@ -48,9 +48,9 @@ int main() {
     job.populateFromXMLReader(xmlReader);
     cout << "Job List:"<< endl;
     // Populate jobs from XMLReader.
-    for (const auto& job : Job::jobs) {
+    for (const auto& job1 : Job::jobs) {
         // Call the print function.
-        job.printJobInfo();
+        job1.printJobInfo();
         // Add a newline for better readability.
         cout << endl;
     }
