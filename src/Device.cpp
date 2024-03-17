@@ -22,7 +22,6 @@ vector<Device> Device::populateFromXMLReader(const XMLReader& xmlReader) {
     // Print the size of jobInfoList to verify if it's populated correctly
     if (logerrors) cout << "Number of Device entries: " << deviceInfoList.size() << endl;
     // Clear any existing jobs before populating new ones
-    // Assuming jobs is a static vector declared somewhere outside the class
     devices.clear();
     // Populate Device objects using data from deviceInfoList vector
     for (const auto& deviceInfo : deviceInfoList) {

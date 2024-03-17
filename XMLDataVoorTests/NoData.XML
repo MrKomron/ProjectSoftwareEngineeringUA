@@ -1,0 +1,22 @@
+<SYSTEM>
+    <DEVICE>
+        <name></name>
+        <emissions></emissions>
+        <speed></speed>
+    </DEVICE>
+    <DEVICE>
+        <name></name>
+        <emissions></emissions>
+        <speed></speed>
+    </DEVICE>
+    <JOB>
+        <jobNumber></jobNumber>
+        <pageCount></pageCount>
+        <userName></userName>
+    </JOB>
+    <JOB>
+        <jobNumber></jobNumber>
+        <pageCount></pageCount>
+        <userName></userName>
+    </JOB>
+</SYSTEM>

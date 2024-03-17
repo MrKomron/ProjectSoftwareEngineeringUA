@@ -29,6 +29,9 @@ protected:
      Device device;
     friend class Job;
      Job job;
+    friend class StatusReport;
+     StatusReport report;
+
 
     // virtual void SetUp() will be called before each test is run.  You
     // should define it if you need to initialize the variables.
@@ -160,6 +163,20 @@ TEST_F(TestXMLReader, TestAutomatedProcess) {
     EXPECT_TRUE(result);
 
 }
+TEST_F(TestXMLReader, TestStatusReport) {
+    reader.readerXML("XMLDataVoorTests/NoDAta.xml");
+    const vector<Device> NoDataDevices = device.populateFromXMLReader(reader);
+    const vector<Job> NoDataJobs = job.populateFromXMLReader(reader);
+   reader.readerXML("XMLDataVoorTests/ValidDAta.xml");
+    vector<Device> WithDataDevices = device.populateFromXMLReader(reader);
+    vector<Job> WithDataJobs = job.populateFromXMLReader(reader);
+
+    bool noData = report.generateStatusReport(NoDataDevices, NoDataJobs );
+    EXPECT_FALSE(noData);
+    bool withData = report.generateStatusReport(WithDataDevices, WithDataJobs );
+    EXPECT_TRUE(withData);
+}
+
 
 // happy day test
 // lege file test

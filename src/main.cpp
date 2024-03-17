@@ -18,13 +18,18 @@ int main() {
     // Load and parse XML file
     XMLReader xmlReader;
     // Initialized the first reading of the XML file. This function is located in XMLREADER/XMLReader.cpp.
-    if (!xmlReader.readerXML()) {
+    if (!xmlReader.readerXML("XMLDataVoorTests/NoDAta.xml")) {
         cerr << "Failed to load XML file." << endl;
         return 1;                   // Return a 1 to exit the program because it couldn't open the XML file.
     }                               // Without the parsing of the XML, the program wouldn't work.
     cout << "__________________________________________________________________" << endl; // For better readability and separates every component.
+    // Process the parsed data after populating the vectors
+    Device device;
+    Job job;
+    System system;
+    StatusReport report;
     // Process the parsed data after populating the vectors.
-    Device::populateFromXMLReader(xmlReader);
+    device.populateFromXMLReader(xmlReader);
     cout << "Device List:" << endl;
     bool foundDevice = false;
     // Populate devices from XMLReader.
@@ -40,7 +45,7 @@ int main() {
     }
     cout << "__________________________________________________________________" << endl;
     // Process the parsed data after populating the vectors
-    Job::populateFromXMLReader(xmlReader);
+    job.populateFromXMLReader(xmlReader);
     cout << "Job List:"<< endl;
     // Populate jobs from XMLReader.
     for (const auto& job : Job::jobs) {
@@ -50,14 +55,14 @@ int main() {
         cout << endl;
     }
     cout << "__________________________________________________________________" << endl;
-    if (System::manualProcess(Device::devices, Job::jobs) == 0){
+    if (system.manualProcess(Device::devices, Job::jobs) == 0){
         cout << "__________________________________________________________________" << endl;
     }
 
     else {
         cerr << "Failed to process the request." << endl;
     }
-    if (StatusReport::generateStatusReport(Device::devices, Job::jobs) == 0) {
+    if (report.generateStatusReport(Device::devices, Job::jobs) == 0) {
         cout << "Status report generated successfully." << endl;
         return 0;
     } else {
