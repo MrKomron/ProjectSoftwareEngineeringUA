@@ -15,7 +15,8 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -30,7 +31,8 @@
 					"name" : "ProjectSoftwareEngineeringUA",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -39,8 +41,15 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "debug_target::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-debug_target-Debug-b87914d2ba068d7f6922.json",
+					"jsonFile" : "target-debug_target-Debug-42dbec72104fb3c4c572.json",
 					"name" : "debug_target",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "release_target::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-release_target-Debug-421ae70c69d7fd1b2a8a.json",
+					"name" : "release_target",
 					"projectIndex" : 0
 				}
 			]
@@ -49,12 +58,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/Oubay/CLionProjects/ProjectSoftwareEngineeringUA/cmake-build-debug",
-		"source" : "C:/Users/Oubay/CLionProjects/ProjectSoftwareEngineeringUA"
+		"build" : "C:/Users/Boss/Desktop/A.J._23-24/PSE/ProjectSoftwareEngineeringUA/cmake-build-debug",
+		"source" : "C:/Users/Boss/Desktop/A.J._23-24/PSE/ProjectSoftwareEngineeringUA"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 6
+		"minor" : 5
 	}
 }

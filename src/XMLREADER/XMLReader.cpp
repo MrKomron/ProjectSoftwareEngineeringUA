@@ -20,7 +20,6 @@ XMLReader::XMLReader() {
 bool XMLReader::readerXML(string filename) {
     // Creates an instance of TiXmlDocument class named "doc"
 
-    //TiXmlDocument doc1;
     // Loads the file to start the parsing.
     if (!doc.LoadFile(filename.c_str())) {
         if (logerrors) cerr << "Failed to load file: " << doc.ErrorDesc() << endl;
@@ -38,66 +37,53 @@ bool XMLReader::readerXML(string filename) {
 
     // Sets a variable to be used later for the checking of the availability of any printing device in the system.
     bool foundDevice = false;
-
     // Loop through DEVICE elements
+    // If one element is missing it will skip the other elements and will just process the next device.
     for (TiXmlElement* deviceElement = root->FirstChildElement("DEVICE"); deviceElement; deviceElement = deviceElement->NextSiblingElement("DEVICE")) {
         // Create a new vector instance for every device found.
         DeviceInfo deviceInfo;
-
+        // Handles if the element is missing then would skip everything and would just go to the next device.
         // Get name element from DEVICE.
         TiXmlElement* nameElement = deviceElement->FirstChildElement("name");
         if (!nameElement) {
-            if (logerrors) cerr << "Failed to find NAME element for the device. Continuing onto the next attribute." << endl;
+            if (logerrors) cerr << "Failed to find NAME element for the device. Continuing onto the next device." << endl;
             continue;
         }
         // Get emissions element from DEVICE.
         TiXmlElement* emissionsElement = deviceElement->FirstChildElement("emissions");
         if (!emissionsElement) {
-        if (logerrors) cerr << "Failed to find EMISSIONS element for the device. Continuing onto the next attribute." << endl;
+            if (logerrors) cerr << "Failed to find EMISSIONS element for the device. Continuing onto the next device." << endl;
             continue;
         }
         // Get speed element from DEVICE.
         TiXmlElement* speedElement = deviceElement->FirstChildElement("speed");
         if (!speedElement) {
-        if (logerrors) cerr << "Failed to find SPEED element for the device. Continuing onto the next attribute." << endl;
+            if (logerrors) cerr << "Failed to find SPEED element for the device. Continuing onto the next device." << endl;
             continue;
         }
-
+        // Handles the errors of the missing attributes.
         // Extract and convert values to integers if needed.
-        const char* deviceNameText = nameElement->GetText();
+        const char* deviceNameText = nameElement->GetText(); // Make a constant variable for the name of the device.
         if (!deviceNameText) {
-        if (logerrors) cerr << "Device name is empty for the device. Continuing onto the next attribute." << endl;
+            if (logerrors) cerr << "Device name is empty for the device. Continuing onto the next device." << endl;
             continue;
         }
         deviceInfo.deviceName = deviceNameText;
 
-        const char* emissionsText = emissionsElement->GetText();
+        const char* emissionsText = emissionsElement->GetText(); // Make a constant variable for the emissions of the device.
         if (!emissionsText) {
-        if (logerrors) cerr << "Emissions value is missing or empty for the device. Continuing onto the next attribute." << endl;
+            if (logerrors) cerr << "Emissions value is missing or empty for the device. Continuing onto the next device." << endl;
             continue;
         }
-        deviceInfo.emissions = atoi(emissionsText);
+        deviceInfo.emissions = atoi(emissionsText); // Convert the text into integer.
 
-        const char* speedText = speedElement->GetText();
+        const char* speedText = speedElement->GetText(); // Make a constant variable for the speed of the device.
         if (!speedText) {
-        if (logerrors) cerr << "Speed value is missing or empty for the device. Continuing onto the next attribute." << endl;
+            if (logerrors) cerr << "Speed value is missing or empty for the device. Continuing onto the next device." << endl;
             continue;
         }
-        deviceInfo.speed = atoi(speedText);
+        deviceInfo.speed = atoi(speedText); // Convert the text into integer.
 
-        // Error handling and validation.
-        if (deviceInfo.deviceName.empty()) {
-        if (logerrors) cerr << "Device name is empty for the device." << endl;
-            continue;
-        }
-        if (deviceInfo.emissions <= 0) {
-        if (logerrors) cerr << "Invalid emissions value for device: " << deviceInfo.emissions << endl;
-            continue;
-        }
-        if (deviceInfo.speed <= 0) {
-        if (logerrors) cerr << "Invalid speed value for device: " << deviceInfo.speed << endl;
-            continue;
-        }
         // Sets the data in the list of devices.
         deviceInfoList.push_back(deviceInfo);
         // Initialize the value to true.
@@ -110,43 +96,44 @@ bool XMLReader::readerXML(string filename) {
     }
 
     // Loop through JOB elements.
+    // If one element is missing it will skip the other elements and will just process the next job.
     for (TiXmlElement* jobElement = root->FirstChildElement("JOB"); jobElement; jobElement = jobElement->NextSiblingElement("JOB")) {
         // Create a new Job object for each JOB element.
         JobInfo jobInfo;
         // Get jobNumber element from JOB.
         TiXmlElement* jobNumberElement = jobElement->FirstChildElement("jobNumber");
         if (!jobNumberElement) {
-        if (logerrors) cerr << "Failed to find jobNumber element for a job. Continuing onto the next attribute." << endl;
+            if (logerrors) cerr << "Failed to find jobNumber element for a job. Continuing onto the next job." << endl;
             continue;
         }
         // Get pageCount element from JOB.
         TiXmlElement* pageCountElement = jobElement->FirstChildElement("pageCount");
         if (!pageCountElement) {
-        if (logerrors) cerr << "Failed to find pageCount element for a job. Continuing onto the next attribute." << endl;
+            if (logerrors) cerr << "Failed to find pageCount element for a job. Continuing onto the next job." << endl;
             continue;
         }
         // Get userName element from JOB.
         TiXmlElement* userNameElement = jobElement->FirstChildElement("userName");
         if (!userNameElement) {
-        if (logerrors) cerr << "Failed to find userName element for a job. Continuing onto the next attribute." << endl;
+            if (logerrors) cerr << "Failed to find userName element for a job. Continuing onto the next job." << endl;
             continue;
         }
         // Extract and convert values to integers if needed.
         const char* jobNumberText = jobNumberElement->GetText();
         if (!jobNumberText) {
-        if (logerrors) cerr << "Job number is empty for the device. Continuing onto the next attribute." << endl;
+            if (logerrors) cerr << "Job number is empty for the device. Continuing onto the next job." << endl;
             continue;
         }
         jobInfo.jobNumber = atoi(jobNumberElement->GetText());
         const char* pageCountText = pageCountElement->GetText();
         if (!pageCountText) {
-        if (logerrors) cerr << "Page count is missing or empty for the device. Continuing onto the next attribute." << endl;
+            if (logerrors) cerr << "Page count is missing or empty for the device. Continuing onto the next job." << endl;
             continue;
         }
         jobInfo.pageCount = atoi(pageCountElement->GetText());
         const char* userNameText = userNameElement->GetText();
         if (!userNameText) {
-        if (logerrors) cerr << "User name is missing or empty for the device. Continuing onto the next attribute." << endl;
+            if (logerrors) cerr << "User name is missing or empty for the device. Continuing onto the next job." << endl;
             continue;
         }
         jobInfo.userName = userNameElement->GetText();

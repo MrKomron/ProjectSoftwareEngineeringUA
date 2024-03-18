@@ -47,26 +47,17 @@ bool System::manualProcess(vector<Device>& devices, vector<Job>& jobs){
     // Remove the first job so that the next job would be ready to be process
     jobs.erase(jobs.begin());
     // Additional processing logic for the first job can be added here
-
     return true;
 }
 //
-bool System::automatedProcess(std::vector<Device>& devices, std::vector<Job>& jobs) {
-    if (jobs.empty()) {
-        // If the list of jobs is empty
-       if (logerrors) cout << "No jobs to perform." << endl;
-        return false; // Return an error code indicating no jobs to perform
-    } else {
-        // Perform manual processing on each job in the list
+bool System::automatedProcess(vector<Device>& devices, vector<Job>& jobs) {
+    while (!jobs.empty()) {
         bool result = manualProcess(devices, jobs);
-        if (result != 0) {
-            // If manual processing encounters an error, return immediately
-            if (logerrors) cerr << "Error processing job." << endl;
-            return result;
+        if (!result) {
+            // All jobs processed successfully
+            if (logerrors) cout << "All jobs processed successfully." << endl;
+            break;
         }
     }
-    // All jobs processed successfully
-    if (logerrors) cout << "All jobs processed successfully." << endl;
     return true;
-
 }
