@@ -15,13 +15,13 @@ vector<Device> Device::devices;
 Device::Device(const string &name, int emissions, int speed)
         : deviceName(name), emissions(emissions), speed(speed) {}
 
-// Static member function to populate jobs from XMLReader
+// Static member function to populate devices from XMLReader
 vector<Device> Device::populateFromXMLReader(const XMLReader& xmlReader) {
     // Access vectors from XMLReader
     const vector<DeviceInfo>& deviceInfoList = xmlReader.getDeviceInfoList();
-    // Print the size of jobInfoList to verify if it's populated correctly
+    // Print the size of deviceInfoList to verify if it's populated correctly
     if (logerrors) cout << "Number of Device entries: " << deviceInfoList.size() << endl;
-    // Clear any existing jobs before populating new ones
+    // Clear any existing devices before populating new ones.
     devices.clear();
     // Populate Device objects using data from deviceInfoList vector
     for (const auto& deviceInfo : deviceInfoList) {
@@ -40,7 +40,7 @@ void Device::printDeviceInfo() const {
 void Device::getDeviceInfo(ofstream& outputFile) const {
     outputFile << deviceName <<"(C02: "<< emissions<< "g/page): "<< endl;
 }
-
+// Get the name of the device.
 string Device::getDeviceName() const {
     return deviceName;
 }

@@ -1,5 +1,6 @@
-Office_Printer1(C02: 3g/page): 
+Office_Printer7(C02: 6g/page): 
 	* Current:
-		[# 2189|anonymous_user]
+		[# 7|anonymous_user7]
 	* Queue:
-		[# 2189|anonymous_user]
+		[# 8|anonymous_user8]
+		[# 9|anonymous_user9]

@@ -19,10 +19,12 @@ int main() {
     XMLReader xmlReader;
     TiXmlDocument doc;
     // Initialized the first reading of the XML file. This function is located in XMLREADER/XMLReader.cpp.
-    if (!xmlReader.readerXML("XMLDataVoorTests/ValidData.xml")) {
+    xmlReader.setlogerrors(true);
+    if (!xmlReader.readerXML("XMLDataVoorTests/data.xml")) {
         cerr << "Failed to load XML file." << endl;
         return 1;                   // Return a 1 to exit the program because it couldn't open the XML file.
     }                               // Without the parsing of the XML, the program wouldn't work.
+    xmlReader.setlogerrors(false);
     cout << "__________________________________________________________________" << endl; // For better readability and separates every component.
     // Process the parsed data after populating the vectors
     Device device;
@@ -61,6 +63,13 @@ int main() {
         cout << endl;
     }
     cout << "__________________________________________________________________" << endl;
+    if (report.generateStatusReport(devices, jobs)) {
+        cout << "Status report generated successfully." << endl;
+        cout << "__________________________________________________________________" << endl;
+    } else {
+        cerr << "Failed to generate status report." << endl;
+        cout << "__________________________________________________________________" << endl;
+    }
     system.setlogerrors(true);
     if (system.manualProcess(devices, jobs)){
         cout << "__________________________________________________________________" << endl;
@@ -69,11 +78,10 @@ int main() {
     else {
         cerr << "Failed to process the request." << endl;
     }
-    if (report.generateStatusReport(devices, jobs)) {
-        cout << "Status report generated successfully." << endl;
-        return 0;
-    } else {
-        cerr << "Failed to generate status report." << endl;
-        return 1;
+    system.setlogerrors(true);
+    if (system.automatedProcess(devices, jobs)){
+        cout << "__________________________________________________________________" << endl;
+        system.setlogerrors(false);
     }
+    return 0;
 }

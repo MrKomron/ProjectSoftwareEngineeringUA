@@ -39,11 +39,10 @@ void Job::printJobInfo() const {
 void Job::getJobInfo(ofstream& outputFile) const {
     outputFile << "\t\t[# " << jobNumber << "|" << userName << "]" << endl;
 }
-
+// This function would be used to print a message in the screen.
 void Job::giveJobInfo(const std::string& deviceName) const{
- // This function would be used to print a message in the screen.
- //Example: If a job with 3 pages and job number 13989 was submitted by “John Doe” to the printer “Library Printer 5”, the following message would be printed after the job was finished:
- //Printer "Library Printer 5" finished job:
+    //Example: If a job with 3 pages and job number 13989 was submitted by “John Doe” to the printer “Library Printer 5”, the following message would be printed after the job was finished:
+    //Printer "Library Printer 5" finished job:
     //Number: 13989
     //Submitted by "John Doe"
     //3 pages
@@ -55,8 +54,4 @@ void Job::giveJobInfo(const std::string& deviceName) const{
 
 int Job::getPageCount() const{
     return pageCount;
-}
-
-void Job::setLogerrors(bool logerrors) {
-    Job::logerrors = logerrors;
 }
