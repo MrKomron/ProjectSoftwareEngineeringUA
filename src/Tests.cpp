@@ -128,7 +128,7 @@ TEST_F(TestXMLReader, TestSuccessfulParse) {
     EXPECT_EQ(jobInfoList.front().pageCount, 1);
     EXPECT_EQ(jobInfoList.front().userName, "MelonMan");
 
-    //EXPECT_FALSE
+    //
 }
 
 
