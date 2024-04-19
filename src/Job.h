@@ -19,14 +19,12 @@ class Job {
 private:
     int jobNumber;
     int pageCount;
+    string jobType;
     string userName;
+    bool logerrors = false;
 public:
     void setLogerrors(bool logerrors);
 
-private:
-    bool logerrors = false;
-
-public:
     /**
      * Constructor die een Job-object initialiseert.
      * @param number Het nummer van de job (standaard 0).
@@ -36,7 +34,7 @@ public:
      * @pre Er zijn geen precondities voor deze constructor.
      * @post Het Job-object is gecreëerd met de opgegeven jobnummer, paginatelling en gebruikersnaam.
      */
-    Job(int number = 0, int count = 0, const string& name = "");
+    Job(int number = 0, int count = 0, const string& jobType = "", const string& name = "");
 
     /**
      * Vult de lijst met jobs op basis van gegevens van de XMLReader.
@@ -68,7 +66,7 @@ public:
      * @pre Het Job-object moet correct geïnitialiseerd zijn.
      * @post Informatie over de job is verstrekt aan het gespecificeerde apparaat. Er is geen verandering in de status van het object.
      */
-    void giveJobInfo(const string& deviceName) const;
+    JobInfo giveJobInfo() const;
     /**
     * Geeft het aantal pagina's van de job terug.
     * @return Het aantal pagina's van de job.
@@ -76,7 +74,6 @@ public:
     * @pre Het Job-object moet correct geïnitialiseerd zijn.
     * @post Het geretourneerde aantal pagina's is groter dan of gelijk aan 0.
     */
-    int getPageCount() const;
     static vector<Job> jobs;
     void setlogerrors(bool log) { logerrors = log; }
 };

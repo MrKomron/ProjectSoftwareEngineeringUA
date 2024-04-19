@@ -26,7 +26,12 @@
     </DEVICE>
     <DEVICE>
         <name>Office_Printer7</name>
-        <emissions>6</emissions>
+        <emissions>7</emissions>
+        <speed>40</speed>
+    </DEVICE>
+    <DEVICE>
+        <name>Office_Printer8</name>
+        <emissions>8</emissions>
         <speed>40</speed>
     </DEVICE>
     <JOB>

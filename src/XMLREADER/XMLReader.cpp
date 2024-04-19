@@ -77,6 +77,22 @@ bool XMLReader::readerXML(string filename) {
 
             }
         }
+
+        // Get type element from DEVICE.
+        TiXmlElement* typeElement = deviceElement->FirstChildElement("type");
+        if (!typeElement) {
+            if (logerrors) cerr << "Failed to find TYPE element for the device. Continuing onto the next attribute." << endl;
+            validDevice = false;
+        } else {
+            const char* typeText = typeElement->GetText(); // Make a constant variable for the name of the device.
+            if (!typeText) {
+                if (logerrors) cerr << "Device type is empty for the device. Continuing onto the next attribute." << endl;
+                validDevice = false;
+            } else {
+                deviceInfo.deviceType = typeText;
+            }
+        }
+
         // Get speed element from DEVICE.
         TiXmlElement* speedElement = deviceElement->FirstChildElement("speed");
         if (!speedElement) {
@@ -157,6 +173,22 @@ bool XMLReader::readerXML(string filename) {
                 }
             }
         }
+
+        // Get userName element from JOB.
+        TiXmlElement *typeElement = jobElement->FirstChildElement("type");
+        if (!typeElement) {
+            if (logerrors) cerr << "Failed to find userName element for a job. Continuing onto the next attribute." << endl;
+            validJob = false;
+        } else {
+            const char *typeText = typeElement->GetText();
+            if (!typeText) {
+                if (logerrors) cerr << "User name is missing or empty for the device. Continuing onto the next attribute." << endl;
+                validJob = false;
+            } else {
+                jobInfo.jobType = typeElement->GetText();
+            }
+        }
+
         // Get userName element from JOB.
         TiXmlElement *userNameElement = jobElement->FirstChildElement("userName");
         if (!userNameElement) {

@@ -10,7 +10,8 @@
 #include "Device.h"                 ///Including the headers////
 #include "Job.h"                    ///that are going to be/////
 #include "StatusReport.h"           /////////used here//////////
-#include "SystemProcessing.h"       ////////////////////////////
+#include "SystemProcessing.h"
+
 
 using namespace std;                // Using namespace std to have a much simpler code without redundant "std::".
 
@@ -20,17 +21,14 @@ int main() {
     TiXmlDocument doc;
     // Initialized the first reading of the XML file. This function is located in XMLREADER/XMLReader.cpp.
     xmlReader.setlogerrors(true);
-    if (!xmlReader.readerXML("XMLDataVoorTests/data.xml")) {
+    if (!xmlReader.readerXML("C:\\Users\\Boss\\Desktop\\duplicateFiles\\ProjectSoftwareEngineeringUA\\XMLDataVoorTests/dataTypes.xml")) {
         cerr << "Failed to load XML file." << endl;
         return 1;                   // Return a 1 to exit the program because it couldn't open the XML file.
     }                               // Without the parsing of the XML, the program wouldn't work.
     xmlReader.setlogerrors(false);
     cout << "__________________________________________________________________" << endl; // For better readability and separates every component.
-    // Process the parsed data after populating the vectors
     Device device;
     Job job;
-    System system;
-    StatusReport report;
     // Process the parsed data after populating the vectors.
     vector<Device> devices = device.populateFromXMLReader(xmlReader);
     cout << "Device List:" << endl;
@@ -63,25 +61,13 @@ int main() {
         cout << endl;
     }
     cout << "__________________________________________________________________" << endl;
-    if (report.generateStatusReport(devices, jobs)) {
-        cout << "Status report generated successfully." << endl;
-        cout << "__________________________________________________________________" << endl;
-    } else {
-        cerr << "Failed to generate status report." << endl;
-        cout << "__________________________________________________________________" << endl;
-    }
+
+    System system;
     system.setlogerrors(true);
-    if (system.manualProcess(devices, jobs)){
-        cout << "__________________________________________________________________" << endl;
-        system.setlogerrors(false);
-    }
-    else {
-        cerr << "Failed to process the request." << endl;
-    }
-    system.setlogerrors(true);
-    if (system.automatedProcess(devices, jobs)){
-        cout << "__________________________________________________________________" << endl;
-        system.setlogerrors(false);
-    }
+    device.setlogerrors(true);
+    const string examplePrinter2 = "Office_Printer5";
+    const int exampleJob2 = 2189;
+    const char logerror = true;
+    system.scheduler(examplePrinter2, exampleJob2, devices, jobs, logerror);
     return 0;
 }

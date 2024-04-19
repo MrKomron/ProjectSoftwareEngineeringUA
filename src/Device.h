@@ -10,6 +10,7 @@
 #include <fstream>
 #include <iostream>
 #include "XMLREADER/XMLReader.h"
+#include "Job.h"
 #include <string>
 #include <vector>
 
@@ -25,14 +26,17 @@ using namespace std;
  */
 class Device {
 private:
+    vector<pair<string, vector<Job>>> processedJobs;
     string deviceName;
     int emissions;
+    string deviceType;
     int speed;
     bool logerrors = false;
 
 public:
+
     // Constructor
-    Device(const string& name = "", int emissions = 0, int speed = 0);
+    Device(const string& name = "", int emissions = 0, const string& deviceType = "", int speed = 0);
     /**
      * Vult de lijst met apparaten op basis van gegevens van de XMLReader.
      * @param xmlReader De XMLReader met de geladen XML-gegevens.
@@ -50,15 +54,7 @@ public:
      */
 
     void printDeviceInfo() const;
-    /**
-     * Schrijft de informatie van het apparaat naar een output bestand.
-     * @param outputFile De output file stream.
-     *
-     * @pre outputFile moet open zijn en klaar voor schrijfoperaties.
-     * @post Informatie over het apparaat is geschreven naar het outputFile. Er is geen verandering in de status van het object.
-     */
 
-    void getDeviceInfo(ofstream& outputFile) const;
     /**
      * Geeft de naam van het apparaat terug.
      * @return De naam van het apparaat.
@@ -66,10 +62,11 @@ public:
      * @pre Het Device-object moet correct geïnitialiseerd zijn.
      * @post De naam van het apparaat is niet leeg.
      */
+    DeviceInfo giveDeviceInfo() const;
 
-    string getDeviceName() const;
     static vector<Device> devices;
     void setlogerrors(bool log) { logerrors = log; }
+    bool manualProcess(const string& selectedDeviceName, const int selectedJobNumber, vector<Job>& jobs);
 };
 
 #endif //TESTFOLDER_DEVICE_H
