@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="ProjectSoftwareEngineeringUA"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="release_target">
+				<Option output="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/release_target.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/./gtest/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 release_target"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="release_target/fast">
+				<Option output="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/release_target.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/./gtest/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 release_target/fast"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="debug_target">
+				<Option output="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/debug_target.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/./gtest/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 debug_target"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="debug_target/fast">
+				<Option output="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/debug_target.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/./gtest/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 debug_target/fast"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/src/Device.cpp">
+			<Option target="release_target"/>
+			<Option target="debug_target"/>
+		</Unit>
+		<Unit filename="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/src/Device.h">
+			<Option target="release_target"/>
+			<Option target="debug_target"/>
+		</Unit>
+		<Unit filename="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/src/Job.cpp">
+			<Option target="release_target"/>
+			<Option target="debug_target"/>
+		</Unit>
+		<Unit filename="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/src/Job.h">
+			<Option target="release_target"/>
+			<Option target="debug_target"/>
+		</Unit>
+		<Unit filename="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/src/StatusReport.cpp">
+			<Option target="release_target"/>
+			<Option target="debug_target"/>
+		</Unit>
+		<Unit filename="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/src/StatusReport.h">
+			<Option target="release_target"/>
+			<Option target="debug_target"/>
+		</Unit>
+		<Unit filename="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/src/SystemProcessing.cpp">
+			<Option target="release_target"/>
+			<Option target="debug_target"/>
+		</Unit>
+		<Unit filename="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/src/SystemProcessing.h">
+			<Option target="release_target"/>
+			<Option target="debug_target"/>
+		</Unit>
+		<Unit filename="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/src/Tests.cpp">
+			<Option target="debug_target"/>
+		</Unit>
+		<Unit filename="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/src/XMLREADER/XMLReader.cpp">
+			<Option target="release_target"/>
+			<Option target="debug_target"/>
+		</Unit>
+		<Unit filename="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/src/XMLREADER/XMLReader.h">
+			<Option target="release_target"/>
+			<Option target="debug_target"/>
+		</Unit>
+		<Unit filename="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/src/XMLREADER/tinystr.cpp">
+			<Option target="release_target"/>
+			<Option target="debug_target"/>
+		</Unit>
+		<Unit filename="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/src/XMLREADER/tinystr.h">
+			<Option target="release_target"/>
+			<Option target="debug_target"/>
+		</Unit>
+		<Unit filename="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/src/XMLREADER/tinyxml.cpp">
+			<Option target="release_target"/>
+			<Option target="debug_target"/>
+		</Unit>
+		<Unit filename="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/src/XMLREADER/tinyxml.h">
+			<Option target="release_target"/>
+			<Option target="debug_target"/>
+		</Unit>
+		<Unit filename="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/src/XMLREADER/tinyxmlerror.cpp">
+			<Option target="release_target"/>
+			<Option target="debug_target"/>
+		</Unit>
+		<Unit filename="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/src/XMLREADER/tinyxmlparser.cpp">
+			<Option target="release_target"/>
+			<Option target="debug_target"/>
+		</Unit>
+		<Unit filename="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/src/main.cpp">
+			<Option target="release_target"/>
+		</Unit>
+		<Unit filename="C:/Users/Dell/Documents/ProjectSoftwareEngineeringUA/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
