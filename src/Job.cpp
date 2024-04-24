@@ -12,9 +12,8 @@
 
 using namespace std;
 vector<Job> Job::jobs;
-Job::Job(int number, int count, const string& name)
-        : jobNumber(number), pageCount(count), userName(name) {}
-
+Job::Job(int number, int count, const string& jobType, const string& name)
+        : jobNumber(number), pageCount(count), jobType(jobType), userName(name) {}
 // Static member function to populate jobs from XMLReader
 vector<Job> Job::populateFromXMLReader(const XMLReader& xmlReader) {
     // Access vectors from XMLReader
@@ -25,7 +24,7 @@ vector<Job> Job::populateFromXMLReader(const XMLReader& xmlReader) {
     jobs.clear();
     // Populate Job objects using data from jobInfoList vector
     for (const auto& jobInfo : jobInfoList) {
-        Job job(jobInfo.jobNumber, jobInfo.pageCount, jobInfo.userName);
+        Job job(jobInfo.jobNumber, jobInfo.pageCount, jobInfo.jobType, jobInfo.userName);
         jobs.push_back(job);
     }
     return jobs;
@@ -34,6 +33,7 @@ vector<Job> Job::populateFromXMLReader(const XMLReader& xmlReader) {
 void Job::printJobInfo() const {
     if (logerrors) cout << "Job Number: " << jobNumber << endl;
     if (logerrors) cout << "Page Count: " << pageCount << endl;
+    if (logerrors) cout << "Type: " << jobType << endl;
     if (logerrors) cout << "User Name: " << userName << endl;
 }
 void Job::getJobInfo(ofstream& outputFile) const {
@@ -52,6 +52,13 @@ void Job::giveJobInfo(const std::string& deviceName) const{
     if (logerrors) cout << "\tSubmitted by \"" << userName << "\"" << endl;
     if (logerrors) cout << "\t" <<pageCount << " pages" << endl;
     cout << "Cost: " << fixed  << cost << " euros" << endl; // Displaying cost with two decimal places
+JobInfo Job::giveJobInfo() const {
+    JobInfo info;
+    info.jobNumber = jobNumber;
+    info.pageCount = pageCount;
+    info.jobType = jobType;
+    info.userName = userName;
+    return info;
 }
 
 int Job::getPageCount() const{

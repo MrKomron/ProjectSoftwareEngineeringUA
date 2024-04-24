@@ -20,17 +20,15 @@ class Job {
 private:
     int jobNumber;
     int pageCount;
+    string jobType;
     string userName;
+    bool logerrors = false;
     Device* device;
     float cost;
 
 public:
     void setLogerrors(bool logerrors);
 
-private:
-    bool logerrors = false;
-
-public:
     /**
      * Constructor die een Job-object initialiseert met specifieke eigenschappen.
      *
@@ -41,6 +39,7 @@ public:
      */
 
     Job(int number = 0, int count = 0, const string& name = "");
+    Job(int number = 0, int count = 0, const string& jobType = "", const string& name = "");
 
     Job(int jobNumber, int pageCount, const string &userName, Device *device, float cost);
 
@@ -76,6 +75,7 @@ public:
      */
 
     void giveJobInfo(const string& deviceName) const;
+    JobInfo giveJobInfo() const;
     /**
      * Geeft het aantal pagina's van de job terug.
      *

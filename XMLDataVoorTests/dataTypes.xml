@@ -1,0 +1,38 @@
+<SYSTEM>
+    <DEVICE>
+        <name>Office_Printer5</name>
+        <emissions>3</emissions>
+        <type>bw</type>
+        <speed>40</speed>
+    </DEVICE>
+    <DEVICE>
+        <name>ColorPrinter</name>
+        <emissions>6</emissions>
+        <type>color</type>
+        <speed>32</speed>
+    </DEVICE>
+    <JOB>
+        <jobNumber>89751</jobNumber>
+        <pageCount>2</pageCount>
+        <type>color</type>
+        <userName>SergeDemeyer</userName>
+    </JOB>
+    <JOB>
+        <jobNumber>2189</jobNumber>
+        <pageCount>3</pageCount>
+        <type>bw</type>
+        <userName>anonymous_user</userName>
+    </JOB>
+    <DEVICE>
+        <name>Default Scanner</name>
+        <emissions>8</emissions>
+        <type>scan</type>
+        <speed>11</speed>
+    </DEVICE>
+    <JOB>
+        <jobNumber>98632</jobNumber>
+        <pageCount>10</pageCount>
+        <type>scan</type>
+        <userName>Peter Selie</userName>
+    </JOB>
+</SYSTEM>

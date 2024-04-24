@@ -8,65 +8,35 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "Device.h"
 #include "Job.h"
 #include "SystemProcessing.h"
 
 using namespace std;
 
-bool System::manualProcess(vector<Device>& devices, vector<Job>& jobs){
-    if (jobs.empty()) {
-        if (logerrors) cerr << "No jobs to process." << std::endl;
-        return false; // Return an error code indicating no jobs to process
-    }
-    // Process the first job in the job list
-    const Job& firstJob = jobs.front();
-    if (!devices.empty()) {
-        int printedPages = 0;
-        int pageCount = firstJob.getPageCount();
-        while (printedPages < pageCount) {
-            ++printedPages; // Increment printed pages
-            if (logerrors) cout << "Printed pages: " << printedPages << endl;
-
-            // Check if all pages have been printed
-            if (printedPages == pageCount) {
-                if (logerrors) cout << "All pages printed." << endl;
-                break; // Exit the loop
-            }
-        }
-
-        // Assuming devices vector is not empty
-        const string& deviceName = devices.front().getDeviceName();
-        // Call giveJobInfo() with the device name
-        firstJob.giveJobInfo(deviceName);
-
-    } else {
-        if (logerrors) cerr << "No devices available. Cancelling the process" << endl;
+bool System::scheduler(const string& selectedDeviceName, int selectedJobNumber, const vector<Device>& devices, vector<Job>& jobs, const char logerror){
+    // Find the device with the specified deviceName
+    auto deviceIter = find_if(devices.begin(), devices.end(), [&](const Device& dev) {
+        DeviceInfo infoDev = dev.giveDeviceInfo();
+        return infoDev.deviceName == selectedDeviceName;
+    });
+    // Check if the device was found
+    if (deviceIter == devices.end()) {
+        if (logerrors) cerr << "Device \"" << selectedDeviceName << "\" not found." << endl;
         return false;
     }
-    // Remove the first job so that the next job would be ready to be process
-    jobs.erase(jobs.begin());
-    // Additional processing logic for the first job can be added here
-
-    return true;
-}
-//
-bool System::automatedProcess(std::vector<Device>& devices, std::vector<Job>& jobs) {
-    if (jobs.empty()) {
-        // If the list of jobs is empty
-       if (logerrors) cout << "No jobs to perform." << endl;
-        return false; // Return an error code indicating no jobs to perform
-    } else {
-        // Perform manual processing on each job in the list
-        bool result = manualProcess(devices, jobs);
-        if (result != 0) {
-            // If manual processing encounters an error, return immediately
-            if (logerrors) cerr << "Error processing job." << endl;
-            return result;
+    string tempDeviceName = deviceIter->giveDeviceInfo().deviceName;
+    // Call manualProcess on the device represented by deviceIter
+    for (Device device : devices) {
+        if (tempDeviceName == selectedDeviceName) {
+            device.setlogerrors(logerror);
+            // Call manualProcess on the device
+            return device.manualProcess(selectedDeviceName, selectedJobNumber, jobs);
         }
     }
-    // All jobs processed successfully
-    if (logerrors) cout << "All jobs processed successfully." << endl;
-    return true;
 
+    // If device is not found
+    if (logerrors) cerr << "Device \"" << selectedDeviceName << "\" not found." << endl;
+    return false;
 }

@@ -1,6 +1,6 @@
-Office_Printer1(C02: 1g/page): 
-Office_Printer2(C02: 4g/page): 
+Office_Printer7(C02: 6g/page): 
 	* Current:
-		[# 2222|Waterman]
+		[# 7|anonymous_user7]
 	* Queue:
-		[There is no more job in the queue.]
+		[# 8|anonymous_user8]
+		[# 9|anonymous_user9]

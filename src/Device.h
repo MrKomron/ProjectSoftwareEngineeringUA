@@ -7,10 +7,10 @@
 //============================================================================
 #ifndef TESTFOLDER_DEVICE_H
 #define TESTFOLDER_DEVICE_H
-
 #include <fstream>
 #include <iostream>
 #include "XMLREADER/XMLReader.h"
+#include "Job.h"
 #include <string>
 #include <vector>
 
@@ -27,16 +27,20 @@ using namespace std;
 
 class Device {
 private:
+    vector<pair<string, vector<Job>>> processedJobs;
     string deviceName;
     int emissions;
+    string deviceType;
     int speed;
     bool logerrors = false;
     float cost_per_page;
 
 public:
+
     // Constructor
     Device(const string &name = "", int emissions = 0, int speed = 0);
 
+    Device(const string& name = "", int emissions = 0, const string& deviceType = "", int speed = 0);
     /**
      * Vult de lijst met apparaten op basis van gegevens van de XMLReader.
      *
@@ -74,6 +78,7 @@ public:
      * ENSURE(!this->getName().empty(), "De naam van het apparaat is niet leeg.");
      */
 
+    DeviceInfo giveDeviceInfo() const;
 
     string getDeviceName() const;
 
@@ -82,6 +87,7 @@ public:
     void setlogerrors(bool log) { logerrors = log; }
 
     float getCostPerPage() const;
+    bool manualProcess(const string& selectedDeviceName, const int selectedJobNumber, vector<Job>& jobs);
 };
 
 #endif //TESTFOLDER_DEVICE_H
