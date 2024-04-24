@@ -44,3 +44,7 @@ void Device::getDeviceInfo(ofstream& outputFile) const {
 string Device::getDeviceName() const {
     return deviceName;
 }
+
+float Device::getCostPerPage() const {
+    return cost_per_page;
+}

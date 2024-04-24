@@ -24,16 +24,13 @@ private:
     bool logerrors = false;
 public:
 
-/**
+    /**
      * Genereert een statusrapport voor de gegeven apparaten en jobs.
-     * @param devices Een vector van Device-objecten.
-     * @param jobs Een vector van Job-objecten.
      *
-     * @pre Er wordt aangenomen dat een geldig afdruksysteem is geladen (d.w.z. de vector van apparaten en jobs bevat geldige gegevens).
-     * @post Een tekstbestand (ASCII) is gecreëerd dat alle noodzakelijke informatie over het systeem bevat.
-     *
-     * @return Een integer waarde die de status van het rapportgeneratieproces aangeeft (bijvoorbeeld 0 voor succes).
+     * REQUIRE(validSystemLoaded(devices, jobs), "Er wordt aangenomen dat een geldig afdruksysteem is geladen (d.w.z. de vector van apparaten en jobs bevat geldige gegevens).");
+     * ENSURE(reportCreatedSuccessfully(), "Een tekstbestand (ASCII) is gecreëerd dat alle noodzakelijke informatie over het systeem bevat.");
      */
+
     bool generateStatusReport(const vector<Device>& devices, const vector<Job>& jobs);
     void setlogerrors(bool log) { logerrors = log; }
 };

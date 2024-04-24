@@ -51,6 +51,7 @@ void Job::giveJobInfo(const std::string& deviceName) const{
     if (logerrors) cout << "\tNumber: " << jobNumber << endl;
     if (logerrors) cout << "\tSubmitted by \"" << userName << "\"" << endl;
     if (logerrors) cout << "\t" <<pageCount << " pages" << endl;
+    cout << "Cost: " << fixed  << cost << " euros" << endl; // Displaying cost with two decimal places
 }
 
 int Job::getPageCount() const{
@@ -60,3 +61,24 @@ int Job::getPageCount() const{
 void Job::setLogerrors(bool logerrors) {
     Job::logerrors = logerrors;
 }
+
+float Job::getCost() const {
+    return cost;
+}
+
+Job::Job(int jobNumber, int pageCount, const string &userName, Device *device, float cost) : jobNumber(jobNumber),
+                                                                                             pageCount(pageCount),
+                                                                                             userName(userName),
+                                                                                             device(device),
+                                                                                             cost(cost) {
+
+}
+
+void Job::calculateCost() {
+    if (device != nullptr && pageCount>0){
+        cost=pageCount*device->getCostPerPage();
+    }else{
+        cost=0.0f;
+    }
+}
+
