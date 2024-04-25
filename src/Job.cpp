@@ -40,18 +40,19 @@ void Job::getJobInfo(ofstream& outputFile) const {
     outputFile << "\t\t[# " << jobNumber << "|" << userName << "]" << endl;
 }
 
-void Job::giveJobInfo(const std::string& deviceName) const{
- // This function would be used to print a message in the screen.
- //Example: If a job with 3 pages and job number 13989 was submitted by “John Doe” to the printer “Library Printer 5”, the following message would be printed after the job was finished:
- //Printer "Library Printer 5" finished job:
+void Job::giveJobInfo(const std::string& deviceName) const {
+    // This function would be used to print a message in the screen.
+    //Example: If a job with 3 pages and job number 13989 was submitted by “John Doe” to the printer “Library Printer 5”, the following message would be printed after the job was finished:
+    //Printer "Library Printer 5" finished job:
     //Number: 13989
     //Submitted by "John Doe"
     //3 pages
     if (logerrors) cout << "Printer \"" << deviceName << "\" finished job:" << endl;
     if (logerrors) cout << "\tNumber: " << jobNumber << endl;
     if (logerrors) cout << "\tSubmitted by \"" << userName << "\"" << endl;
-    if (logerrors) cout << "\t" <<pageCount << " pages" << endl;
-    cout << "Cost: " << fixed  << cost << " euros" << endl; // Displaying cost with two decimal places
+    if (logerrors) cout << "\t" << pageCount << " pages" << endl;
+    cout << "Cost: " << fixed << cost << " euros" << endl; // Displaying cost with two decimal places
+}
 JobInfo Job::giveJobInfo() const {
     JobInfo info;
     info.jobNumber = jobNumber;
