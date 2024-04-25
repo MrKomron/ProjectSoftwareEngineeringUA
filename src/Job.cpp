@@ -12,9 +12,8 @@
 
 using namespace std;
 vector<Job> Job::jobs;
-Job::Job(int number, int count, const string& name)
-        : jobNumber(number), pageCount(count), userName(name) {}
-
+Job::Job(int number, int count, const string& jobType, const string& name)
+        : jobNumber(number), pageCount(count), jobType(jobType), userName(name) {}
 // Static member function to populate jobs from XMLReader
 vector<Job> Job::populateFromXMLReader(const XMLReader& xmlReader) {
     // Access vectors from XMLReader
@@ -25,7 +24,7 @@ vector<Job> Job::populateFromXMLReader(const XMLReader& xmlReader) {
     jobs.clear();
     // Populate Job objects using data from jobInfoList vector
     for (const auto& jobInfo : jobInfoList) {
-        Job job(jobInfo.jobNumber, jobInfo.pageCount, jobInfo.userName);
+        Job job(jobInfo.jobNumber, jobInfo.pageCount, jobInfo.jobType, jobInfo.userName);
         jobs.push_back(job);
     }
     return jobs;
@@ -34,15 +33,17 @@ vector<Job> Job::populateFromXMLReader(const XMLReader& xmlReader) {
 void Job::printJobInfo() const {
     if (logerrors) cout << "Job Number: " << jobNumber << endl;
     if (logerrors) cout << "Page Count: " << pageCount << endl;
+    if (logerrors) cout << "Type: " << jobType << endl;
     if (logerrors) cout << "User Name: " << userName << endl;
 }
 void Job::getJobInfo(ofstream& outputFile) const {
     outputFile << "\t\t[# " << jobNumber << "|" << userName << "]" << endl;
 }
-// This function would be used to print a message in the screen.
+
 void Job::giveJobInfo(const std::string& deviceName) const{
-    //Example: If a job with 3 pages and job number 13989 was submitted by “John Doe” to the printer “Library Printer 5”, the following message would be printed after the job was finished:
-    //Printer "Library Printer 5" finished job:
+ // This function would be used to print a message in the screen.
+ //Example: If a job with 3 pages and job number 13989 was submitted by “John Doe” to the printer “Library Printer 5”, the following message would be printed after the job was finished:
+ //Printer "Library Printer 5" finished job:
     //Number: 13989
     //Submitted by "John Doe"
     //3 pages
@@ -50,8 +51,41 @@ void Job::giveJobInfo(const std::string& deviceName) const{
     if (logerrors) cout << "\tNumber: " << jobNumber << endl;
     if (logerrors) cout << "\tSubmitted by \"" << userName << "\"" << endl;
     if (logerrors) cout << "\t" <<pageCount << " pages" << endl;
+    cout << "Cost: " << fixed  << cost << " euros" << endl; // Displaying cost with two decimal places
+JobInfo Job::giveJobInfo() const {
+    JobInfo info;
+    info.jobNumber = jobNumber;
+    info.pageCount = pageCount;
+    info.jobType = jobType;
+    info.userName = userName;
+    return info;
 }
 
 int Job::getPageCount() const{
     return pageCount;
 }
+
+void Job::setLogerrors(bool logerrors) {
+    Job::logerrors = logerrors;
+}
+
+float Job::getCost() const {
+    return cost;
+}
+
+Job::Job(int jobNumber, int pageCount, const string &userName, Device *device, float cost) : jobNumber(jobNumber),
+                                                                                             pageCount(pageCount),
+                                                                                             userName(userName),
+                                                                                             device(device),
+                                                                                             cost(cost) {
+
+}
+
+void Job::calculateCost() {
+    if (device != nullptr && pageCount>0){
+        cost=pageCount*device->getCostPerPage();
+    }else{
+        cost=0.0f;
+    }
+}
+

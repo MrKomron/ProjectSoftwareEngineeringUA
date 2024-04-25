@@ -31,7 +31,7 @@ int main() {
     TiXmlDocument doc;
     // Initialized the first reading of the XML file. This function is located in XMLREADER/XMLReader.cpp.
     xmlReader.setlogerrors(true);
-    if (!xmlReader.readerXML("C:\\Users\\Oubay\\CLionProjects\\ProjectSoftwareEngineeringUA\\XMLDataVoorTests/data.xml")) {
+    if (!xmlReader.readerXML("XMLDataVoorTests/data.xml")) {
         cerr << "Failed to load XML file." << endl;
         return 1;                   // Return a 1 to exit the program because it couldn't open the XML file.
     }                               // Without the parsing of the XML, the program wouldn't work.

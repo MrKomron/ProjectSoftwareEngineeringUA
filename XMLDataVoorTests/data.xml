@@ -1,7 +1,5 @@
 <SYSTEM>
     <DEVICE>
-        <emissions>1</emissions>
-        <speed>40</speed>
     </DEVICE>
     <DEVICE>
         <name>Office_Printer2</name>
@@ -13,7 +11,7 @@
     </DEVICE>
     <DEVICE>
         <name></name>
-        <emissions>4</emissions>
+        <emissions></emissions>
         <speed>40</speed>
     </DEVICE>
     <DEVICE>
@@ -28,12 +26,15 @@
     </DEVICE>
     <DEVICE>
         <name>Office_Printer7</name>
-        <emissions>6</emissions>
+        <emissions>7</emissions>
+        <speed>40</speed>
+    </DEVICE>
+    <DEVICE>
+        <name>Office_Printer8</name>
+        <emissions>8</emissions>
         <speed>40</speed>
     </DEVICE>
     <JOB>
-        <pageCount>1</pageCount>
-        <userName>anonymous_user1</userName>
     </JOB>
     <JOB>
         <jobNumber>2</jobNumber>
