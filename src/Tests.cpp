@@ -9,7 +9,8 @@
 #include <iostream>
 #include <fstream>
 #include <gtest/gtest.h>
-
+#include <sstream>
+#include <string>
 #include "XMLREADER/XMLReader.h"
 #include "Device.h"
 #include "Job.h"
@@ -43,8 +44,38 @@ protected:
     // you don't have to provide it.
     virtual void TearDown() {
     }
-
 };
+
+class OutputComparisonTest : public ::testing::Test {
+protected:
+    // Helper function to read file content into a string
+    std::string readFile(const std::string& fileName) {
+        std::ifstream file(fileName);
+        std::stringstream buffer;
+        buffer << file.rdbuf();
+        return buffer.str();
+    }
+
+    // Perform any setup needed before each test
+    virtual void SetUp() override {
+        // Redirect outputs to files, run functions that generate outputs, etc.
+    }
+
+    // Clean up after each test
+    virtual void TearDown() override {
+        // Optionally, delete files if needed, or restore states if needed
+    }
+};
+
+TEST_F(OutputComparisonTest, CompareOutputs) {
+    string actualOutput = readFile("output.txt");
+    string expectedOutput = readFile("expectedOutput.txt");
+    ASSERT_EQ(actualOutput, expectedOutput);
+
+    string actualErrors = readFile("errors.txt");
+    string expectedErrors = readFile("expectedErrors.txt");
+    ASSERT_EQ(actualErrors, expectedErrors);
+}
 
 // Test case for when the file loads successfully
 TEST_F(TestXMLReader, LoadSuccess) {
@@ -130,7 +161,6 @@ TEST_F(TestXMLReader, TestSuccessfulParse) {
 
     //
 }
-
 
 TEST_F(TestXMLReader, TestManualProcess) {
     reader.readerXML("XMLDataVoorTests/testManualProcess.xml");

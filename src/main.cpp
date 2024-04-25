@@ -11,16 +11,27 @@
 #include "Job.h"                    ///that are going to be/////
 #include "StatusReport.h"           /////////used here//////////
 #include "SystemProcessing.h"       ////////////////////////////
+#include <fstream> // Include fstream for file operations
 
 using namespace std;                // Using namespace std to have a much simpler code without redundant "std::".
 
 int main() {
+
+    ofstream outFile("output.txt"); // Output file stream for standard output
+    ofstream errFile("errors.txt"); // Output file stream for standard errors
+
+    streambuf* coutBuf = cout.rdbuf(); // Save old buffer for cout
+    streambuf* cerrBuf = cerr.rdbuf(); // Save old buffer for cerr
+
+    cout.rdbuf(outFile.rdbuf());   // Redirect cout to file
+    cerr.rdbuf(errFile.rdbuf());   // Redirect cerr to errFile
+
     // Load and parse XML file
     XMLReader xmlReader;
     TiXmlDocument doc;
     // Initialized the first reading of the XML file. This function is located in XMLREADER/XMLReader.cpp.
     xmlReader.setlogerrors(true);
-    if (!xmlReader.readerXML("XMLDataVoorTests/data.xml")) {
+    if (!xmlReader.readerXML("C:\\Users\\Oubay\\CLionProjects\\ProjectSoftwareEngineeringUA\\XMLDataVoorTests/data.xml")) {
         cerr << "Failed to load XML file." << endl;
         return 1;                   // Return a 1 to exit the program because it couldn't open the XML file.
     }                               // Without the parsing of the XML, the program wouldn't work.
@@ -83,5 +94,13 @@ int main() {
         cout << "__________________________________________________________________" << endl;
         system.setlogerrors(false);
     }
+
+    // Restore the original buffers so that outputs can be shown on terminal again if needed
+    cout.rdbuf(coutBuf); // Reset to standard output before program exit
+    cerr.rdbuf(cerrBuf); // Reset cerr to standard error
+
+    outFile.close(); // Close the output file stream
+    errFile.close(); // Close the error file stream
+
     return 0;
 }

@@ -1,0 +1,12 @@
+Failed to find NAME element for the device. Continuing onto the next device.
+Failed to find EMISSIONS element for the device. Continuing onto the next device.
+Failed to find SPEED element for the device. Continuing onto the next device.
+Device name is empty for the device. Continuing onto the next device.
+Emissions value is missing or empty for the device. Continuing onto the next device.
+Speed value is missing or empty for the device. Continuing onto the next device.
+Failed to find jobNumber element for a job. Continuing onto the next job.
+Failed to find pageCount element for a job. Continuing onto the next job.
+Failed to find userName element for a job. Continuing onto the next job.
+Job number is empty for the device. Continuing onto the next job.
+Page count is missing or empty for the device. Continuing onto the next job.
+User name is missing or empty for the device. Continuing onto the next job.

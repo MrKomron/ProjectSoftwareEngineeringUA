@@ -1,0 +1,52 @@
+__________________________________________________________________
+Device List:
+Device Name: Office_Printer7
+Emissions: 6
+Speed: 40
+
+__________________________________________________________________
+Job List:
+Job Number: 7
+Page Count: 7
+User Name: anonymous_user7
+
+Job Number: 8
+Page Count: 8
+User Name: anonymous_user8
+
+Job Number: 9
+Page Count: 9
+User Name: anonymous_user9
+
+__________________________________________________________________
+Status report generated successfully.
+__________________________________________________________________
+Printed pages: 1
+Printed pages: 2
+Printed pages: 3
+Printed pages: 4
+Printed pages: 5
+Printed pages: 6
+Printed pages: 7
+All pages printed.
+__________________________________________________________________
+Printed pages: 1
+Printed pages: 2
+Printed pages: 3
+Printed pages: 4
+Printed pages: 5
+Printed pages: 6
+Printed pages: 7
+Printed pages: 8
+All pages printed.
+Printed pages: 1
+Printed pages: 2
+Printed pages: 3
+Printed pages: 4
+Printed pages: 5
+Printed pages: 6
+Printed pages: 7
+Printed pages: 8
+Printed pages: 9
+All pages printed.
+__________________________________________________________________
