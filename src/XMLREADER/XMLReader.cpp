@@ -112,6 +112,27 @@ bool XMLReader::readerXML(string filename) {
                 }
             }
         }
+
+        // Get speed element from DEVICE.
+        TiXmlElement* costppElement = deviceElement->FirstChildElement("cost_per_page");
+        if (!costppElement) {
+            if (logerrors) cerr << "Failed to find COST_PER_PAGE element for the device. Continuing onto the next attribute." << endl;
+            validDevice = false;
+        } else {
+            const char* costppText = costppElement->GetText(); // Make a constant variable for the speed of the device.
+            if (!costppText) {
+                if (logerrors) cerr << "Cost_per_page value is missing or empty for the device. Continuing onto the next attribute." << endl;
+                validDevice = false;
+            } else {
+                int costppValue = atoi(costppText); // Convert the text into integer.
+                if (costppValue <=0) {
+                    if (logerrors) cerr << "Invalid cost_per_page value for the device. Continuing onto the next attribute." << endl;
+                } else {
+                    deviceInfo.costpp = costppValue;
+                }
+            }
+        }
+
         if (!validDevice) if (logerrors) cerr << endl;
 
         // If the device is valid, add it to the list

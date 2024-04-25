@@ -12,7 +12,7 @@
 
 using namespace std;
 vector<Device> Device::devices;
-Device::Device(const string &name, int emissions, const string &deviceType, int speed)
+Device::Device(const string &name, int emissions, const string &deviceType, int speed, int cost_per_page)
         : deviceName(name), emissions(emissions), deviceType(deviceType), speed(speed) {}
 
 // Static member function to populate devices from XMLReader
@@ -43,11 +43,8 @@ DeviceInfo Device::giveDeviceInfo() const {
     info.emissions = emissions;
     info.deviceType = deviceType;
     info.speed = speed;
+    info.costpp = cost_per_page;
     return info;
-}
-
-string Device::getDeviceName() const {
-    return deviceName;
 }
 
 float Device::getCostPerPage() const {

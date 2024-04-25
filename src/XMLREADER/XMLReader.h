@@ -24,6 +24,7 @@ struct DeviceInfo {
     int emissions;
     string deviceType;
     int speed;
+    int costpp;
 };
 struct JobInfo {
     int jobNumber;

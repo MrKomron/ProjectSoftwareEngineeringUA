@@ -10,7 +10,6 @@
 #include <fstream>
 #include <iostream>
 #include "XMLREADER/XMLReader.h"
-#include "Device.h"
 #include <string>
 #include <vector>
 
@@ -23,8 +22,7 @@ private:
     string jobType;
     string userName;
     bool logerrors = false;
-    Device* device;
-    float cost;
+    int totalCost;
 
 public:
     void setLogerrors(bool logerrors);
@@ -38,10 +36,7 @@ public:
      * ENSURE(this->name.empty(), "Gebruikersnaam niet correct geïnitialiseerd als lege string.");
      */
 
-    Job(int number = 0, int count = 0, const string& name = "");
-    Job(int number = 0, int count = 0, const string& jobType = "", const string& name = "");
-
-    Job(int jobNumber, int pageCount, const string &userName, Device *device, float cost);
+    Job(int jobNumber = 0, int pageCount = 0, const string& jobType = "", const string& userName = "", int totalCost = 0);
 
     /**
      * Vult de lijst met jobs op basis van gegevens van de XMLReader.
@@ -75,6 +70,7 @@ public:
      */
 
     void giveJobInfo(const string& deviceName) const;
+
     JobInfo giveJobInfo() const;
     /**
      * Geeft het aantal pagina's van de job terug.
@@ -89,7 +85,7 @@ public:
 
     float getCost() const;
 
-    void calculateCost();
+    int calculateCost();
 
 };
 

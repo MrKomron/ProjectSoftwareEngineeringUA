@@ -33,14 +33,15 @@ private:
     string deviceType;
     int speed;
     bool logerrors = false;
-    float cost_per_page;
+    int cost_per_page;
+
 
 public:
 
     // Constructor
-    Device(const string &name = "", int emissions = 0, int speed = 0);
+    // Device(const string &name = "", int emissions = 0, int speed = 0, float cost_per_page = 0);
 
-    Device(const string& name = "", int emissions = 0, const string& deviceType = "", int speed = 0);
+    Device(const string& name = "", int emissions = 0, const string& deviceType = "", int speed = 0, int cost_per_page = 0);
     /**
      * Vult de lijst met apparaten op basis van gegevens van de XMLReader.
      *
@@ -69,18 +70,13 @@ public:
      */
 
 
-    void getDeviceInfo(ofstream &outputFile) const;
-
+    DeviceInfo giveDeviceInfo() const;
     /**
-     * Geeft de naam van het apparaat terug.
+     * xxx
      *
      * REQUIRE(this->isInitialized(), "Het Device-object moet correct geïnitialiseerd zijn.");
      * ENSURE(!this->getName().empty(), "De naam van het apparaat is niet leeg.");
      */
-
-    DeviceInfo giveDeviceInfo() const;
-
-    string getDeviceName() const;
 
     static vector<Device> devices;
 

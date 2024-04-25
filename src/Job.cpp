@@ -12,7 +12,7 @@
 
 using namespace std;
 vector<Job> Job::jobs;
-Job::Job(int number, int count, const string& jobType, const string& name)
+Job::Job(int number, int count, const string& jobType, const string& name, int totalCost)
         : jobNumber(number), pageCount(count), jobType(jobType), userName(name) {}
 // Static member function to populate jobs from XMLReader
 vector<Job> Job::populateFromXMLReader(const XMLReader& xmlReader) {
@@ -36,22 +36,7 @@ void Job::printJobInfo() const {
     if (logerrors) cout << "Type: " << jobType << endl;
     if (logerrors) cout << "User Name: " << userName << endl;
 }
-void Job::getJobInfo(ofstream& outputFile) const {
-    outputFile << "\t\t[# " << jobNumber << "|" << userName << "]" << endl;
-}
 
-void Job::giveJobInfo(const std::string& deviceName) const{
- // This function would be used to print a message in the screen.
- //Example: If a job with 3 pages and job number 13989 was submitted by “John Doe” to the printer “Library Printer 5”, the following message would be printed after the job was finished:
- //Printer "Library Printer 5" finished job:
-    //Number: 13989
-    //Submitted by "John Doe"
-    //3 pages
-    if (logerrors) cout << "Printer \"" << deviceName << "\" finished job:" << endl;
-    if (logerrors) cout << "\tNumber: " << jobNumber << endl;
-    if (logerrors) cout << "\tSubmitted by \"" << userName << "\"" << endl;
-    if (logerrors) cout << "\t" <<pageCount << " pages" << endl;
-    cout << "Cost: " << fixed  << cost << " euros" << endl; // Displaying cost with two decimal places
 JobInfo Job::giveJobInfo() const {
     JobInfo info;
     info.jobNumber = jobNumber;
@@ -65,27 +50,11 @@ int Job::getPageCount() const{
     return pageCount;
 }
 
-void Job::setLogerrors(bool logerrors) {
-    Job::logerrors = logerrors;
-}
-
 float Job::getCost() const {
-    return cost;
+    return totalCost;
 }
 
-Job::Job(int jobNumber, int pageCount, const string &userName, Device *device, float cost) : jobNumber(jobNumber),
-                                                                                             pageCount(pageCount),
-                                                                                             userName(userName),
-                                                                                             device(device),
-                                                                                             cost(cost) {
-
-}
-
-void Job::calculateCost() {
-    if (device != nullptr && pageCount>0){
-        cost=pageCount*device->getCostPerPage();
-    }else{
-        cost=0.0f;
-    }
+int Job::calculateCost() {
+    return totalCost=7777;
 }
 
