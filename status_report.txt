@@ -1,6 +1,8 @@
-Office_Printer7(C02: 6g/page): 
+Office_Printer5(C02: 3g/page): 
+ColorPrinter(C02: 6g/page): 
+Default Scanner(C02: 8g/page): 
 	* Current:
-		[# 7|anonymous_user7]
+		[# 89751|SergeDemeyer]
 	* Queue:
-		[# 8|anonymous_user8]
-		[# 9|anonymous_user9]
+		[# 2189|anonymous_user]
+		[# 98632|Peter Selie]

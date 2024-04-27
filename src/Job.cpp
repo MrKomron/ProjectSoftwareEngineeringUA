@@ -11,10 +11,10 @@
 #include "XMLREADER/XMLReader.h"
 
 using namespace std;
-vector<Job> Job::jobs;
-Job::Job(int number, int count, const string& name)
-        : jobNumber(number), pageCount(count), userName(name) {}
+Job::Job(int number, int count, const string& jobType, const string& name, int totalCost)
+        : jobNumber(number), pageCount(count), jobType(jobType), userName(name), totalCost(totalCost){}
 
+vector<Job> Job::jobs;
 // Static member function to populate jobs from XMLReader
 vector<Job> Job::populateFromXMLReader(const XMLReader& xmlReader) {
     // Access vectors from XMLReader
@@ -25,8 +25,8 @@ vector<Job> Job::populateFromXMLReader(const XMLReader& xmlReader) {
     jobs.clear();
     // Populate Job objects using data from jobInfoList vector
     for (const auto& jobInfo : jobInfoList) {
-        Job job(jobInfo.jobNumber, jobInfo.pageCount, jobInfo.userName);
-        jobs.push_back(job);
+        Job job1(jobInfo.jobNumber, jobInfo.pageCount, jobInfo.jobType, jobInfo.userName, jobInfo.totalCost);
+        jobs.push_back(job1);
     }
     return jobs;
 }
@@ -34,24 +34,19 @@ vector<Job> Job::populateFromXMLReader(const XMLReader& xmlReader) {
 void Job::printJobInfo() const {
     if (logerrors) cout << "Job Number: " << jobNumber << endl;
     if (logerrors) cout << "Page Count: " << pageCount << endl;
+    if (logerrors) cout << "Type: " << jobType << endl;
     if (logerrors) cout << "User Name: " << userName << endl;
-}
-void Job::getJobInfo(ofstream& outputFile) const {
-    outputFile << "\t\t[# " << jobNumber << "|" << userName << "]" << endl;
-}
-// This function would be used to print a message in the screen.
-void Job::giveJobInfo(const std::string& deviceName) const{
-    //Example: If a job with 3 pages and job number 13989 was submitted by “John Doe” to the printer “Library Printer 5”, the following message would be printed after the job was finished:
-    //Printer "Library Printer 5" finished job:
-    //Number: 13989
-    //Submitted by "John Doe"
-    //3 pages
-    if (logerrors) cout << "Printer \"" << deviceName << "\" finished job:" << endl;
-    if (logerrors) cout << "\tNumber: " << jobNumber << endl;
-    if (logerrors) cout << "\tSubmitted by \"" << userName << "\"" << endl;
-    if (logerrors) cout << "\t" <<pageCount << " pages" << endl;
+    if (logerrors) cout << "TotalCost: " << totalCost << endl;
 }
 
-int Job::getPageCount() const{
-    return pageCount;
+JobInfo Job::giveJobInfo() const {
+    JobInfo info;
+    info.jobNumber = jobNumber;
+    info.pageCount = pageCount;
+    info.jobType = jobType;
+    info.userName = userName;
+    info.totalCost = totalCost;
+    return info;
 }
+
+

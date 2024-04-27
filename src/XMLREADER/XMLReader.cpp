@@ -77,6 +77,20 @@ bool XMLReader::readerXML(string filename) {
 
             }
         }
+        // Get type element from DEVICE.
+        TiXmlElement* typeElement = deviceElement->FirstChildElement("type");
+        if (!typeElement) {
+            if (logerrors) cerr << "Failed to find TYPE element for the device. Continuing onto the next attribute." << endl;
+            validDevice = false;
+        } else {
+            const char* typeText = typeElement->GetText(); // Make a constant variable for the name of the device.
+            if (!typeText) {
+                if (logerrors) cerr << "Device type is empty for the device. Continuing onto the next attribute." << endl;
+                validDevice = false;
+            } else {
+                deviceInfo.deviceType = typeText;
+            }
+        }
         // Get speed element from DEVICE.
         TiXmlElement* speedElement = deviceElement->FirstChildElement("speed");
         if (!speedElement) {
@@ -96,6 +110,26 @@ bool XMLReader::readerXML(string filename) {
                 }
             }
         }
+        // Get cost element from DEVICE.
+        TiXmlElement* costppElement = deviceElement->FirstChildElement("cost");
+        if (!costppElement) {
+            if (logerrors) cerr << "Failed to find COST element for the device. Continuing onto the next attribute." << endl;
+            validDevice = false;
+        } else {
+            const char* costppText = costppElement->GetText(); // Make a constant variable for the speed of the device.
+            if (!costppText) {
+                if (logerrors) cerr << "Cost value is missing or empty for the device. Continuing onto the next attribute." << endl;
+                validDevice = false;
+            } else {
+                int costppValue = atoi(costppText); // Convert the text into integer.
+                if (costppValue <=0) {
+                    if (logerrors) cerr << "Invalid cost value for the device. Continuing onto the next attribute." << endl;
+                } else {
+                    deviceInfo.costpp = costppValue;
+                }
+            }
+        }
+
         if (!validDevice) if (logerrors) cerr << endl;
 
         // If the device is valid, add it to the list
@@ -157,6 +191,22 @@ bool XMLReader::readerXML(string filename) {
                 }
             }
         }
+
+        // Get userName element from JOB.
+        TiXmlElement *typeElement = jobElement->FirstChildElement("type");
+        if (!typeElement) {
+            if (logerrors) cerr << "Failed to find userName element for a job. Continuing onto the next attribute." << endl;
+            validJob = false;
+        } else {
+            const char *typeText = typeElement->GetText();
+            if (!typeText) {
+                if (logerrors) cerr << "Username is missing or empty for the device. Continuing onto the next attribute." << endl;
+                validJob = false;
+            } else {
+                jobInfo.jobType = typeElement->GetText();
+            }
+        }
+
         // Get userName element from JOB.
         TiXmlElement *userNameElement = jobElement->FirstChildElement("userName");
         if (!userNameElement) {
@@ -165,13 +215,14 @@ bool XMLReader::readerXML(string filename) {
         } else {
             const char *userNameText = userNameElement->GetText();
             if (!userNameText) {
-                if (logerrors) cerr << "User name is missing or empty for the device. Continuing onto the next attribute." << endl;
+                if (logerrors) cerr << "Username is missing or empty for the device. Continuing onto the next attribute." << endl;
                 validJob = false;
             } else {
                 jobInfo.userName = userNameElement->GetText();
             }
         }
         if (validJob) {
+            jobInfo.totalCost = 0;
             // Sets the data in the list of devices.
             jobInfoList.push_back(jobInfo);
         } else {

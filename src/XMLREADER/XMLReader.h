@@ -22,12 +22,17 @@ class TiXmlElement;
 struct DeviceInfo {
     string deviceName;
     int emissions;
+    string deviceType;
     int speed;
+    int costpp;
+    int accumulatedPages;
 };
 struct JobInfo {
     int jobNumber;
     int pageCount;
+    string jobType;
     string userName;
+    int totalCost;
 };
 class XMLReader {
 private:
