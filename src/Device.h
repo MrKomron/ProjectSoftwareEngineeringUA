@@ -78,11 +78,14 @@ public:
      * ENSURE(!this->getName().empty(), "De naam van het apparaat is niet leeg.");
      */
 
+    // DeviceInfo getDeviceInfo() const;
+
     static vector<Device> devices;
 
     void setlogerrors(bool log) { logerrors = log; }
 
-    float getCostPerPage() const;
+    int getCostPerPage() const;
+
     bool manualProcess(const string& selectedDeviceName, const int selectedJobNumber, vector<Job>& jobs);
 };
 

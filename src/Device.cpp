@@ -11,9 +11,11 @@
 #include "XMLREADER/XMLReader.h"
 
 using namespace std;
+
 vector<Device> Device::devices;
+
 Device::Device(const string &name, int emissions, const string &deviceType, int speed, int cost_per_page)
-        : deviceName(name), emissions(emissions), deviceType(deviceType), speed(speed) {}
+        : deviceName(name), emissions(emissions), deviceType(deviceType), speed(speed), cost_per_page(cost_per_page) {}
 
 // Static member function to populate devices from XMLReader
 vector<Device> Device::populateFromXMLReader(const XMLReader& xmlReader) {
@@ -25,11 +27,12 @@ vector<Device> Device::populateFromXMLReader(const XMLReader& xmlReader) {
     devices.clear();
     // Populate Device objects using data from deviceInfoList vector
     for (const auto& deviceInfo : deviceInfoList) {
-        Device device(deviceInfo.deviceName, deviceInfo.emissions, deviceInfo.deviceType, deviceInfo.speed);
+        Device device(deviceInfo.deviceName, deviceInfo.emissions, deviceInfo.deviceType, deviceInfo.speed, deviceInfo.costpp);
         devices.push_back(device);
     }
     return devices;
 }
+
 // This is a function use to print each one of the contents in the list of Devices.
 void Device::printDeviceInfo() const {
     if (logerrors) cout << "Device Name: " << deviceName << endl;
@@ -37,6 +40,13 @@ void Device::printDeviceInfo() const {
     if (logerrors) cout << "Type: " << deviceType << endl;
     if (logerrors) cout << "Speed: " << speed << endl;
 }
+
+/*
+DeviceInfo Device::getDeviceInfo() const {
+    return giveDeviceInfo();
+}
+*/
+
 DeviceInfo Device::giveDeviceInfo() const {
     DeviceInfo info;
     info.deviceName = deviceName;
@@ -47,7 +57,7 @@ DeviceInfo Device::giveDeviceInfo() const {
     return info;
 }
 
-float Device::getCostPerPage() const {
+int Device::getCostPerPage() const {
     return cost_per_page;
 }
 

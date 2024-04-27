@@ -86,7 +86,6 @@ public:
     float getCost() const;
 
     int calculateCost();
-
 };
 
 #endif //TESTFOLDER_JOB_H

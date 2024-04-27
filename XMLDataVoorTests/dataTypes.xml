@@ -4,33 +4,84 @@
         <emissions>3</emissions>
         <type>bw</type>
         <speed>40</speed>
+        <cost>20</cost>
     </DEVICE>
     <DEVICE>
-        <name>ColorPrinter</name>
-        <emissions>6</emissions>
-        <type>color</type>
-        <speed>32</speed>
+        <name>Office_Printer6</name>
+        <emissions>3</emissions>
+        <type>bw</type>
+        <speed>40</speed>
+        <cost>20</cost>
     </DEVICE>
     <JOB>
-        <jobNumber>89751</jobNumber>
-        <pageCount>2</pageCount>
-        <type>color</type>
-        <userName>SergeDemeyer</userName>
+        <jobNumber>1</jobNumber>
+        <pageCount>1</pageCount>
+        <type>bw</type>
+        <userName>anonymous_user1</userName>
     </JOB>
     <JOB>
-        <jobNumber>2189</jobNumber>
+        <jobNumber>2</jobNumber>
+        <pageCount>2</pageCount>
+        <type>bw</type>
+        <userName>anonymous_user2</userName>
+    </JOB>
+    <JOB>
+        <jobNumber>3</jobNumber>
+        <pageCount>3</pageCount>
+        <type>bw</type>
+        <userName>anonymous_user3</userName>
+    </JOB>
+    <JOB>
+        <jobNumber>4</jobNumber>
+        <pageCount>4</pageCount>
+        <type>bw</type>
+        <userName>anonymous_user4</userName>
+    </JOB>
+    <JOB>
+        <jobNumber>5</jobNumber>
+        <pageCount>3</pageCount>
+        <type>bw</type>
+        <userName>anonymous_user</userName>
+    </JOB>
+    <JOB>
+        <jobNumber>6</jobNumber>
         <pageCount>3</pageCount>
         <type>bw</type>
         <userName>anonymous_user</userName>
     </JOB>
     <DEVICE>
-        <name>Default Scanner</name>
-        <emissions>8</emissions>
-        <type>scan</type>
-        <speed>11</speed>
+        <name>ColorPrinter</name>
+        <emissions>6</emissions>
+        <type>color</type>
+        <speed>32</speed>
+        <cost>30</cost>
     </DEVICE>
     <JOB>
-        <jobNumber>98632</jobNumber>
+        <jobNumber>7</jobNumber>
+        <pageCount>2</pageCount>
+        <type>color</type>
+        <userName>SergeDemeyer</userName>
+    </JOB>
+    <JOB>
+        <jobNumber>8</jobNumber>
+        <pageCount>6</pageCount>
+        <type>color</type>
+        <userName>SergeDemeyer</userName>
+    </JOB>
+    <JOB>
+        <jobNumber>9</jobNumber>
+        <pageCount>6</pageCount>
+        <type>color</type>
+        <userName>SergeDemeyer</userName>
+    </JOB>
+    <JOB>
+        <jobNumber>10</jobNumber>
+        <pageCount>10</pageCount>
+        <type>scan</type>
+        <userName>Peter Selie</userName>
+    </JOB>
+    <JOB>
+        <jobNumber>11</jobNumber>
         <pageCount>10</pageCount>
         <type>scan</type>
         <userName>Peter Selie</userName>

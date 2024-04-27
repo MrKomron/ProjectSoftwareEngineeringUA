@@ -31,6 +31,7 @@ struct JobInfo {
     int pageCount;
     string jobType;
     string userName;
+    int totalCost;
 };
 class XMLReader {
 private:

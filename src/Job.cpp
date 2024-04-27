@@ -12,8 +12,10 @@
 
 using namespace std;
 vector<Job> Job::jobs;
+
 Job::Job(int number, int count, const string& jobType, const string& name, int totalCost)
         : jobNumber(number), pageCount(count), jobType(jobType), userName(name) {}
+
 // Static member function to populate jobs from XMLReader
 vector<Job> Job::populateFromXMLReader(const XMLReader& xmlReader) {
     // Access vectors from XMLReader
@@ -43,6 +45,7 @@ JobInfo Job::giveJobInfo() const {
     info.pageCount = pageCount;
     info.jobType = jobType;
     info.userName = userName;
+    info.totalCost = totalCost;
     return info;
 }
 
