@@ -53,3 +53,20 @@ void Job::printJobList(vector<Job> jobList) {
         job.printJobInfo();
     } 
 }
+
+Job::Job(int jobId, Device *device) : jobId(jobId), device(device), emissions(0){
+
+}
+
+double Job::execute() {
+    if (device) {
+        emissions = device->getEmissions();  // Bereken de emissies
+        std::cout << "Job " << jobId << " executed with emissions: " << emissions << std::endl;
+        return emissions;
+    }
+    return 0;
+}
+
+double Job::getEmissions() const {
+    return emissions;
+}

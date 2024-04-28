@@ -35,7 +35,8 @@ private:
     int accumulatedPages;
 
 public:
-
+    Device(const string& name, double emissions);
+    double getEmissions() const;
     // Constructor
     // Device(const string &name = "", int emissions = 0, int speed = 0, float cost_per_page = 0);
 

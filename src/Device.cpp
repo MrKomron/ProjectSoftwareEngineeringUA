@@ -193,6 +193,14 @@ DeviceInfo Device::getDeviceInfo(string deviceNameToFind) {
     // If no matching device is found, return a default DeviceInfo object
     return giveDeviceInfo();
 }
+
+Device::Device(const string &name, double emissions):deviceName(name),emissions(emissions) {
+
+}
+
+double Device::getEmissions() const {
+    return emissions;
+}
 //void Device::resetAccumulatedPages() {
 //    int accumulatedPages = 0;
 //}
