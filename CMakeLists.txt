@@ -43,6 +43,8 @@ add_executable(release_target
         src/Device.cpp
         src/StatusReport.cpp
         src/SystemProcessing.cpp
+        src/PrinterSystem.cpp
+        src/PrinterSystem.h
 )
 
 # Create DEBUG target
@@ -57,6 +59,8 @@ add_executable(debug_target
         src/XMLREADER/tinyxmlerror.cpp
         src/XMLREADER/tinyxmlparser.cpp
         src/SystemProcessing.cpp
+        src/PrinterSystem.cpp
+        src/PrinterSystem.h
 )
 
 # Link library

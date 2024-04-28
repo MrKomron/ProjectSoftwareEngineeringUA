@@ -1,8 +1,120 @@
-Office_Printer5(C02: 3g/page): 
-ColorPrinter(C02: 6g/page): 
-Default Scanner(C02: 8g/page): 
-	* Current:
-		[# 89751|SergeDemeyer]
-	* Queue:
-		[# 2189|anonymous_user]
-		[# 98632|Peter Selie]
+# === [System Status] === #
+
+--== Devices ==--
+
+* Office_Printer5:
+  * CO2: 3g/page
+  * 40 pages / minute
+  * bw
+  * 20 cents / page
+* Office_Printer6:
+  * CO2: 3g/page
+  * 40 pages / minute
+  * bw
+  * 20 cents / page
+* ColorPrinter:
+  * CO2: 6g/page
+  * 32 pages / minute
+  * color
+  * 30 cents / page
+
+--== Processed Jobs ==--
+
+[Job #1]
+  * Owner: anonymous_user1
+  * Device: Office_Printer5
+  * Total pages: 1 pages
+  * Total cost: 20 cents
+
+[Job #2]
+  * Owner: anonymous_user2
+  * Device: Office_Printer6
+  * Total pages: 2 pages
+  * Total cost: 40 cents
+
+[Job #7]
+  * Owner: SergeDemeyer
+  * Device: ColorPrinter
+  * Total pages: 2 pages
+  * Total cost: 60 cents
+
+[Job #8]
+  * Owner: SergeDemeyer
+  * Device: ColorPrinter
+  * Total pages: 6 pages
+  * Total cost: 180 cents
+
+[Job #9]
+  * Owner: SergeDemeyer
+  * Device: ColorPrinter
+  * Total pages: 6 pages
+  * Total cost: 180 cents
+
+--== Waiting Jobs ==--
+[Job #1]
+  * Owner: anonymous_user1
+  * Device: 
+  * Total pages: 1 pages
+  * Total cost: 0 cents
+
+[Job #2]
+  * Owner: anonymous_user2
+  * Device: 
+  * Total pages: 2 pages
+  * Total cost: 0 cents
+
+[Job #3]
+  * Owner: anonymous_user3
+  * Device: 
+  * Total pages: 3 pages
+  * Total cost: 0 cents
+
+[Job #4]
+  * Owner: anonymous_user4
+  * Device: 
+  * Total pages: 4 pages
+  * Total cost: 0 cents
+
+[Job #5]
+  * Owner: anonymous_user
+  * Device: 
+  * Total pages: 3 pages
+  * Total cost: 0 cents
+
+[Job #6]
+  * Owner: anonymous_user
+  * Device: 
+  * Total pages: 3 pages
+  * Total cost: 0 cents
+
+[Job #7]
+  * Owner: SergeDemeyer
+  * Device: 
+  * Total pages: 2 pages
+  * Total cost: 0 cents
+
+[Job #8]
+  * Owner: SergeDemeyer
+  * Device: 
+  * Total pages: 6 pages
+  * Total cost: 0 cents
+
+[Job #9]
+  * Owner: SergeDemeyer
+  * Device: 
+  * Total pages: 6 pages
+  * Total cost: 0 cents
+
+[Job #10]
+  * Owner: Peter Selie
+  * Device: 
+  * Total pages: 10 pages
+  * Total cost: 0 cents
+
+[Job #11]
+  * Owner: Peter Selie
+  * Device: 
+  * Total pages: 10 pages
+  * Total cost: 0 cents
+
+# ======================= #

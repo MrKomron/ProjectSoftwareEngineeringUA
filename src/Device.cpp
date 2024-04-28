@@ -26,7 +26,7 @@ vector<Device> Device::populateFromXMLReader(const XMLReader& xmlReader) {
     devices.clear();
     // Populate Device objects using data from deviceInfoList vector
     for (auto& deviceInfo : deviceInfoList) {
-        Device device(deviceInfo.deviceName, deviceInfo.emissions, deviceInfo.deviceType, deviceInfo.speed, deviceInfo.costpp);
+        Device device(deviceInfo.deviceName, deviceInfo.emissions, deviceInfo.deviceType, deviceInfo.speed, deviceInfo.costpp, deviceInfo.accumulatedPages);
         devices.push_back(device);
     }
     return devices;
@@ -172,8 +172,26 @@ bool Device::printProcessedJobs(){
 }
 void Device::printDeviceList(vector<Device> deviceList) {
     for (auto &device : deviceList){
+        cout << "Device List:" << endl;
         device.printDeviceInfo();
     }
+}
+DeviceInfo Device::getDeviceInfo(string deviceNameToFind) {
+    for (auto &device: devices){
+        if (device.deviceName == deviceNameToFind) {
+            DeviceInfo deviceInfo = device.giveDeviceInfo();
+            deviceInfo.deviceName = deviceName;
+            deviceInfo.emissions = emissions;
+            deviceInfo.deviceType = deviceType;
+            deviceInfo.speed = speed;
+            deviceInfo.costpp = cost_per_page;
+            deviceInfo.accumulatedPages = accumulatedPages;
+            return deviceInfo;
+        }
+    }
+    cerr << "No device found with the name " <<deviceNameToFind<< " in the list of devices" << endl;
+    // If no matching device is found, return a default DeviceInfo object
+    return giveDeviceInfo();
 }
 //void Device::resetAccumulatedPages() {
 //    int accumulatedPages = 0;

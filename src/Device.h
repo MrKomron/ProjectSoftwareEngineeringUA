@@ -87,6 +87,7 @@ public:
         accumulatedPages = newAccumulatedPages;
     }
     void printDeviceList(vector<Device> devices);
+    DeviceInfo getDeviceInfo(string deviceNameToFind);
     //void resetAccumulatedPages();
 };
 #endif //TESTFOLDER_DEVICE_H

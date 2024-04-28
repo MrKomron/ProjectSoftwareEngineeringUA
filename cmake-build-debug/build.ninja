@@ -119,6 +119,13 @@ build CMakeFiles/release_target.dir/src/SystemProcessing.cpp.obj: CXX_COMPILER__
   OBJECT_DIR = CMakeFiles\release_target.dir
   OBJECT_FILE_DIR = CMakeFiles\release_target.dir\src
 
+build CMakeFiles/release_target.dir/src/PrinterSystem.cpp.obj: CXX_COMPILER__release_target_unscanned_Debug C$:/Users/Boss/Desktop/duplicateFiles/ProjectSoftwareEngineeringUAWorking/src/PrinterSystem.cpp || cmake_object_order_depends_target_release_target
+  DEP_FILE = CMakeFiles\release_target.dir\src\PrinterSystem.cpp.obj.d
+  FLAGS = -std=c++17 -Wall -Werror -O2 -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Boss/Desktop/duplicateFiles/ProjectSoftwareEngineeringUAWorking/./gtest/include
+  OBJECT_DIR = CMakeFiles\release_target.dir
+  OBJECT_FILE_DIR = CMakeFiles\release_target.dir\src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target release_target
@@ -127,7 +134,7 @@ build CMakeFiles/release_target.dir/src/SystemProcessing.cpp.obj: CXX_COMPILER__
 #############################################
 # Link the executable release_target.exe
 
-build release_target.exe: CXX_EXECUTABLE_LINKER__release_target_Debug CMakeFiles/release_target.dir/src/main.cpp.obj CMakeFiles/release_target.dir/src/XMLREADER/tinyxml.cpp.obj CMakeFiles/release_target.dir/src/XMLREADER/tinystr.cpp.obj CMakeFiles/release_target.dir/src/XMLREADER/tinyxmlerror.cpp.obj CMakeFiles/release_target.dir/src/XMLREADER/tinyxmlparser.cpp.obj CMakeFiles/release_target.dir/src/XMLREADER/XMLReader.cpp.obj CMakeFiles/release_target.dir/src/Job.cpp.obj CMakeFiles/release_target.dir/src/Device.cpp.obj CMakeFiles/release_target.dir/src/StatusReport.cpp.obj CMakeFiles/release_target.dir/src/SystemProcessing.cpp.obj
+build release_target.exe: CXX_EXECUTABLE_LINKER__release_target_Debug CMakeFiles/release_target.dir/src/main.cpp.obj CMakeFiles/release_target.dir/src/XMLREADER/tinyxml.cpp.obj CMakeFiles/release_target.dir/src/XMLREADER/tinystr.cpp.obj CMakeFiles/release_target.dir/src/XMLREADER/tinyxmlerror.cpp.obj CMakeFiles/release_target.dir/src/XMLREADER/tinyxmlparser.cpp.obj CMakeFiles/release_target.dir/src/XMLREADER/XMLReader.cpp.obj CMakeFiles/release_target.dir/src/Job.cpp.obj CMakeFiles/release_target.dir/src/Device.cpp.obj CMakeFiles/release_target.dir/src/StatusReport.cpp.obj CMakeFiles/release_target.dir/src/SystemProcessing.cpp.obj CMakeFiles/release_target.dir/src/PrinterSystem.cpp.obj
   FLAGS = -std=c++17 -Wall -Werror -O2 -g
   LINK_FLAGS = -pthread
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
@@ -218,6 +225,13 @@ build CMakeFiles/debug_target.dir/src/SystemProcessing.cpp.obj: CXX_COMPILER__de
   OBJECT_DIR = CMakeFiles\debug_target.dir
   OBJECT_FILE_DIR = CMakeFiles\debug_target.dir\src
 
+build CMakeFiles/debug_target.dir/src/PrinterSystem.cpp.obj: CXX_COMPILER__debug_target_unscanned_Debug C$:/Users/Boss/Desktop/duplicateFiles/ProjectSoftwareEngineeringUAWorking/src/PrinterSystem.cpp || cmake_object_order_depends_target_debug_target
+  DEP_FILE = CMakeFiles\debug_target.dir\src\PrinterSystem.cpp.obj.d
+  FLAGS = -std=c++17 -Wall -Werror -O2 -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/Boss/Desktop/duplicateFiles/ProjectSoftwareEngineeringUAWorking/./gtest/include
+  OBJECT_DIR = CMakeFiles\debug_target.dir
+  OBJECT_FILE_DIR = CMakeFiles\debug_target.dir\src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target debug_target
@@ -226,7 +240,7 @@ build CMakeFiles/debug_target.dir/src/SystemProcessing.cpp.obj: CXX_COMPILER__de
 #############################################
 # Link the executable debug_target.exe
 
-build debug_target.exe: CXX_EXECUTABLE_LINKER__debug_target_Debug CMakeFiles/debug_target.dir/src/Tests.cpp.obj CMakeFiles/debug_target.dir/src/Job.cpp.obj CMakeFiles/debug_target.dir/src/Device.cpp.obj CMakeFiles/debug_target.dir/src/StatusReport.cpp.obj CMakeFiles/debug_target.dir/src/XMLREADER/XMLReader.cpp.obj CMakeFiles/debug_target.dir/src/XMLREADER/tinystr.cpp.obj CMakeFiles/debug_target.dir/src/XMLREADER/tinyxml.cpp.obj CMakeFiles/debug_target.dir/src/XMLREADER/tinyxmlerror.cpp.obj CMakeFiles/debug_target.dir/src/XMLREADER/tinyxmlparser.cpp.obj CMakeFiles/debug_target.dir/src/SystemProcessing.cpp.obj
+build debug_target.exe: CXX_EXECUTABLE_LINKER__debug_target_Debug CMakeFiles/debug_target.dir/src/Tests.cpp.obj CMakeFiles/debug_target.dir/src/Job.cpp.obj CMakeFiles/debug_target.dir/src/Device.cpp.obj CMakeFiles/debug_target.dir/src/StatusReport.cpp.obj CMakeFiles/debug_target.dir/src/XMLREADER/XMLReader.cpp.obj CMakeFiles/debug_target.dir/src/XMLREADER/tinystr.cpp.obj CMakeFiles/debug_target.dir/src/XMLREADER/tinyxml.cpp.obj CMakeFiles/debug_target.dir/src/XMLREADER/tinyxmlerror.cpp.obj CMakeFiles/debug_target.dir/src/XMLREADER/tinyxmlparser.cpp.obj CMakeFiles/debug_target.dir/src/SystemProcessing.cpp.obj CMakeFiles/debug_target.dir/src/PrinterSystem.cpp.obj
   FLAGS = -std=c++17 -Wall -Werror -O2 -g
   LINK_FLAGS = -pthread
   LINK_LIBRARIES = -lgtest  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
