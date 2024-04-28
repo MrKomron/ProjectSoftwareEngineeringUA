@@ -139,9 +139,11 @@ bool StatusReport::generateStatusReport(const vector<Device>& devices, const vec
     //bool foundDevice = false;
 
     outputFile << "# === [System Status] === #" << endl;
+    outputFile << endl;
 
     // Device information
     outputFile << "--== Devices ==--" << endl;
+    outputFile << endl;
 
     cout << "Devices size: " << devices.size() << endl;
     cout << "Jobs size: " << jobs.size() << endl;
@@ -156,6 +158,7 @@ bool StatusReport::generateStatusReport(const vector<Device>& devices, const vec
 
     // Job information
     outputFile << "--== Jobs ==--" << endl;
+    outputFile << endl;
     for (const auto& job : jobs) {
         Device device;
         outputFile << "[Job #" << job.giveJobInfo().jobNumber << "]" << endl;
@@ -165,6 +168,7 @@ bool StatusReport::generateStatusReport(const vector<Device>& devices, const vec
         outputFile << "  * Total pages: " << job.giveJobInfo().pageCount << " pages" << endl;
         //outputFile << "  * Total CO2: " << job.giveJobInfo().totalCO2 << "g CO2" << endl;
         outputFile << "  * Total cost: " << job.giveJobInfo().totalCost << " cents" << endl;
+        outputFile << endl;
     }
 
     outputFile << "# ======================= #" << endl;

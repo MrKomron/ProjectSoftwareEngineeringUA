@@ -23,13 +23,15 @@ int main() {
 
     // Initialized the first reading of the XML file. This function is located in XMLREADER/XMLReader.cpp.
     xmlReader.setlogerrors(true);
-    if (!xmlReader.readerXML("XMLDataVoorTests/dataTypes.XML")) {
+    if (!xmlReader.readerXML("XMLDataVoorTests/dataTypes.xml")) {
         cerr << "Failed to load XML file." << endl;
         return 1;                   // Return a 1 to exit the program because it couldn't open the XML file.
     }                               // Without the parsing of the XML, the program wouldn't work.
 
     xmlReader.setlogerrors(false);
+
     cout << "__________________________________________________________________" << endl; // For better readability and separates every component.
+
     // Process the parsed data after populating the vectors
     Device device;
     Job job;
@@ -52,9 +54,11 @@ int main() {
         cout << endl;
         foundDevice = true;
     }
+
     if (!foundDevice) {
         cerr << "No device found." << endl;
     }
+
     cout << "__________________________________________________________________" << endl;
 
     // Process the parsed data after populating the vectors

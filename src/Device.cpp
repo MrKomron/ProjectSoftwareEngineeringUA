@@ -41,12 +41,6 @@ void Device::printDeviceInfo() const {
     if (logerrors) cout << "Speed: " << speed << endl;
 }
 
-/*
-DeviceInfo Device::getDeviceInfo() const {
-    return giveDeviceInfo();
-}
-*/
-
 DeviceInfo Device::giveDeviceInfo() const {
     DeviceInfo info;
     info.deviceName = deviceName;
@@ -169,4 +163,3 @@ bool Device::manualProcess(const string& selectedDeviceName, const int selectedJ
     }
     return true;
 }
-//
