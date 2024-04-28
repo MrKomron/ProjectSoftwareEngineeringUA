@@ -1,4 +1,4 @@
-C:/Users/Boss/Desktop/A.J._23-24/PSE/ProjectSoftwareEngineeringUA/cmake-build-debug/CMakeFiles/release_target.dir
-C:/Users/Boss/Desktop/A.J._23-24/PSE/ProjectSoftwareEngineeringUA/cmake-build-debug/CMakeFiles/debug_target.dir
-C:/Users/Boss/Desktop/A.J._23-24/PSE/ProjectSoftwareEngineeringUA/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Boss/Desktop/A.J._23-24/PSE/ProjectSoftwareEngineeringUA/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Boss/Desktop/duplicateFiles/ProjectSoftwareEngineeringUAWorking/cmake-build-debug/CMakeFiles/release_target.dir
+C:/Users/Boss/Desktop/duplicateFiles/ProjectSoftwareEngineeringUAWorking/cmake-build-debug/CMakeFiles/debug_target.dir
+C:/Users/Boss/Desktop/duplicateFiles/ProjectSoftwareEngineeringUAWorking/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Boss/Desktop/duplicateFiles/ProjectSoftwareEngineeringUAWorking/cmake-build-debug/CMakeFiles/rebuild_cache.dir

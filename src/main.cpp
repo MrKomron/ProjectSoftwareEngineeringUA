@@ -22,19 +22,13 @@ int main() {
     XMLReader xmlReader;
     TiXmlDocument doc;
     // Initialized the first reading of the XML file. This function is located in XMLREADER/XMLReader.cpp.
-    xmlReader.setlogerrors(true);
     if (!xmlReader.readerXML("XMLDataVoorTests/dataTypesAutomated.XML")) {
         cerr << "Failed to load XML file." << endl;
         return 1;                   // Return a 1 to exit the program because it couldn't open the XML file.
     }                               // Without the parsing of the XML, the program wouldn't work.
-    xmlReader.setlogerrors(false);
     cout << "__________________________________________________________________" << endl; // For better readability and separates every component.
     // Process the parsed data after populating the vectors
-    Device device;
-    Job job;
-    // StatusReport report;
-    // Process the parsed data after populating the vectors.
-    vector<Device> devices = device.populateFromXMLReader(xmlReader);
+
     /*
     cout << "Device List:" << endl;
     bool foundDevice = false;
@@ -55,21 +49,7 @@ int main() {
     cout << "__________________________________________________________________" << endl;
     // Process the parsed data after populating the vectors
     */
-    vector<Job> jobs = job.populateFromXMLReader(xmlReader);
     /*
-    cout << "Job List:"<< endl;
-    // Populate jobs from XMLReader.
-    for (auto& job1 : Job::jobs) {
-        job1.setlogerrors(true);
-        // Call the print function.
-        job1.printJobInfo();
-        job1.setlogerrors(false);
-        // Add a newline for better readability.
-        cout << endl;
-    }
-    cout << "__________________________________________________________________" << endl;
-
-    cout << "__________________________________________________________________" << endl;
     if (report.generateStatusReport(devices, jobs)) {
         cout << "Status report generated successfully." << endl;
         cout << "__________________________________________________________________" << endl;
@@ -78,30 +58,33 @@ int main() {
         cout << "__________________________________________________________________" << endl;
     }
     */
+    Device device;
+    Job job;
+    vector<Device> devices = device.populateFromXMLReader(xmlReader);
+    vector<Job> jobs = job.populateFromXMLReader(xmlReader);
+    cout << "===================================================================================================================" << endl;
     System system;
     const string examplePrinter1 = "Office_Printer5";
     const int exampleJob1 = 1;
     system.schedulerManual(examplePrinter1, exampleJob1, devices, jobs);
-    cout << "__________________________________________________________________" << endl;
+    cout << "===================================================================================================================" << endl;
     const string examplePrinter2 = "Office_Printer6";
     const int exampleJob2 = 2;
     system.schedulerManual(examplePrinter2, exampleJob2, devices, jobs);
-    cout << "__________________________________________________________________" << endl;
+    cout << "===================================================================================================================" << endl;
     const string examplePrinter3 = "ColorPrinter";
-    const int exampleJob5 = 3;
+    const int exampleJob5 = 7;
     system.schedulerManual(examplePrinter3, exampleJob5, devices, jobs);
-    cout << "__________________________________________________________________" << endl;
-    const int exampleJob6 = 4;
+    cout << "===================================================================================================================" << endl;
+    const int exampleJob6 = 8;
     system.schedulerManual(examplePrinter3, exampleJob6, devices, jobs);
-    cout << "__________________________________________________________________" << endl;
-    const int exampleJob7 = 5;
+    cout << "===================================================================================================================" << endl;
+    const int exampleJob7 = 9;
     system.schedulerManual(examplePrinter3, exampleJob7, devices, jobs);
-    cout << "__________________________________________________________________" << endl;
-    system.setlogerrors(true);
-    device.setlogerrors(true);
+    cout << "===================================================================================================================" << endl;
     system.schedulerAutomated(devices, jobs);
-    cout << "__________________________________________________________________" << endl;
+    cout << "===================================================================================================================" << endl;
     if (device.printProcessedJobs())
-        cout << "__________________________________________________________________" << endl;
+        cout << "====================================================================================================================" << endl;
     return 0;
 }

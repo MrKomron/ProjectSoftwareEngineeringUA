@@ -20,7 +20,7 @@ vector<Job> Job::populateFromXMLReader(const XMLReader& xmlReader) {
     // Access vectors from XMLReader
     const vector<JobInfo>& jobInfoList = xmlReader.getJobInfoList();
     // Print the size of jobInfoList to verify if it's populated correctly
-    if (logerrors) cout << "Number of Job entries: " << jobInfoList.size() << endl;
+    cout << "Number of Job entries: " << jobInfoList.size() << endl;
     // Clear any existing jobs before populating new ones
     jobs.clear();
     // Populate Job objects using data from jobInfoList vector
@@ -32,11 +32,11 @@ vector<Job> Job::populateFromXMLReader(const XMLReader& xmlReader) {
 }
 // This is a function use to print each one of the contents in the list of Jobs.
 void Job::printJobInfo() const {
-    if (logerrors) cout << "Job Number: " << jobNumber << endl;
-    if (logerrors) cout << "Page Count: " << pageCount << endl;
-    if (logerrors) cout << "Type: " << jobType << endl;
-    if (logerrors) cout << "User Name: " << userName << endl;
-    if (logerrors) cout << "TotalCost: " << totalCost << endl;
+    cout << "Job Number: " << jobNumber << endl;
+    cout << "Page Count: " << pageCount << endl;
+    cout << "Type: " << jobType << endl;
+    cout << "User Name: " << userName << endl;
+    cout << "TotalCost: " << totalCost << endl;
 }
 
 JobInfo Job::giveJobInfo() const {
@@ -48,5 +48,8 @@ JobInfo Job::giveJobInfo() const {
     info.totalCost = totalCost;
     return info;
 }
-
-
+void Job::printJobList(vector<Job> jobList) {
+    for (auto &job : jobList){
+        job.printJobInfo();
+    } 
+}

@@ -21,11 +21,10 @@ private:
     int pageCount;
     string jobType;
     string userName;
-    bool logerrors = false;
     int totalCost = 0;
 
 public:
-    void setLogerrors(bool logerrors);
+
 
     /**
      * Constructor die een Job-object initialiseert met specifieke eigenschappen.
@@ -67,11 +66,9 @@ public:
      * REQUIRE(this->isInitialized(), "Het Job-object moet correct geïnitialiseerd zijn.");
      * ENSURE(informationProvidedTo(deviceName) && noChangeInState(), "Informatie over de job is verstrekt aan het gespecificeerde apparaat. Er is geen verandering in de status van het object.");
      */
+    void printJobList(vector<Job> jobs);
     static vector<Job> jobs;
-    static vector<Job> job;
-    void setlogerrors(bool log) { logerrors = log; }
-
-
+    void setNewTotalCost(int newTotalCost) {totalCost = newTotalCost;}
 };
 
 #endif //TESTFOLDER_JOB_H

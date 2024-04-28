@@ -17,12 +17,13 @@
 
 class System{
 private:
-    bool logerrors = false;
+
 public:
     bool schedulerManual(const string& deviceName, int jobNumber, const vector<Device>& device, vector<Job>& jobs);
-    bool schedulerAutomated(const vector<Device>& devices1, vector<Job>& jobs);
-    void setlogerrors(bool log) { logerrors = log; }
-
+    bool schedulerAutomated(vector<Device>& devices1, vector<Job>& jobs);
+    static vector<vector<Device>> tempBW;
+    static vector<vector<Device>> tempCOLOR;
+    static vector<vector<Device>> tempSCAN;
 };
 
 #endif //TESTFOLDER_SYSTEMPROCESSING_H

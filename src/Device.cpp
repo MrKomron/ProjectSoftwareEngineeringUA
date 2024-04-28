@@ -20,11 +20,12 @@ vector<Device> Device::devices;
 vector<Device> Device::populateFromXMLReader(const XMLReader& xmlReader) {
     // Access vectors from XMLReader
     const vector<DeviceInfo>& deviceInfoList = xmlReader.getDeviceInfoList();
+    // Print the size of jobInfoList to verify if it's populated correctly
+    cout << "Number of Device entries: " << deviceInfoList.size() << endl;
     // Clear any existing devices before populating new ones.
     devices.clear();
-
     // Populate Device objects using data from deviceInfoList vector
-    for (const auto& deviceInfo : deviceInfoList) {
+    for (auto& deviceInfo : deviceInfoList) {
         Device device(deviceInfo.deviceName, deviceInfo.emissions, deviceInfo.deviceType, deviceInfo.speed, deviceInfo.costpp);
         devices.push_back(device);
     }
@@ -32,11 +33,12 @@ vector<Device> Device::populateFromXMLReader(const XMLReader& xmlReader) {
 }
 // This is a function use to print each one of the contents in the list of Devices.
 void Device::printDeviceInfo() const {
-    if (logerrors) cout << "Device Name: " << deviceName << endl;
-    if (logerrors) cout << "Emissions: " << emissions << endl;
-    if (logerrors) cout << "Type: " << deviceType << endl;
-    if (logerrors) cout << "Speed: " << speed << endl;
-    if (logerrors) cout << "Cost per page: " << cost_per_page << endl;
+    cout << "Device Name: " << deviceName << endl;
+    cout << "Emissions: " << emissions << endl;
+    cout << "Type: " << deviceType << endl;
+    cout << "Speed: " << speed << endl;
+    cout << "Cost per page: " << cost_per_page << endl;
+    cout << "Accumulated Pages: " << cost_per_page << endl;
 }
 DeviceInfo Device::giveDeviceInfo() const {
     DeviceInfo info;
@@ -54,32 +56,33 @@ bool Device::manualProcess(const DeviceInfo& selectedDevice, JobInfo& job){
     DeviceInfo selectedDeviceInfo = selectedDevice;
     jobInfo.totalCost = jobInfo.pageCount * selectedDeviceInfo.costpp;
     Job job2(jobInfo.jobNumber, jobInfo.pageCount, jobInfo.jobType, jobInfo.userName, jobInfo.totalCost);
+    job2.setNewTotalCost(jobInfo.totalCost);
     if (jobInfo.jobType == "bw" or jobInfo.jobType == "color") {
         int pageCount = jobInfo.pageCount; // Access pageCount directly from jobInfo
         // Process the first job in the job list
         int printedPages = 0;
-        if (logerrors) cout << "Starting the printing process..." << endl;
+        cout << "Starting the printing process..." << endl;
         while (printedPages < pageCount) {
             ++printedPages; // Increment printed pages
-            if (logerrors) cout << "Printed pages: " << printedPages << endl;
             // Check if all pages have been printed
             if (printedPages == pageCount) {
-                if (logerrors) cout << "All pages printed." << endl;
+                cout << endl;
+                cout << "All pages printed." << endl;
                 if (jobInfo.jobType == "bw") {
-                    if (logerrors) cout << "Printer " << selectedDeviceInfo.deviceName << " finished black-and-white job:" << endl;
-                    if (logerrors) cout << "\t Job Number: " << jobInfo.jobNumber << endl;
-                    if (logerrors) cout << "\t Submitted by: " << jobInfo.userName << endl;
-                    if (logerrors) cout << "\t" << jobInfo.pageCount << " pages" << endl;
-                    if (logerrors) cout << "Total cost of this job: " << jobInfo.totalCost << endl;
-                    if (logerrors) cout << endl;
+                    cout << "Printer " << selectedDeviceInfo.deviceName << " finished black-and-white job:" << endl;
+                    cout << "\t Job Number: " << jobInfo.jobNumber << endl;
+                    cout << "\t Submitted by: " << jobInfo.userName << endl;
+                    cout << "\t" << jobInfo.pageCount << " pages" << endl;
+                    cout << "Total cost of this job: " << jobInfo.totalCost << endl;
+                    cout << endl;
                 }
                 if (jobInfo.jobType == "color") {
-                    if (logerrors) cout << "Printer " << selectedDeviceInfo.deviceName << " finished color-printing job:" << endl;
-                    if (logerrors) cout << "\t Job Number: " << jobInfo.jobNumber << endl;
-                    if (logerrors) cout << "\t Submitted by: " << jobInfo.userName << endl;
-                    if (logerrors) cout << "\t" << jobInfo.pageCount << " pages" << endl;
-                    if (logerrors) cout << "Total cost of this job: " << jobInfo.totalCost << endl;
-                    if (logerrors) cout << endl;
+                    cout << "Printer " << selectedDeviceInfo.deviceName << " finished color-printing job:" << endl;
+                    cout << "\t Job Number: " << jobInfo.jobNumber << endl;
+                    cout << "\t Submitted by: " << jobInfo.userName << endl;
+                    cout << "\t" << jobInfo.pageCount << " pages" << endl;
+                    cout << "Total cost of this job: " << jobInfo.totalCost << endl;
+                    cout << endl;
                 }
                 break; // Exit the loop
             }
@@ -103,20 +106,20 @@ bool Device::manualProcess(const DeviceInfo& selectedDevice, JobInfo& job){
         int pageCount = jobInfo.pageCount; // Access pageCount directly from jobInfo
         // Process the first job in the job list
         int scannedPages = 0;
-        if (logerrors) cout << "Starting the scanning process..." << endl;
+        cout << "Starting the scanning process..." << endl;
         while (scannedPages < pageCount) {
             ++scannedPages; // Increment printed pages
-            if (logerrors) cout << "Scanned pages: " << scannedPages << endl;
+            cout << "Scanned pages: " << scannedPages << endl;
             // Check if all pages have been printed
             if (scannedPages == pageCount) {
-                if (logerrors) cout << "All pages scanned." << endl;
+                cout << "All pages scanned." << endl;
                 if (jobInfo.jobType == "scan") {
-                    if (logerrors) cout << "Printer " << selectedDeviceInfo.deviceName << " finished scanning job:" << endl;
-                    if (logerrors) cout << "\t Job Number: " << jobInfo.jobNumber << endl;
-                    if (logerrors) cout << "\t Submitted by: " << jobInfo.userName << endl;
-                    if (logerrors) cout << "\t" << jobInfo.pageCount << " pages" << endl;
-                    if (logerrors) cout << "Total cost of this job: " << jobInfo.totalCost << endl;
-                    if (logerrors) cout << endl;
+                    cout << "Printer " << selectedDeviceInfo.deviceName << " finished scanning job:" << endl;
+                    cout << "\t Job Number: " << jobInfo.jobNumber << endl;
+                    cout << "\t Submitted by: " << jobInfo.userName << endl;
+                    cout << "\t" << jobInfo.pageCount << " pages" << endl;
+                    cout << "Total cost of this job: " << jobInfo.totalCost << endl;
+                    cout << endl;
                 }
             }
         }
@@ -144,25 +147,34 @@ bool Device::manualProcess(const DeviceInfo& selectedDevice, JobInfo& job){
 }
 bool Device::printProcessedJobs(){
     // Print the contents of processedJobs vector
-    cout << "Contents of processedJobs vector:" << endl;
+    cout << "========================   Contents of processedJobs vector   ========================" << endl;
+    cout << endl;
     // Takes the pair in the vector of pairs
     for (const auto &processedJobs2: processedJobsVector) {
         // Take the device's name and processed jobs from the pairs
         for (const auto &processedJob2: processedJobs2) {
                 // Take the name of the device
-                if (logerrors) cout << "Device Name: " << processedJob2.first << endl;
-                if (logerrors) cout << "Jobs:" << endl;
+                cout << "Device Name: " << processedJob2.first << endl;
+                cout << "Jobs:" << endl;
                 // Take the job vector
                 for (const auto &job9: processedJob2.second) {
                     JobInfo jobInfo = job9.giveJobInfo(); // Get job9 information from the vector
-                    if (logerrors) cout << "Job Number: " << jobInfo.jobNumber << endl;
-                    if (logerrors) cout << "Page Count: " << jobInfo.pageCount << endl;
-                    if (logerrors) cout << "Job Type: " << jobInfo.jobType << endl;
-                    if (logerrors) cout << "Username: " << jobInfo.userName << endl;
-                    if (logerrors) cout << "Total cost of this job: " << jobInfo.totalCost << endl;
-                    if (logerrors) cout << endl;
+                    cout << "Job Number: " << jobInfo.jobNumber << endl;
+                    cout << "Page Count: " << jobInfo.pageCount << endl;
+                    cout << "Job Type: " << jobInfo.jobType << endl;
+                    cout << "Username: " << jobInfo.userName << endl;
+                    cout << "Total cost of this job: " << jobInfo.totalCost << endl;
+                    cout << endl;
                 }
         }
     }
     return true;
 }
+void Device::printDeviceList(vector<Device> deviceList) {
+    for (auto &device : deviceList){
+        device.printDeviceInfo();
+    }
+}
+//void Device::resetAccumulatedPages() {
+//    int accumulatedPages = 0;
+//}

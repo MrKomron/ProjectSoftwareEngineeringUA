@@ -31,7 +31,6 @@ private:
     int emissions;
     string deviceType;
     int speed;
-    bool logerrors = false;
     int cost_per_page;
     int accumulatedPages;
 
@@ -80,15 +79,14 @@ public:
     static vector<Device> devices;
     static vector<vector<pair<string, vector<Job>>>> processedJobsVector;
     // Set log errors flag
-    void setlogerrors(bool log) { logerrors = log; }
     // Print processed jobs
     bool printProcessedJobs();
     // Manually process job for selected device
     bool manualProcess(const DeviceInfo& selectedDevice, JobInfo& job);
-    // Getter for accumulated pages
-    int getAccumulatedPages() const { return accumulatedPages; };
-    // Increment accumulated pages
-    void incrementAccumulatedPages(int pages) { accumulatedPages += pages; };
+    void setAccumulatedPages(int newAccumulatedPages) {
+        accumulatedPages = newAccumulatedPages;
+    }
+    void printDeviceList(vector<Device> devices);
+    //void resetAccumulatedPages();
 };
-
 #endif //TESTFOLDER_DEVICE_H

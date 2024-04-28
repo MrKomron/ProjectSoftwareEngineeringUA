@@ -39,7 +39,6 @@ private:
     TiXmlDocument doc;
     vector<DeviceInfo> deviceInfoList;
     vector<JobInfo> jobInfoList;
-    bool logerrors = false;
 
 public:
     XMLReader(); // Constructor
@@ -59,7 +58,5 @@ public:
 
      const vector<JobInfo> &getJobInfoList() const { return jobInfoList; }
 
-
-    void setlogerrors(bool log) { logerrors = log; }
 };
 #endif // XMLREADER_H
