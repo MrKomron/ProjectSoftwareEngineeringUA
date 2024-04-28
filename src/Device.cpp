@@ -159,4 +159,10 @@ bool Device::manualProcess(const string& selectedDeviceName, const int selectedJ
     }
     return true;
 }
-//
+
+Device::Device(const std::string& name, double emissionsPerUnit)
+        : deviceName(name), emissionsPerUnit(emissionsPerUnit) {}
+
+double Device::getEmissionsPerUnit() const {
+    return emissionsPerUnit;
+}

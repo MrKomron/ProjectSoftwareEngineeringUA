@@ -10,6 +10,7 @@
 #include <fstream>
 #include <iostream>
 #include "XMLREADER/XMLReader.h"
+#include "Device.h"
 #include <string>
 #include <vector>
 
@@ -23,8 +24,16 @@ private:
     string userName;
     bool logerrors = false;
     int totalCost;
+    double emissions;
+    int jobId;
+    Device* device;
 
 public:
+
+    Job(int jobId, Device* device);
+    double execute();
+    double getEmissions() const;
+
     void setLogerrors(bool logerrors);
 
     /**

@@ -34,9 +34,12 @@ private:
     int speed;
     bool logerrors = false;
     int cost_per_page;
+    double emissionsPerUnit;
 
 
 public:
+    Device(const string &deviceName, double emissionsPerUnit);
+    double getEmissionsPerUnit() const;
 
     // Constructor
     // Device(const string &name = "", int emissions = 0, int speed = 0, float cost_per_page = 0);
@@ -84,6 +87,7 @@ public:
 
     float getCostPerPage() const;
     bool manualProcess(const string& selectedDeviceName, const int selectedJobNumber, vector<Job>& jobs);
+    double getEmissionsPerUnit() const ;
 };
 
 #endif //TESTFOLDER_DEVICE_H
