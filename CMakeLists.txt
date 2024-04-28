@@ -57,6 +57,8 @@ add_executable(debug_target
         src/XMLREADER/tinyxmlerror.cpp
         src/XMLREADER/tinyxmlparser.cpp
         src/SystemProcessing.cpp
+        src/EmissionsManager.cpp
+        src/EmissionsManager.h
 )
 
 # Link library
