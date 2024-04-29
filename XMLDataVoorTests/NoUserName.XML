@@ -2,11 +2,14 @@
     <DEVICE>
         <name>Office_Printer5</name>
         <emissions>3</emissions>
-        <speed>40</speed>
+        <type>bw</type>
+        <speed>50</speed>
+        <cost>20</cost>
     </DEVICE>
     <JOB>
         <jobNumber>938943</jobNumber>
         <pageCount>6</pageCount>
+        <type>bw</type>
         <userName></userName>
     </JOB>
 </SYSTEM>

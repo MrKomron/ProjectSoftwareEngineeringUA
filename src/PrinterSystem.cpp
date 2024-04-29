@@ -28,7 +28,7 @@ void PrinterSystem::systemStart() {
     bool enableError = true;
     system.redirectIOToFiles(enable, enableOutput, enableError);
     // Initialized the first reading of the XML file. This function is located in XMLREADER/XMLReader.cpp.
-    if (!xmlReader.readerXML("XMLDataVoorTests/ValidData.XML")) {
+    if (!xmlReader.readerXML("XMLDataVoorTests/NoUserName.XML")) {
         cerr << "Failed to load XML file." << endl;
     }
     // For better readability and separates every component.
@@ -62,5 +62,23 @@ void PrinterSystem::systemStart() {
     cout << "===================================================================================================================" << endl;
     if (device.printProcessedJobs())
         cout << "====================================================================================================================" << endl;
+    system.redirectIOToFiles(enable= false, enableOutput, enableError);
+}
+
+void PrinterSystem::systemStartTests() {
+    XMLReader xmlReader;
+    Device device;
+    Job job;
+    System system;
+    bool enable = true;
+    bool enableOutput = true;
+    bool enableError = true;
+    system.redirectIOToFiles(enable, enableOutput, enableError);
+    // Initialized the first reading of the XML file. This function is located in XMLREADER/XMLReader.cpp.
+    if (!xmlReader.readerXML("XMLDataVoorTests/NoUserName.XML")) {
+        cerr << "Failed to load XML file." << endl;
+    }
+    vector<Device> devices = device.populateFromXMLReader(xmlReader);
+    vector<Job> jobs = job.populateFromXMLReader(xmlReader);
     system.redirectIOToFiles(enable= false, enableOutput, enableError);
 }

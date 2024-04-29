@@ -156,9 +156,16 @@ TEST_F(TestXMLReader, TestName) {
     system.redirectIOToFiles(true, true, true);
     EXPECT_TRUE(reader.getDeviceInfoList().empty());
     reader.readerXML("XMLDataVoorTests/NoName.xml");
+
+    //EXPECT_TRUE(!actualErrors.empty());
+    //EXPECT_TRUE(reader.getDeviceInfoList().empty());
+
+    // Read actual error output
     string actualErrors = readFile("errors.txt");
-    EXPECT_TRUE(!actualErrors.empty());
-    EXPECT_TRUE(reader.getDeviceInfoList().empty());
+    // Read expected error output
+    string expectedError = readFile("expectedErrors/noNameExpected.txt");
+    ASSERT_EQ(actualErrors, expectedError);
+
     system.redirectIOToFiles(false, true, true);
 }
 
@@ -166,9 +173,15 @@ TEST_F(TestXMLReader, TestEmissions) {
     system.redirectIOToFiles(true, true, true);
     EXPECT_TRUE(reader.getDeviceInfoList().empty());
     reader.readerXML("XMLDataVoorTests/NoEmissions.xml");
+
+
+    //EXPECT_TRUE(!actualErrors.empty());
+    //EXPECT_TRUE(reader.getDeviceInfoList().empty());
+
     string actualErrors = readFile("errors.txt");
-    EXPECT_TRUE(!actualErrors.empty());
-    EXPECT_TRUE(reader.getDeviceInfoList().empty());
+    string expectedError = readFile("expectedErrors/noEmissionsExpected.txt");
+    ASSERT_EQ(actualErrors, expectedError);
+
     system.redirectIOToFiles(false, true, true);
 }
 
@@ -176,9 +189,14 @@ TEST_F(TestXMLReader, TestSpeed) {
     system.redirectIOToFiles(true, true, true);
     EXPECT_TRUE(reader.getDeviceInfoList().empty());
     reader.readerXML("XMLDataVoorTests/NoSpeed.xml");
+
+    //EXPECT_TRUE(!actualErrors.empty());
+    //EXPECT_TRUE(reader.getDeviceInfoList().empty());
+
     string actualErrors = readFile("errors.txt");
-    EXPECT_TRUE(!actualErrors.empty());
-    EXPECT_TRUE(reader.getDeviceInfoList().empty());
+    string expectedError = readFile("expectedErrors/noSpeedExpected.txt");
+    ASSERT_EQ(actualErrors, expectedError);
+
     system.redirectIOToFiles(false, true, true);
 }
 
@@ -186,19 +204,27 @@ TEST_F(TestXMLReader, TestJobNumber) {
     system.redirectIOToFiles(true, true, true);
     EXPECT_TRUE(reader.getJobInfoList().empty());
     reader.readerXML("XMLDataVoorTests/NoJobNumber.xml");
+
+    //EXPECT_TRUE(!actualErrors.empty());
+    //EXPECT_TRUE(reader.getJobInfoList().empty());
+
     string actualErrors = readFile("errors.txt");
-    EXPECT_TRUE(!actualErrors.empty());
-    EXPECT_TRUE(reader.getJobInfoList().empty());
+    string expectedError = readFile("expectedErrors/noJobNumberExpected.txt");
+    ASSERT_EQ(actualErrors, expectedError);
     system.redirectIOToFiles(false, true, true);
 }
 
 TEST_F(TestXMLReader, TestPageCount) {
     system.redirectIOToFiles(true, true, true);
     EXPECT_TRUE(reader.getJobInfoList().empty());
-    reader.readerXML("XMLDataVoorTests/NoPageCount.xml");
+    reader.readerXML("XMLDataVoorTests/noPageCount.XML");
+
+    //EXPECT_TRUE(!actualErrors.empty());
+    //EXPECT_TRUE(reader.getJobInfoList().empty());
+
     string actualErrors = readFile("errors.txt");
-    EXPECT_TRUE(!actualErrors.empty());
-    EXPECT_TRUE(reader.getJobInfoList().empty());
+    string expectedError = readFile("expectedErrors/noPageCountExpected.txt");
+    ASSERT_EQ(actualErrors, expectedError);
     system.redirectIOToFiles(false, true, true);
 }
 
@@ -206,9 +232,13 @@ TEST_F(TestXMLReader, TestUserName) {
     system.redirectIOToFiles(true, true, true);
     EXPECT_TRUE(reader.getJobInfoList().empty());
     reader.readerXML("XMLDataVoorTests/NoUserName.xml");
+
+    //EXPECT_TRUE(!actualErrors.empty());
+    //EXPECT_TRUE(reader.getJobInfoList().empty());
+
     string actualErrors = readFile("errors.txt");
-    EXPECT_TRUE(!actualErrors.empty());
-    EXPECT_TRUE(reader.getJobInfoList().empty());
+    string expectedError = readFile("expectedErrors/noUserNameExpected.txt");
+    ASSERT_EQ(actualErrors, expectedError);
     system.redirectIOToFiles(false, true, true);
 }
 

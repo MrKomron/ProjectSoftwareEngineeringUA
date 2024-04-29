@@ -1,0 +1,3 @@
+Emissions value is missing or empty for the device. Continuing onto the next attribute.
+Device not valid! Some elements may be missing.
+There is no device in the system.

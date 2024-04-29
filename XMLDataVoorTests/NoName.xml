@@ -2,6 +2,8 @@
     <DEVICE>
         <name></name>
         <emissions>3</emissions>
-        <speed>40</speed>
+        <type>bw</type>
+        <speed>60</speed>
+        <cost>20</cost>
     </DEVICE>
 </SYSTEM>

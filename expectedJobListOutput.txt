@@ -1,0 +1,11 @@
+Number of Job entries: 2
+Job Number: 1
+Page Count: 1
+Job Type: bw
+User Name: anonymous_user1
+Total Cost: 0
+Job Number: 2
+Page Count: 2
+Job Type: bw
+User Name: anonymous_user2
+Total Cost: 0

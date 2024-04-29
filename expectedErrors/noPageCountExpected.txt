@@ -1,0 +1,2 @@
+Page count is missing or empty for the job. Continuing onto the next attribute.
+Invalid Job! Some elements may be missing.
