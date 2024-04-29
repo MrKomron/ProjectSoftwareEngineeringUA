@@ -10,6 +10,8 @@
 
 int main() {
     PrinterSystem printerSystem;
-    printerSystem.systemStart();
+    bool switchButton = false;
+    if (switchButton){printerSystem.systemStart();}
+    else {printerSystem.systemStartTests();}
     return 0;
 }
