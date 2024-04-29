@@ -9,6 +9,7 @@
 class PrinterSystem {
 public:
     void systemStart();
+    void systemStartTests();
 };
 
 

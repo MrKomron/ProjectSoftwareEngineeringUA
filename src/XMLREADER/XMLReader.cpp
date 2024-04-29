@@ -88,7 +88,13 @@ bool XMLReader::readerXML(string filename) {
                 cerr << "Device type is empty for the device. Continuing onto the next attribute." << endl;
                 validDevice = false;
             } else {
-                deviceInfo.deviceType = typeText;
+                try {
+                    deviceInfo.deviceType = stoi(typeText);
+                    cerr << "Type is an integer and is invalid for a device type. Continuing onto the next attribute." << endl;
+                    validDevice = false;
+                } catch (const invalid_argument& e) {
+                    deviceInfo.deviceType = typeText;
+                }
             }
         }
         // Get speed element from DEVICE.
@@ -193,15 +199,21 @@ bool XMLReader::readerXML(string filename) {
         // Get userName element from JOB.
         TiXmlElement *typeElement = jobElement->FirstChildElement("type");
         if (!typeElement) {
-            cerr << "Failed to find userName element for a job. Continuing onto the next attribute." << endl;
+            cerr << "Failed to find type element for a job. Continuing onto the next attribute." << endl;
             validJob = false;
         } else {
             const char *typeText = typeElement->GetText();
             if (!typeText) {
-                cerr << "Username is missing or empty for the device. Continuing onto the next attribute." << endl;
+                cerr << "Type is missing or empty for a job. Continuing onto the next attribute." << endl;
                 validJob = false;
             } else {
-                jobInfo.jobType = typeElement->GetText();
+                try {
+                    jobInfo.jobType = stoi(typeText);
+                    cerr << "Type is an integer and is invalid for a job type. Continuing onto the next attribute." << endl;
+                    validJob = false;
+                } catch (const invalid_argument& e) {
+                    jobInfo.jobType = typeText;
+                }
             }
         }
 
@@ -213,7 +225,7 @@ bool XMLReader::readerXML(string filename) {
         } else {
             const char *userNameText = userNameElement->GetText();
             if (!userNameText) {
-                cerr << "Username is missing or empty for the device. Continuing onto the next attribute." << endl;
+                cerr << "Username is missing or empty for a job. Continuing onto the next attribute." << endl;
                 validJob = false;
             } else {
                 jobInfo.userName = userNameElement->GetText();

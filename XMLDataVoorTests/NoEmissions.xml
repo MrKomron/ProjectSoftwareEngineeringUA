@@ -1,7 +1,9 @@
 <SYSTEM>
     <DEVICE>
-        <name>Office_Printer5</name>
+        <name>a</name>
         <emissions></emissions>
+        <type>bw</type>
         <speed>40</speed>
+        <cost>20</cost>
     </DEVICE>
 </SYSTEM>

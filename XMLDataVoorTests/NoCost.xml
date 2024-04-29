@@ -1,9 +1,9 @@
 <SYSTEM>
     <DEVICE>
-        <name></name>
-        <emissions>3</emissions>
+        <name>a</name>
+        <emissions>a</emissions>
         <type>bw</type>
         <speed>40</speed>
-        <cost>20</cost>
+        <cost></cost>
     </DEVICE>
 </SYSTEM>

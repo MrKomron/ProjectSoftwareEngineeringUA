@@ -12,7 +12,7 @@
 #include "StatusReport.h"           /////////used here//////////
 #include "SystemProcessing.h"       ////////////////////////////
 #include "PrinterSystem.h"
-
+#include "testsMethods.h"
 
 using namespace std;                // Using namespace std to have a much simpler code without redundant "std::".
 
@@ -24,11 +24,12 @@ void PrinterSystem::systemStart() {
     System system;
     StatusReport statusReport;
     bool enable = true;
-    bool enableOutput = true;
+    bool enableOutput = false;
     bool enableError = true;
-    system.redirectIOToFiles(enable, enableOutput, enableError);
+    string fileName1 = "MAIN";
+    system.redirectIOToFiles(enable, enableOutput, enableError, fileName1);
     // Initialized the first reading of the XML file. This function is located in XMLREADER/XMLReader.cpp.
-    if (!xmlReader.readerXML("XMLDataVoorTests/ValidData.XML")) {
+    if (!xmlReader.readerXML("XMLDataVoorTests/dataTypesAutomated.XML")) {
         cerr << "Failed to load XML file." << endl;
     }
     // For better readability and separates every component.
@@ -62,5 +63,35 @@ void PrinterSystem::systemStart() {
     cout << "===================================================================================================================" << endl;
     if (device.printProcessedJobs())
         cout << "====================================================================================================================" << endl;
-    system.redirectIOToFiles(enable= false, enableOutput, enableError);
+    system.redirectIOToFiles(enable= false, enableOutput, enableError, fileName1);
+}
+void PrinterSystem::systemStartTests() {
+    XMLReader xmlReader;
+    Device device;
+    Job job;
+    System system;
+    Tests test;
+    bool enable = true;
+    bool enableOutput = true;
+    bool enableError = true;
+    string fileName = "TESTS";
+    system.redirectIOToFiles(enable, enableOutput, enableError, fileName);
+    // Initialized the first reading of the XML file. This function is located in XMLREADER/XMLReader.cpp.
+    if (!xmlReader.readerXML("XMLDataVoorTests/NoName.XML")) {
+        cerr << "Failed to load XML file." << endl;
+    }
+    vector<Device> devices = device.populateFromXMLReader(xmlReader);
+    vector<Job> jobs = job.populateFromXMLReader(xmlReader);
+    test.testNoName();
+    test.testNoEmmisions();
+    test.testNoCost();
+    test.testNoJobNumber();
+    test.testNoPageCount();
+    test.testNoSpeed();
+    test.testNoType();
+    test.testNoTypeJob();
+    test.testNoUserName();
+
+    system.redirectIOToFiles(enable= false, enableOutput, enableError, fileName);
+
 }

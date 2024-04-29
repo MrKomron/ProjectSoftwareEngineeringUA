@@ -211,10 +211,10 @@ bool System::schedulerAutomated(vector<Device>& devices1, vector<Job>& jobs) {
     //device.resetAccumulatedPages();
     return true;
 }
-void System::redirectIOToFiles(bool enable, bool enableOutput, bool enableError) {
+void System::redirectIOToFiles(bool enable, bool enableOutput, bool enableError, string fileName) {
     if (enable) {
-        if (enableOutput){redirectIOToFilesOutput();}
-        if (enableError){redirectIOToFilesError();}
+        if (enableOutput){redirectIOToFilesOutput(fileName);}
+        if (enableError){redirectIOToFilesError(fileName);}
     } else {
         restoreIOFromFiles();
     }
@@ -226,16 +226,19 @@ void System::restoreIOFromFiles() {
     outFile.close(); // Close the output file stream
     errFile.close(); // Close the error file stream
 }
-void System::redirectIOToFilesOutput() {
-    outFile.open("output.txt");
+void System::redirectIOToFilesOutput(string fileName) {
+    string nameFile = fileName + "output.txt";
+
+    outFile.open(nameFile);
 
     coutBuf = cout.rdbuf(); // Save old buffer for cout
 
     cout.rdbuf(outFile.rdbuf());
 }
-void System::redirectIOToFilesError() {
+void System::redirectIOToFilesError(string fileName) {
+    string nameFile = fileName + "errors.txt";
 
-    errFile.open("errors.txt");
+    errFile.open(nameFile);
 
     cerrBuf = cerr.rdbuf(); // Save old buffer for cerr
 

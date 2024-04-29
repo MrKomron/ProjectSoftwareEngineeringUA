@@ -24,11 +24,11 @@ private:
     streambuf* coutBuf; // Save old buffer for cout
     streambuf* cerrBuf; // Save old buffer for cerr
     void restoreIOFromFiles();
-    void redirectIOToFilesError();
-    void redirectIOToFilesOutput();
+    void redirectIOToFilesError(string fileName);
+    void redirectIOToFilesOutput(string fileName);
 public:
     System() : coutBuf(cout.rdbuf()), cerrBuf(cerr.rdbuf()) {}
-    void redirectIOToFiles(bool enable, bool enableOutput, bool enableError);
+    void redirectIOToFiles(bool enable, bool enableOutput, bool enableError, string fileName);
     bool schedulerManual(const string& deviceName, int jobNumber, vector<Job>& jobs);
     bool schedulerAutomated(vector<Device>& devices1, vector<Job>& jobs);
     static vector<Device> tempBW;

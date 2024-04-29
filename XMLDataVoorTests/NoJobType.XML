@@ -2,7 +2,7 @@
     <JOB>
         <jobNumber>1</jobNumber>
         <pageCount>1</pageCount>
-        <type>bw</type>
-        <userName></userName>
+        <type></type>
+        <userName>anonymous_user1</userName>
     </JOB>
 </SYSTEM>

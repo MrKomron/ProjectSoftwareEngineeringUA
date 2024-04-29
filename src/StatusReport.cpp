@@ -151,8 +151,9 @@ bool StatusReport::generateStatusReport(vector<Job> jobs) {
         outputFile << "  * " << device1.giveDeviceInfo().speed << " pages / minute" << endl;
         outputFile << "  * " << device1.giveDeviceInfo().deviceType << endl;
         outputFile << "  * " << device1.giveDeviceInfo().costpp << " cents / page" << endl;
+        outputFile << endl;
     }
-    outputFile << endl;
+
     // Job information
     outputFile << "--== Processed Jobs ==--" << endl;
     outputFile << endl;
@@ -182,6 +183,7 @@ bool StatusReport::generateStatusReport(vector<Job> jobs) {
          */
     }
     outputFile << "--== Waiting Jobs ==--" << endl;
+    outputFile << endl;
     for (auto &job : jobs) {
         outputFile << "[Job #" << job.giveJobInfo().jobNumber << "]" << endl;
         outputFile << "  * Owner: " << job.giveJobInfo().userName << endl;

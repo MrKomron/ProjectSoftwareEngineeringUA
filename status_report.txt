@@ -7,6 +7,7 @@
   * 40 pages / minute
   * bw
   * 20 cents / page
+
 * Office_Printer6:
   * CO2: 3g/page
   * 40 pages / minute
@@ -130,6 +131,7 @@
   * Total cost: 200 cents
 
 --== Waiting Jobs ==--
+
 [Job #1]
   * Owner: anonymous_user1
   * Device: **Unassigned**
