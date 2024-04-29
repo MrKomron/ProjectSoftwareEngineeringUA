@@ -61,6 +61,8 @@ add_executable(debug_target
         src/SystemProcessing.cpp
         src/PrinterSystem.cpp
         src/PrinterSystem.h
+        src/EmissionsManager.cpp
+        src/EmissionsManager.h
 )
 
 # Link library

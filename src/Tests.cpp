@@ -58,9 +58,9 @@ protected:
 class OutputComparisonTest : public ::testing::Test {
 protected:
     // Helper function to read file content into a string
-    std::string readFile(const std::string& fileName) {
-        std::ifstream file(fileName);
-        std::stringstream buffer;
+    string readFile(const std::string& fileName) {
+        ifstream file(fileName);
+        stringstream buffer;
         buffer << file.rdbuf();
         return buffer.str();
     }
