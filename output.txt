@@ -2,3 +2,6 @@ __________________________________________________________________
 Device List:
 __________________________________________________________________
 Job List:
+Devices size: 0
+Jobs size: 0
+Status report generated successfully.

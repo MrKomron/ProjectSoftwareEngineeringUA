@@ -1,0 +1,13 @@
+Failed to find TYPE element for the device. Continuing onto the next attribute.
+Failed to find COST_PER_PAGE element for the device. Continuing onto the next attribute.
+
+Failed to find TYPE element for the device. Continuing onto the next attribute.
+Failed to find COST_PER_PAGE element for the device. Continuing onto the next attribute.
+
+There is no device in the system.
+Failed to find userName element for a job. Continuing onto the next attribute.
+
+Failed to find userName element for a job. Continuing onto the next attribute.
+
+No device found.
+Device "Office_Printer5" not found.

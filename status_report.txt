@@ -1,6 +1,73 @@
-Office_Printer7(C02: 6g/page): 
-	* Current:
-		[# 7|anonymous_user7]
-	* Queue:
-		[# 8|anonymous_user8]
-		[# 9|anonymous_user9]
+# === [System Status] === #
+
+--== Devices ==--
+
+--== Jobs ==--
+
+[Job #1]
+  * Owner: anonymous_user1
+  * Device: 
+  * Total pages: 1 pages
+  * Total cost: 32763 cents
+
+[Job #2]
+  * Owner: anonymous_user2
+  * Device: 
+  * Total pages: 2 pages
+  * Total cost: 32763 cents
+
+[Job #3]
+  * Owner: anonymous_user3
+  * Device: 
+  * Total pages: 3 pages
+  * Total cost: 32763 cents
+
+[Job #4]
+  * Owner: anonymous_user4
+  * Device: 
+  * Total pages: 4 pages
+  * Total cost: 32763 cents
+
+[Job #5]
+  * Owner: anonymous_user
+  * Device: 
+  * Total pages: 3 pages
+  * Total cost: 32763 cents
+
+[Job #6]
+  * Owner: anonymous_user
+  * Device: 
+  * Total pages: 3 pages
+  * Total cost: 32763 cents
+
+[Job #7]
+  * Owner: SergeDemeyer
+  * Device: 
+  * Total pages: 2 pages
+  * Total cost: 32763 cents
+
+[Job #8]
+  * Owner: SergeDemeyer
+  * Device: 
+  * Total pages: 6 pages
+  * Total cost: 32763 cents
+
+[Job #9]
+  * Owner: SergeDemeyer
+  * Device: 
+  * Total pages: 6 pages
+  * Total cost: 32763 cents
+
+[Job #10]
+  * Owner: Peter Selie
+  * Device: 
+  * Total pages: 10 pages
+  * Total cost: 32763 cents
+
+[Job #11]
+  * Owner: Peter Selie
+  * Device: 
+  * Total pages: 10 pages
+  * Total cost: 32763 cents
+
+# ======================= #
