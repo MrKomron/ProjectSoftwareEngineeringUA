@@ -62,4 +62,5 @@ void PrinterSystem::systemStart() {
     cout << "===================================================================================================================" << endl;
     if (device.printProcessedJobs())
         cout << "====================================================================================================================" << endl;
+    system.redirectIOToFiles(enable= false, enableOutput, enableError);
 }
