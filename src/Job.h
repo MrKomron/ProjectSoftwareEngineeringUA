@@ -22,11 +22,8 @@ private:
     string jobType;
     string userName;
     int totalCost = 0;
-    int jobId;
-    double emissions; // Totale emissies voor deze job
-
 public:
-    double getEmissions() const;
+
 
     /**
      * Constructor die een Job-object initialiseert met specifieke eigenschappen.
