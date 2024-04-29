@@ -53,4 +53,3 @@ void Job::printJobList(vector<Job> jobList) {
         job.printJobInfo();
     } 
 }
-
