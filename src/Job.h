@@ -10,7 +10,6 @@
 #include <fstream>
 #include <iostream>
 #include "XMLREADER/XMLReader.h"
-#include "Device.h"
 #include <string>
 #include <vector>
 
@@ -24,13 +23,9 @@ private:
     string userName;
     int totalCost = 0;
     int jobId;
-    Device* device;
     double emissions; // Totale emissies voor deze job
 
 public:
-
-    Job(int jobId, Device* device);
-    double execute();
     double getEmissions() const;
 
     /**
