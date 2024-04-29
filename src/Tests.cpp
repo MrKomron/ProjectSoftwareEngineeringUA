@@ -103,7 +103,15 @@ protected:
     }
 };
 
-
+TEST_F(OutputComparisonTest, CompareOutputs) {
+    string fileName = "";
+    system.redirectIOToFiles(true, true, true, fileName);
+    reader.readerXML("XMLDataVoorTests/NoData.xml");
+    string actualErrors = readFile("errors.txt");
+    string expectedErrors = readFile1("expectedErrors.txt");
+    ASSERT_EQ(actualErrors, expectedErrors);
+    system.redirectIOToFiles(false, true, true, fileName);
+}
 TEST_F(OutputComparisonTest, CompareDeviceListOutput) {
     string fileName = "";
     system.redirectIOToFiles(true, true, true, fileName);
@@ -249,7 +257,7 @@ TEST_F(TestXMLReader, TestUserName) {
 
 TEST_F(TestXMLReader, TestSuccessfulParse) {
     string fileName = "";
-    system.redirectIOToFiles(true, false, true, fileName);
+    system.redirectIOToFiles(true, true, true, fileName);
     reader.readerXML("XMLDataVoorTests/ValidData.xml");
     string actualErrors = readFile("errors.txt");
     EXPECT_TRUE(actualErrors.empty());
