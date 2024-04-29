@@ -38,7 +38,7 @@ void Device::printDeviceInfo() const {
     cout << "Type: " << deviceType << endl;
     cout << "Speed: " << speed << endl;
     cout << "Cost per page: " << cost_per_page << endl;
-    cout << "Accumulated Pages: " << cost_per_page << endl;
+    cout << "Accumulated Pages: " << accumulatedPages << endl;
 }
 DeviceInfo Device::giveDeviceInfo() const {
     DeviceInfo info;
@@ -172,7 +172,6 @@ bool Device::printProcessedJobs(){
 }
 void Device::printDeviceList(vector<Device> deviceList) {
     for (auto &device : deviceList){
-        cout << "Device List:" << endl;
         device.printDeviceInfo();
     }
 }
@@ -193,6 +192,24 @@ DeviceInfo Device::getDeviceInfo(string deviceNameToFind) {
     // If no matching device is found, return a default DeviceInfo object
     return giveDeviceInfo();
 }
+void Device::writeDeviceInfoOutputToFile(vector<Device>& deviceList, string& fileName) {
+    ofstream outFile(fileName);
+    if (outFile.is_open()) {
+        outFile << "Number of Device entries: " << deviceList.size() << "\n";
+        for (const auto& device : deviceList) {
+            outFile << "Device Name: " << device.getDeviceName() << "\n";
+            outFile << "Emissions: " << device.getEmissions() << "\n";
+            outFile << "Type: " << device.getDeviceType() << "\n";
+            outFile << "Speed: " << device.getSpeed() << "\n";
+            outFile << "Cost per page: " << device.getCostPerPage() << "\n";
+            outFile << "Accumulated Pages: " << device.getAccumulatedPages() << "\n";
+        }
+        outFile.close();
+    }
+}
+//vector<Job> Device::getUnprocessedJobs() {
+//    return unprocessedJobs;
+//}
 //void Device::resetAccumulatedPages() {
 //    int accumulatedPages = 0;
 //}

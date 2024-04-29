@@ -69,6 +69,13 @@ public:
     void printJobList(vector<Job> jobs);
     static vector<Job> jobs;
     void setNewTotalCost(int newTotalCost) {totalCost = newTotalCost;}
+    // Getter functions
+    int getJobNumber() const { return jobNumber; }
+    int getPageCount() const { return pageCount; }
+    const string& getJobType() const { return jobType; }
+    const string& getUserName() const { return userName; }
+    int getTotalCost() const { return totalCost; }
+    void writeJobListOutputToFile(vector<Job>& jobList, string& fileName);
 };
 
 #endif //TESTFOLDER_JOB_H

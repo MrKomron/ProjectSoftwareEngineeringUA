@@ -1,0 +1,26 @@
+Number of Device entries: 2
+Device List:
+Device Name: Office_Printer5
+Emissions: 3
+Type: bw
+Speed: 40
+Cost per page: 20
+Accumulated Pages: 20
+Device List:
+Device Name: Office_Printer6
+Emissions: 3
+Type: bw
+Speed: 40
+Cost per page: 20
+Accumulated Pages: 20
+Number of Job entries: 2
+Job Number: 1
+Page Count: 1
+Type: bw
+User Name: anonymous_user1
+TotalCost: 0
+Job Number: 2
+Page Count: 2
+Type: bw
+User Name: anonymous_user2
+TotalCost: 0

@@ -78,6 +78,8 @@ public:
     vector<pair<string, vector<Job>>> processedJobs;
     static vector<Device> devices;
     static vector<vector<pair<string, vector<Job>>>> processedJobsVector;
+    //vector<Job> unprocessedJobs;
+    vector<Job> getUnprocessedJobs();
     // Set log errors flag
     // Print processed jobs
     bool printProcessedJobs();
@@ -86,8 +88,16 @@ public:
     void setAccumulatedPages(int newAccumulatedPages) {
         accumulatedPages = newAccumulatedPages;
     }
+
     void printDeviceList(vector<Device> devices);
     DeviceInfo getDeviceInfo(string deviceNameToFind);
     //void resetAccumulatedPages();
+    void writeDeviceInfoOutputToFile(vector<Device>& deviceList, string& fileName);
+    string getDeviceName() const {return deviceName;};
+    int getEmissions() const {return emissions;};
+    string getDeviceType() const {return deviceType;};
+    int getSpeed() const {return speed;};
+    int getCostPerPage() const {return cost_per_page;};
+    int getAccumulatedPages() const {return accumulatedPages;};
 };
 #endif //TESTFOLDER_DEVICE_H

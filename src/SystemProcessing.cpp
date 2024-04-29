@@ -16,9 +16,8 @@
 using namespace std;
 Device device;
 Job job1;
-bool System::schedulerManual(const string& selectedDeviceName, int selectedJobNumber){
+bool System::schedulerManual(const string& selectedDeviceName, int selectedJobNumber, vector<Job>& jobs){
     vector<Device> devices = device.devices;
-    vector<Job> jobs = job1.jobs;
     // Find the device with the specified deviceName
     auto deviceIter = find_if(devices.begin(), devices.end(), [&](const Device& dev) {
         DeviceInfo infoDev = dev.giveDeviceInfo();
@@ -46,12 +45,16 @@ bool System::schedulerManual(const string& selectedDeviceName, int selectedJobNu
         if (device.manualProcess(deviceInfo, jobInfo)){
             // Erase the job
             jobs.erase(jobIter);
+            //job1.jobs.erase(jobIter);
             cout << "Remaining Jobs in the system: " <<  endl;
+            //device.unprocessedJobs.clear();
             for (const auto& job : jobs) {
                 JobInfo infoJob = job.giveJobInfo();
-
+                //Job job2(infoJob.jobNumber, infoJob.pageCount, infoJob.jobType, infoJob.userName, infoJob.totalCost);
                 cout << "Job Number: " << infoJob.jobNumber << ", Page Count: " << infoJob.pageCount << ", Job Type: "<< infoJob.jobType << ", Username: "<< infoJob.userName << endl;
+                //device.unprocessedJobs.push_back(job2);
             }
+            //device.unprocessedJobs= jobs;
         }
         return true;
     } else {
@@ -82,6 +85,11 @@ bool System::schedulerAutomated(vector<Device>& devices1, vector<Job>& jobs) {
     for (auto &job : jobs) {
         JobInfo jobInfo = job.giveJobInfo();
         vector<Device> *tempDevices = nullptr; // Initialize tempDevices to nullptr
+        // Find the job with the specified jobNumber
+        auto jobIter = find_if(jobs.begin(), jobs.end(), [&]( Job& job) {
+            JobInfo infoJob = job.giveJobInfo(); // Get job information
+            return infoJob.jobNumber == 0; // Check job number
+        });
         if (jobInfo.jobType == "bw") {
             tempDevices = &tempBW;
         } else if (jobInfo.jobType == "color") {
@@ -107,7 +115,7 @@ bool System::schedulerAutomated(vector<Device>& devices1, vector<Job>& jobs) {
                     cout << "Accumulated page of the first device using automated process: " << firstNumber << endl;
                     cout << "Accumulated page of the device " << deviceName << " using automated process: " << current << endl;
                     cout << endl;
-                    device.manualProcess(deviceInfo1, jobInfo);
+                    if (device.manualProcess(deviceInfo1, jobInfo)){jobs.erase(jobIter);};
                     int newAccumulatedPages = deviceInfo1.accumulatedPages + jobInfo.pageCount;
                     deviceInfo1.accumulatedPages = newAccumulatedPages;
                     cout << "Updated accumulated page of the device "<< deviceName <<" using automated process: " << deviceInfo1.accumulatedPages << endl;
@@ -158,7 +166,7 @@ bool System::schedulerAutomated(vector<Device>& devices1, vector<Job>& jobs) {
                 cout << "==========  " << deviceName << "  =========="<< endl;
                 cout << "Accumulated page of the device " << deviceName << " using automated process: " << current << endl;
                 cout << endl;
-                device.manualProcess(deviceInfo1, jobInfo);
+                if (device.manualProcess(deviceInfo1, jobInfo)){jobs.erase(jobIter);};
                 int newAccumulatedPages = deviceInfo1.accumulatedPages + jobInfo.pageCount;
                 deviceInfo1.accumulatedPages = newAccumulatedPages;
                 cout << "Updated accumulated page of the device "<< deviceName<<" using automated process: " << deviceInfo1.accumulatedPages << endl;
@@ -226,6 +234,7 @@ void System::redirectIOToFilesOutput() {
     cout.rdbuf(outFile.rdbuf());
 }
 void System::redirectIOToFilesError() {
+
     errFile.open("errors.txt");
 
     cerrBuf = cerr.rdbuf(); // Save old buffer for cerr

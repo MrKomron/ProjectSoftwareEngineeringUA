@@ -120,7 +120,7 @@ Example:
 
 using namespace std;
 
-bool StatusReport::generateStatusReport() {
+bool StatusReport::generateStatusReport(vector<Job> jobs) {
 
     // Create a text file and open it in write mode.
     ofstream outputFile("status_report.txt");
@@ -181,17 +181,15 @@ bool StatusReport::generateStatusReport() {
         outputFile << endl;
          */
     }
-    Job job;
-    vector<Job> jobs = job.jobs;
     outputFile << "--== Waiting Jobs ==--" << endl;
-    for (auto &job1 : jobs) {
-        outputFile << "[Job #" << job1.giveJobInfo().jobNumber << "]" << endl;
-        outputFile << "  * Owner: " << job1.giveJobInfo().userName << endl;
-        outputFile << "  * Device: " << device.giveDeviceInfo().deviceName << endl;
-        //outputFile << "  * Status: " << job.giveJobInfo().status << endl;
-        outputFile << "  * Total pages: " << job1.giveJobInfo().pageCount << " pages" << endl;
+    for (auto &job : jobs) {
+        outputFile << "[Job #" << job.giveJobInfo().jobNumber << "]" << endl;
+        outputFile << "  * Owner: " << job.giveJobInfo().userName << endl;
+        outputFile << "  * Device: " << "**Unassigned**" << endl;
+        outputFile << "  * Status: " << "**Unassigned**" << endl;
+        outputFile << "  * Total pages: " << job.giveJobInfo().pageCount << " pages" << endl;
         //outputFile << "  * Total CO2: " << job.giveJobInfo().totalCO2 << "g CO2" << endl;
-        outputFile << "  * Total cost: " << job1.giveJobInfo().totalCost << " cents" << endl;
+        outputFile << "  * Total cost: " << job.giveJobInfo().totalCost << " cents" << endl;
         outputFile << endl;
     }
     outputFile << "# ======================= #" << endl;

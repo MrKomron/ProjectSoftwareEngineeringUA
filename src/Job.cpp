@@ -34,9 +34,9 @@ vector<Job> Job::populateFromXMLReader(const XMLReader& xmlReader) {
 void Job::printJobInfo() const {
     cout << "Job Number: " << jobNumber << endl;
     cout << "Page Count: " << pageCount << endl;
-    cout << "Type: " << jobType << endl;
+    cout << "Job Type: " << jobType << endl;
     cout << "User Name: " << userName << endl;
-    cout << "TotalCost: " << totalCost << endl;
+    cout << "Total Cost: " << totalCost << endl;
 }
 
 JobInfo Job::giveJobInfo() const {
@@ -52,4 +52,18 @@ void Job::printJobList(vector<Job> jobList) {
     for (auto &job : jobList){
         job.printJobInfo();
     } 
+}
+void Job::writeJobListOutputToFile(vector<Job>& jobList, string& fileName) {
+    ofstream outFile(fileName);
+    if (outFile.is_open()) {
+        outFile << "Number of Job entries: " << jobList.size() << "\n";
+        for (const auto& job : jobList) {
+            outFile << "Job Number: " << job.getJobNumber() << "\n";
+            outFile << "Page Count: " << job.getPageCount() << "\n";
+            outFile << "Job Type: " << job.getJobType() << "\n";
+            outFile << "User Name: " << job.getUserName() << "\n";
+            outFile << "Total Cost: " << job.getTotalCost() << "\n";
+        }
+        outFile.close();
+    }
 }

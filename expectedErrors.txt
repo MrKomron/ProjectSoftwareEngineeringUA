@@ -1,0 +1,23 @@
+Device name is empty for the device. Continuing onto the next attribute.
+Emissions value is missing or empty for the device. Continuing onto the next attribute.
+Failed to find TYPE element for the device. Continuing onto the next attribute.
+Speed value is missing or empty for the device. Continuing onto the next attribute.
+Failed to find COST element for the device. Continuing onto the next attribute.
+Device not valid! Some elements may be missing.
+Device name is empty for the device. Continuing onto the next attribute.
+Emissions value is missing or empty for the device. Continuing onto the next attribute.
+Failed to find TYPE element for the device. Continuing onto the next attribute.
+Speed value is missing or empty for the device. Continuing onto the next attribute.
+Failed to find COST element for the device. Continuing onto the next attribute.
+Device not valid! Some elements may be missing.
+There is no device in the system.
+Job number is empty for the job. Continuing onto the next attribute.
+Page count is missing or empty for the job. Continuing onto the next attribute.
+Failed to find userName element for a job. Continuing onto the next attribute.
+Username is missing or empty for the device. Continuing onto the next attribute.
+Invalid Job! Some elements may be missing.
+Job number is empty for the job. Continuing onto the next attribute.
+Page count is missing or empty for the job. Continuing onto the next attribute.
+Failed to find userName element for a job. Continuing onto the next attribute.
+Username is missing or empty for the device. Continuing onto the next attribute.
+Invalid Job! Some elements may be missing.

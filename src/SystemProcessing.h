@@ -29,9 +29,8 @@ private:
 public:
     System() : coutBuf(cout.rdbuf()), cerrBuf(cerr.rdbuf()) {}
     void redirectIOToFiles(bool enable, bool enableOutput, bool enableError);
-    bool schedulerManual(const string& deviceName, int jobNumber);
+    bool schedulerManual(const string& deviceName, int jobNumber, vector<Job>& jobs);
     bool schedulerAutomated(vector<Device>& devices1, vector<Job>& jobs);
-    static vector<Job> unprocessedJobs;
     static vector<Device> tempBW;
     static vector<Device> tempCOLOR;
     static vector<Device> tempSCAN;
