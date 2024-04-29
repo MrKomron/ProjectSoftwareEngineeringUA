@@ -25,7 +25,7 @@ void PrinterSystem::systemStart() {
     System system;
     StatusReport statusReport;
     bool enable = true;
-    bool enableOutput = true;
+    bool enableOutput = false;
     bool enableError = true;
     system.redirectIOToFiles(enable, enableOutput, enableError);
     // Initialized the first reading of the XML file. This function is located in XMLREADER/XMLReader.cpp.

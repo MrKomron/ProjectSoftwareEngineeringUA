@@ -13,6 +13,13 @@
         <speed>40</speed>
         <cost>20</cost>
     </DEVICE>
+    <DEVICE>
+        <name>ColorPrinter</name>
+        <emissions>6</emissions>
+        <type>color</type>
+        <speed>32</speed>
+        <cost>30</cost>
+    </DEVICE>
     <JOB>
         <jobNumber>1</jobNumber>
         <pageCount>1</pageCount>
@@ -49,13 +56,6 @@
         <type>bw</type>
         <userName>anonymous_user</userName>
     </JOB>
-    <DEVICE>
-        <name>ColorPrinter</name>
-        <emissions>6</emissions>
-        <type>color</type>
-        <speed>32</speed>
-        <cost>30</cost>
-    </DEVICE>
     <JOB>
         <jobNumber>7</jobNumber>
         <pageCount>2</pageCount>
