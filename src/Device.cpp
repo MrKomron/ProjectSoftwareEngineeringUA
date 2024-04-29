@@ -194,13 +194,7 @@ DeviceInfo Device::getDeviceInfo(string deviceNameToFind) {
     return giveDeviceInfo();
 }
 
-Device::Device(const string &name, double emissions):deviceName(name),emissions(emissions) {
 
-}
-
-double Device::getEmissions() const {
-    return emissions;
-}
 //void Device::resetAccumulatedPages() {
 //    int accumulatedPages = 0;
 //}

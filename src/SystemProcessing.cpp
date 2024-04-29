@@ -200,6 +200,29 @@ bool System::schedulerAutomated(vector<Device>& devices1, vector<Job>& jobs) {
         cout << "============================     " << counterLoop
              << "     ============================" << endl;
     }
+//    CO2 TRACKING
+
+//    auto deviceIter = std::find_if(devices.begin(), devices.end(), [&](const Device& dev) {
+//        return dev.getName() == selectedDeviceName;
+//    });
+//
+//    auto jobIter = std::find_if(jobs.begin(), jobs.end(), [&](const Job& job) {
+//        return job.getJobID() == selectedJobNumber;
+//    });
+//
+//    if (deviceIter == devices.end() || jobIter == jobs.end()) {
+//        std::cerr << "Device or job not found." << std::endl;
+//        return false;
+//    }
+//
+//
+//    double emissions = deviceIter->performJob(*jobIter);
+//    jobIter->setEmissions(emissions);
+//    emissionsManager.addEmissions(emissions);
+//
+//    jobs.erase(jobIter);
+
+
     //device.resetAccumulatedPages();
     return true;
 }
@@ -233,3 +256,6 @@ void System::redirectIOToFilesError() {
     cerr.rdbuf(errFile.rdbuf());
 
 }
+
+
+
