@@ -120,7 +120,7 @@ Example:
 
 using namespace std;
 
-bool StatusReport::generateStatusReport(vector<Device> devices, vector<Job> jobs) {
+bool StatusReport::generateStatusReport(vector<Device>devices, vector<Job> jobs) {
 
     // Create a text file and open it in write mode.
     ofstream outputFile("status_report.txt");
@@ -151,6 +151,7 @@ bool StatusReport::generateStatusReport(vector<Device> devices, vector<Job> jobs
         outputFile << "  * " << device1.getSpeed() << " pages / minute" << endl;
         outputFile << "  * " << device1.getDeviceType() << endl;
         outputFile << "  * " << device1.getCostPerPage() << " cents / page" << endl;
+
     }
     outputFile << endl;
     // Job information

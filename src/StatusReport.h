@@ -19,5 +19,6 @@
 
 class StatusReport {
 public:
-    bool generateStatusReport(vector<Device>devices, vector<Job> jobs);
+    bool generateStatusReport(vector<Device>, vector<Job>);
+
 };
