@@ -17,104 +17,106 @@
   * 32 pages / minute
   * color
   * 30 cents / page
+* Default Scanner:
+  * CO2: 8g/page
+  * 11 pages / minute
+  * scan
+  * 20 cents / page
+* Scanner1:
+  * CO2: 8g/page
+  * 11 pages / minute
+  * scan
+  * 20 cents / page
 
 --== Processed Jobs ==--
 
 [Job #1]
   * Owner: anonymous_user1
   * Device: Office_Printer5
+  * Status: Done
   * Total pages: 1 pages
+  * Total CO2: 3g CO2
   * Total cost: 20 cents
 
 [Job #2]
   * Owner: anonymous_user2
   * Device: Office_Printer6
+  * Status: Done
   * Total pages: 2 pages
+  * Total CO2: 6g CO2
   * Total cost: 40 cents
-
-[Job #7]
-  * Owner: SergeDemeyer
-  * Device: ColorPrinter
-  * Total pages: 2 pages
-  * Total cost: 60 cents
 
 [Job #8]
   * Owner: SergeDemeyer
   * Device: ColorPrinter
+  * Status: Done
   * Total pages: 6 pages
+  * Total CO2: 36g CO2
   * Total cost: 180 cents
 
 [Job #9]
   * Owner: SergeDemeyer
   * Device: ColorPrinter
+  * Status: Done
   * Total pages: 6 pages
+  * Total CO2: 36g CO2
   * Total cost: 180 cents
 
 --== Waiting Jobs ==--
-[Job #1]
-  * Owner: anonymous_user1
-  * Device: 
-  * Total pages: 1 pages
-  * Total cost: 0 cents
-
-[Job #2]
-  * Owner: anonymous_user2
-  * Device: 
-  * Total pages: 2 pages
-  * Total cost: 0 cents
-
 [Job #3]
   * Owner: anonymous_user3
-  * Device: 
+  * Device: **Unassigned**
+  * Status: **Unassigned** Waiting to be assigned
   * Total pages: 3 pages
+  * Total CO2: 0g CO2
   * Total cost: 0 cents
 
 [Job #4]
   * Owner: anonymous_user4
-  * Device: 
+  * Device: **Unassigned**
+  * Status: **Unassigned** Waiting to be assigned
   * Total pages: 4 pages
+  * Total CO2: 0g CO2
   * Total cost: 0 cents
 
 [Job #5]
   * Owner: anonymous_user
-  * Device: 
+  * Device: **Unassigned**
+  * Status: **Unassigned** Waiting to be assigned
   * Total pages: 3 pages
+  * Total CO2: 0g CO2
   * Total cost: 0 cents
 
 [Job #6]
   * Owner: anonymous_user
-  * Device: 
+  * Device: **Unassigned**
+  * Status: **Unassigned** Waiting to be assigned
   * Total pages: 3 pages
+  * Total CO2: 0g CO2
   * Total cost: 0 cents
 
 [Job #7]
   * Owner: SergeDemeyer
-  * Device: 
+  * Device: **Unassigned**
+  * Status: **Unassigned** Waiting to be assigned
   * Total pages: 2 pages
-  * Total cost: 0 cents
-
-[Job #8]
-  * Owner: SergeDemeyer
-  * Device: 
-  * Total pages: 6 pages
-  * Total cost: 0 cents
-
-[Job #9]
-  * Owner: SergeDemeyer
-  * Device: 
-  * Total pages: 6 pages
+  * Total CO2: 0g CO2
   * Total cost: 0 cents
 
 [Job #10]
   * Owner: Peter Selie
-  * Device: 
+  * Device: **Unassigned**
+  * Status: **Unassigned** Waiting to be assigned
   * Total pages: 10 pages
+  * Total CO2: 0g CO2
   * Total cost: 0 cents
 
 [Job #11]
   * Owner: Peter Selie
-  * Device: 
+  * Device: **Unassigned**
+  * Status: **Unassigned** Waiting to be assigned
   * Total pages: 10 pages
+  * Total CO2: 0g CO2
   * Total cost: 0 cents
 
 # ======================= #

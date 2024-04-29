@@ -33,13 +33,13 @@ private:
     int speed;
     int cost_per_page;
     int accumulatedPages;
-
+    int totalEmissions;
 public:
 
     // Constructor
     // Device(const string &name = "", int emissions = 0, int speed = 0, float cost_per_page = 0);
 
-    Device(const string& name = "", int emissions = 0, const string& deviceType = "", int speed = 0, int cost_per_page = 0, int accumulatedPages = 0);
+    Device(const string& name = "", int emissions = 0, const string& deviceType = "", int speed = 0, int cost_per_page = 0, int accumulatedPages = 0, int totalEmissions =0);
     /**
      * Vult de lijst met apparaten op basis van gegevens van de XMLReader.
      *
@@ -81,13 +81,21 @@ public:
     // Set log errors flag
     // Print processed jobs
     bool printProcessedJobs();
-    // Manually process job for selected device
     bool manualProcess(const DeviceInfo& selectedDevice, JobInfo& job);
-    void setAccumulatedPages(int newAccumulatedPages) {
-        accumulatedPages = newAccumulatedPages;
-    }
+    void setAccumulatedPages(int newAccumulatedPages) {accumulatedPages = newAccumulatedPages;}
+    void setTotalEmissions(int newTotalEmissions) {totalEmissions = newTotalEmissions;}
     void printDeviceList(vector<Device> devices);
+
     DeviceInfo getDeviceInfo(string deviceNameToFind);
+    // Getter functions
+    const string& getDeviceName() const { return deviceName; }
+    int getEmissions() const { return emissions; }
+    const string& getDeviceType() const { return deviceType; }
+    int getSpeed() const { return speed; }
+    int getCostPerPage() const { return cost_per_page; }
+    int getAccumulatedPages() const { return accumulatedPages; }
+    int getTotalEmissions() const { return totalEmissions; }
+
     //void resetAccumulatedPages();
 };
 #endif //TESTFOLDER_DEVICE_H

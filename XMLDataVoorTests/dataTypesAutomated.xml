@@ -20,6 +20,20 @@
         <speed>32</speed>
         <cost>30</cost>
     </DEVICE>
+    <DEVICE>
+        <name>Default Scanner</name>
+        <emissions>8</emissions>
+        <type>scan</type>
+        <speed>11</speed>
+        <cost>20</cost>
+    </DEVICE>
+    <DEVICE>
+        <name>Scanner1</name>
+        <emissions>8</emissions>
+        <type>scan</type>
+        <speed>11</speed>
+        <cost>20</cost>
+    </DEVICE>
     <JOB>
         <jobNumber>1</jobNumber>
         <pageCount>1</pageCount>

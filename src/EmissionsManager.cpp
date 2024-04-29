@@ -9,11 +9,11 @@ using namespace std;
 
 EmissionsManager::EmissionsManager() : emissionsResult(0) {}
 
-void EmissionsManager::addEmissions(double amount) {
+void EmissionsManager::addEmissions(int amount) {
     emissionsResult += amount;
     cout << "Added " << amount << " CO2 emissions to the total, new total is " << emissionsResult << endl;
 }
 
-double EmissionsManager::getEmissionsResult() const {
+int EmissionsManager::getEmissionsResult() const {
     return emissionsResult;
 }

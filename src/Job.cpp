@@ -11,8 +11,8 @@
 #include "XMLREADER/XMLReader.h"
 
 using namespace std;
-Job::Job(int number, int count, const string& jobType, const string& name, int totalCost)
-        : jobNumber(number), pageCount(count), jobType(jobType), userName(name), totalCost(totalCost){}
+Job::Job(int number, int count, const string& jobType, const string& name, int totalCost, double totalEmissions)
+        : jobNumber(number), pageCount(count), jobType(jobType), userName(name), totalCost(totalCost), totalEmissions(totalEmissions){}
 
 vector<Job> Job::jobs;
 // Static member function to populate jobs from XMLReader
@@ -46,10 +46,14 @@ JobInfo Job::giveJobInfo() const {
     info.jobType = jobType;
     info.userName = userName;
     info.totalCost = totalCost;
+    info.totalEmissions = totalEmissions;
     return info;
 }
 void Job::printJobList(vector<Job> jobList) {
     for (auto &job : jobList){
         job.printJobInfo();
-    } 
+        cout <<endl;
+    }
+    cout <<endl;
+    cout <<endl;
 }

@@ -8,12 +8,13 @@
 #include <iostream>
 #include <algorithm>
 #include "Device.h"
+#include "EmissionsManager.h"
 #include "XMLREADER/XMLReader.h"
 
 using namespace std;
 
-Device::Device(const string &name, int emissions, const string &deviceType, int speed, int cost_per_page, int accumulatedPages)
-        : deviceName(name), emissions(emissions), deviceType(deviceType), speed(speed), cost_per_page(cost_per_page), accumulatedPages(accumulatedPages){}
+Device::Device(const string &name, int emissions, const string &deviceType, int speed, int cost_per_page, int accumulatedPages, int totalEmissions)
+        : deviceName(name), emissions(emissions), deviceType(deviceType), speed(speed), cost_per_page(cost_per_page), accumulatedPages(accumulatedPages), totalEmissions(totalEmissions){}
 
 // Static member function to populate devices from XMLReader
 vector<Device> Device::devices;
@@ -26,7 +27,7 @@ vector<Device> Device::populateFromXMLReader(const XMLReader& xmlReader) {
     devices.clear();
     // Populate Device objects using data from deviceInfoList vector
     for (auto& deviceInfo : deviceInfoList) {
-        Device device(deviceInfo.deviceName, deviceInfo.emissions, deviceInfo.deviceType, deviceInfo.speed, deviceInfo.costpp, deviceInfo.accumulatedPages);
+        Device device(deviceInfo.deviceName, deviceInfo.emissions, deviceInfo.deviceType, deviceInfo.speed, deviceInfo.costpp, deviceInfo.accumulatedPages, deviceInfo.totalEmissions);
         devices.push_back(device);
     }
     return devices;
@@ -48,6 +49,7 @@ DeviceInfo Device::giveDeviceInfo() const {
     info.speed = speed;
     info.costpp = cost_per_page;
     info.accumulatedPages = accumulatedPages;
+    info.totalEmissions = totalEmissions;
     return info;
 }
 vector<vector<pair<string, vector<Job>>>> Device::processedJobsVector;
@@ -55,10 +57,18 @@ bool Device::manualProcess(const DeviceInfo& selectedDevice, JobInfo& job){
     JobInfo jobInfo = job;
     DeviceInfo selectedDeviceInfo = selectedDevice;
     jobInfo.totalCost = jobInfo.pageCount * selectedDeviceInfo.costpp;
-    Job job2(jobInfo.jobNumber, jobInfo.pageCount, jobInfo.jobType, jobInfo.userName, jobInfo.totalCost);
+    jobInfo.totalEmissions = jobInfo.pageCount * selectedDeviceInfo.emissions;
+    selectedDeviceInfo.totalEmissions += jobInfo.totalEmissions;
+    selectedDeviceInfo.accumulatedPages += jobInfo.pageCount;
+    Device device2(selectedDeviceInfo.deviceName, selectedDeviceInfo.emissions, selectedDeviceInfo.deviceType, selectedDeviceInfo.speed,
+                   selectedDeviceInfo.costpp, selectedDeviceInfo.accumulatedPages, selectedDeviceInfo.totalEmissions);
+    Job job2(jobInfo.jobNumber, jobInfo.pageCount, jobInfo.jobType, jobInfo.userName, jobInfo.totalCost, jobInfo.totalEmissions);
+    device2.setTotalEmissions(selectedDeviceInfo.totalEmissions);
+    device2.setAccumulatedPages(selectedDeviceInfo.accumulatedPages);
     job2.setNewTotalCost(jobInfo.totalCost);
+    job2.setTotalEmissions(jobInfo.totalEmissions);
+    int pageCount = jobInfo.pageCount; // Access pageCount directly from jobInfo
     if (jobInfo.jobType == "bw" or jobInfo.jobType == "color") {
-        int pageCount = jobInfo.pageCount; // Access pageCount directly from jobInfo
         // Process the first job in the job list
         int printedPages = 0;
         cout << "Starting the printing process..." << endl;
@@ -87,31 +97,16 @@ bool Device::manualProcess(const DeviceInfo& selectedDevice, JobInfo& job){
                 break; // Exit the loop
             }
         }
-        // Save the job information in processedJobs under the processed device
-        bool foundDevice = false;
-        // Iterate through processedJobs to find the device name
-        for (auto &processedJob: processedJobs) {
-            // If device name matches, push the job into the existing vector
-            if (processedJob.first == selectedDeviceInfo.deviceName) {
-                processedJob.second.push_back(job2);
-                foundDevice = true;
-                break;
-            }
-        }
-        // If device name not found, create a new entry in processedJobs
-        if (!foundDevice) {
-            processedJobs.push_back({selectedDeviceInfo.deviceName, vector<Job>{job2}});
-        }
+
     } else {
-        int pageCount = jobInfo.pageCount; // Access pageCount directly from jobInfo
         // Process the first job in the job list
         int scannedPages = 0;
         cout << "Starting the scanning process..." << endl;
         while (scannedPages < pageCount) {
             ++scannedPages; // Increment printed pages
-            cout << "Scanned pages: " << scannedPages << endl;
             // Check if all pages have been printed
             if (scannedPages == pageCount) {
+                cout << endl;
                 cout << "All pages scanned." << endl;
                 if (jobInfo.jobType == "scan") {
                     cout << "Printer " << selectedDeviceInfo.deviceName << " finished scanning job:" << endl;
@@ -123,21 +118,21 @@ bool Device::manualProcess(const DeviceInfo& selectedDevice, JobInfo& job){
                 }
             }
         }
-        // Save the job information in processedJobs under the processed device
-        bool foundDevice = false;
-        // Iterate through processedJobs to find the device name
-        for (auto &processedJob : processedJobs) {
-            // If device name matches, push the job into the existing vector
-            if (processedJob.first == selectedDeviceInfo.deviceName) {
-                processedJob.second.push_back(job2);
-                foundDevice = true;
-                break;
-            }
+    }
+    // Save the job information in processedJobs under the processed device
+    bool foundDevice = false;
+    // Iterate through processedJobs to find the device name
+    for (auto &processedJob : processedJobs) {
+        // If device name matches, push the job into the existing vector
+        if (processedJob.first == selectedDeviceInfo.deviceName) {
+            processedJob.second.push_back(job2);
+            foundDevice = true;
+            break;
         }
-        // If device name not found, create a new entry in processedJobs
-        if (!foundDevice) {
-            processedJobs.push_back({selectedDeviceInfo.deviceName, vector<Job>{job2}});
-        }
+    }
+    // If device name not found, create a new entry in processedJobs
+    if (!foundDevice) {
+        processedJobs.push_back({selectedDeviceInfo.deviceName, vector<Job>{job2}});
     }
     processedJobsVector.clear();
     for (const auto &processedJob: processedJobs) {
@@ -152,20 +147,26 @@ bool Device::printProcessedJobs(){
     // Takes the pair in the vector of pairs
     for (const auto &processedJobs2: processedJobsVector) {
         // Take the device's name and processed jobs from the pairs
+        int totalEmissions1 = 0;
         for (const auto &processedJob2: processedJobs2) {
-                // Take the name of the device
-                cout << "Device Name: " << processedJob2.first << endl;
-                cout << "Jobs:" << endl;
-                // Take the job vector
-                for (const auto &job9: processedJob2.second) {
-                    JobInfo jobInfo = job9.giveJobInfo(); // Get job9 information from the vector
-                    cout << "Job Number: " << jobInfo.jobNumber << endl;
-                    cout << "Page Count: " << jobInfo.pageCount << endl;
-                    cout << "Job Type: " << jobInfo.jobType << endl;
-                    cout << "Username: " << jobInfo.userName << endl;
-                    cout << "Total cost of this job: " << jobInfo.totalCost << endl;
-                    cout << endl;
-                }
+            // Take the name of the device
+            string deviceName1 = processedJob2.first;
+            cout << "Device Name: " << processedJob2.first << endl;
+            DeviceInfo deviceInfo = getDeviceInfo(deviceName1);
+            cout << "Jobs:" << endl;
+            // Take the job vector
+            for (const auto &job9: processedJob2.second) {
+                JobInfo jobInfo = job9.giveJobInfo(); // Get job9 information from the vector
+                cout << "Job Number: " << jobInfo.jobNumber << endl;
+                cout << "Page Count: " << jobInfo.pageCount << endl;
+                cout << "Job Type: " << jobInfo.jobType << endl;
+                cout << "Username: " << jobInfo.userName << endl;
+                cout << "Total cost of this job: " << jobInfo.totalCost << endl;
+                cout << "Total C02 emissions of this job: " << jobInfo.totalEmissions << endl;
+                totalEmissions1 += jobInfo.totalEmissions;
+            }
+            cout << "Total Emissions of this Device: " << totalEmissions1 << endl;
+            cout << endl;
         }
     }
     return true;
@@ -174,18 +175,15 @@ void Device::printDeviceList(vector<Device> deviceList) {
     for (auto &device : deviceList){
         cout << "Device List:" << endl;
         device.printDeviceInfo();
+        cout <<endl;
     }
+    cout <<endl;
+    cout <<endl;
 }
 DeviceInfo Device::getDeviceInfo(string deviceNameToFind) {
     for (auto &device: devices){
         if (device.deviceName == deviceNameToFind) {
             DeviceInfo deviceInfo = device.giveDeviceInfo();
-            deviceInfo.deviceName = deviceName;
-            deviceInfo.emissions = emissions;
-            deviceInfo.deviceType = deviceType;
-            deviceInfo.speed = speed;
-            deviceInfo.costpp = cost_per_page;
-            deviceInfo.accumulatedPages = accumulatedPages;
             return deviceInfo;
         }
     }
@@ -193,8 +191,9 @@ DeviceInfo Device::getDeviceInfo(string deviceNameToFind) {
     // If no matching device is found, return a default DeviceInfo object
     return giveDeviceInfo();
 }
-
-
+//vector<Job> Device::getUnprocessedJobs() {
+//    return unprocessedJobs;
+//}
 //void Device::resetAccumulatedPages() {
 //    int accumulatedPages = 0;
 //}

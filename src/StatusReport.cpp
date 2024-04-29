@@ -120,7 +120,7 @@ Example:
 
 using namespace std;
 
-bool StatusReport::generateStatusReport() {
+bool StatusReport::generateStatusReport(vector<Device> devices, vector<Job> jobs) {
 
     // Create a text file and open it in write mode.
     ofstream outputFile("status_report.txt");
@@ -137,7 +137,7 @@ bool StatusReport::generateStatusReport() {
 
     //bool foundDevice = false;
     Device device;
-    vector<Device> devices = device.devices;
+    vector<Device> devices1 = devices;
     outputFile << "# === [System Status] === #" << endl;
     outputFile << endl;
 
@@ -145,12 +145,12 @@ bool StatusReport::generateStatusReport() {
     outputFile << "--== Devices ==--" << endl;
     outputFile << endl;
 
-    for (const auto& device1 : devices) {
-        outputFile << "* " << device1.giveDeviceInfo().deviceName << ":" << endl;
-        outputFile << "  * CO2: " << device1.giveDeviceInfo().emissions << "g/page" << endl;
-        outputFile << "  * " << device1.giveDeviceInfo().speed << " pages / minute" << endl;
-        outputFile << "  * " << device1.giveDeviceInfo().deviceType << endl;
-        outputFile << "  * " << device1.giveDeviceInfo().costpp << " cents / page" << endl;
+    for (const auto& device1 : devices1) {
+        outputFile << "* " << device1.getDeviceName() << ":" << endl;
+        outputFile << "  * CO2: " << device1.getEmissions() << "g/page" << endl;
+        outputFile << "  * " << device1.getSpeed() << " pages / minute" << endl;
+        outputFile << "  * " << device1.getDeviceType() << endl;
+        outputFile << "  * " << device1.getCostPerPage() << " cents / page" << endl;
     }
     outputFile << endl;
     // Job information
@@ -160,13 +160,13 @@ bool StatusReport::generateStatusReport() {
     for (const auto& firstVector : tempVector) {
         for (auto &firstDevice : firstVector){
             for (auto &processedJob: firstDevice.second){
-                outputFile << "[Job #" << processedJob.giveJobInfo().jobNumber << "]" << endl;
-                outputFile << "  * Owner: " << processedJob.giveJobInfo().userName << endl;
+                outputFile << "[Job #" << processedJob.getJobNumber() << "]" << endl;
+                outputFile << "  * Owner: " << processedJob.getUserName() << endl;
                 outputFile << "  * Device: " << firstDevice.first << endl;
-                //outputFile << "  * Status: " << job.giveJobInfo().status << endl;
-                outputFile << "  * Total pages: " << processedJob.giveJobInfo().pageCount << " pages" << endl;
-                //outputFile << "  * Total CO2: " << job.giveJobInfo().totalCO2 << "g CO2" << endl;
-                outputFile << "  * Total cost: " << processedJob.giveJobInfo().totalCost << " cents" << endl;
+                outputFile << "  * Status: " << "Done" << endl;
+                outputFile << "  * Total pages: " << processedJob.getPageCount() << " pages" << endl;
+                outputFile << "  * Total CO2: " << processedJob.getTotalEmissions() << "g CO2" << endl;
+                outputFile << "  * Total cost: " << processedJob.getTotalCost() << " cents" << endl;
                 outputFile << endl;
             }
         }
@@ -181,16 +181,14 @@ bool StatusReport::generateStatusReport() {
         outputFile << endl;
          */
     }
-    Job job;
-    vector<Job> jobs = job.jobs;
     outputFile << "--== Waiting Jobs ==--" << endl;
     for (auto &job1 : jobs) {
         outputFile << "[Job #" << job1.giveJobInfo().jobNumber << "]" << endl;
         outputFile << "  * Owner: " << job1.giveJobInfo().userName << endl;
-        outputFile << "  * Device: " << device.giveDeviceInfo().deviceName << endl;
-        //outputFile << "  * Status: " << job.giveJobInfo().status << endl;
+        outputFile << "  * Device: " << "**Unassigned**" << endl;
+        outputFile << "  * Status: " << "**Unassigned** Waiting to be assigned" << endl;
         outputFile << "  * Total pages: " << job1.giveJobInfo().pageCount << " pages" << endl;
-        //outputFile << "  * Total CO2: " << job.giveJobInfo().totalCO2 << "g CO2" << endl;
+        outputFile << "  * Total CO2: " << job1.giveJobInfo().totalEmissions << "g CO2" << endl;
         outputFile << "  * Total cost: " << job1.giveJobInfo().totalCost << " cents" << endl;
         outputFile << endl;
     }

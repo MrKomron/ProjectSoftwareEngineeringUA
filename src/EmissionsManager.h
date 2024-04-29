@@ -8,11 +8,11 @@
 
 class EmissionsManager {
 private:
-    double emissionsResult;
+    int emissionsResult;
 public:
     EmissionsManager();
-    void addEmissions(double amount);
-    double getEmissionsResult() const;
+    void addEmissions(int amount);
+    int getEmissionsResult() const;
 };
 
 

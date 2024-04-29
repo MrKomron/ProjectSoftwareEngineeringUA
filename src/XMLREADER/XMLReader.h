@@ -26,6 +26,7 @@ struct DeviceInfo {
     int speed;
     int costpp;
     int accumulatedPages;
+    int totalEmissions;
 };
 struct JobInfo {
     int jobNumber;
@@ -33,6 +34,7 @@ struct JobInfo {
     string jobType;
     string userName;
     int totalCost;
+    int totalEmissions;
 };
 class XMLReader {
 private:
