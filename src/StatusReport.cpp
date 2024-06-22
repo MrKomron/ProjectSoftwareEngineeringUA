@@ -120,80 +120,80 @@ Example:
 
 using namespace std;
 
-bool StatusReport::generateStatusReport(vector<Job> jobs) {
-
-    // Create a text file and open it in write mode.
-    ofstream outputFile("status_report.txt");
-
-    // Check if the file is opened successfully
-    if (!outputFile.is_open()) {
-        cerr << "Error: Unable to open output file." << endl;
-        return false; // Return non-zero to indicate failure
-    }
-
-    else if (outputFile.is_open()) {
-        cout << "Successfully opened output file." << endl;
-    }
-
-    //bool foundDevice = false;
-    Device device;
-    vector<Device> devices = device.devices;
-    outputFile << "# === [System Status] === #" << endl;
-    outputFile << endl;
-
-    // Device information
-    outputFile << "--== Devices ==--" << endl;
-    outputFile << endl;
-
-    for (const auto& device1 : devices) {
-        outputFile << "* " << device1.giveDeviceInfo().deviceName << ":" << endl;
-        outputFile << "  * CO2: " << device1.giveDeviceInfo().emissions << "g/page" << endl;
-        outputFile << "  * " << device1.giveDeviceInfo().speed << " pages / minute" << endl;
-        outputFile << "  * " << device1.giveDeviceInfo().deviceType << endl;
-        outputFile << "  * " << device1.giveDeviceInfo().costpp << " cents / page" << endl;
-    }
-    outputFile << endl;
-    // Job information
-    outputFile << "--== Processed Jobs ==--" << endl;
-    outputFile << endl;
-    vector<vector<pair<string, vector<Job>>>> tempVector = device.processedJobsVector;
-    for (const auto& firstVector : tempVector) {
-        for (auto &firstDevice : firstVector){
-            for (auto &processedJob: firstDevice.second){
-                outputFile << "[Job #" << processedJob.giveJobInfo().jobNumber << "]" << endl;
-                outputFile << "  * Owner: " << processedJob.giveJobInfo().userName << endl;
-                outputFile << "  * Device: " << firstDevice.first << endl;
-                //outputFile << "  * Status: " << job.giveJobInfo().status << endl;
-                outputFile << "  * Total pages: " << processedJob.giveJobInfo().pageCount << " pages" << endl;
-                //outputFile << "  * Total CO2: " << job.giveJobInfo().totalCO2 << "g CO2" << endl;
-                outputFile << "  * Total cost: " << processedJob.giveJobInfo().totalCost << " cents" << endl;
-                outputFile << endl;
-            }
-        }
-        /*
-        outputFile << "[Job #" << job1.giveJobInfo().jobNumber << "]" << endl;
-        outputFile << "  * Owner: " << job1.giveJobInfo().userName << endl;
-        outputFile << "  * Device: " << device.giveDeviceInfo().deviceName << endl;
-        //outputFile << "  * Status: " << job.giveJobInfo().status << endl;
-        outputFile << "  * Total pages: " << job1.giveJobInfo().pageCount << " pages" << endl;
-        //outputFile << "  * Total CO2: " << job.giveJobInfo().totalCO2 << "g CO2" << endl;
-        outputFile << "  * Total cost: " << job1.giveJobInfo().totalCost << " cents" << endl;
-        outputFile << endl;
-         */
-    }
-    outputFile << "--== Waiting Jobs ==--" << endl;
-    for (auto &job : jobs) {
-        outputFile << "[Job #" << job.giveJobInfo().jobNumber << "]" << endl;
-        outputFile << "  * Owner: " << job.giveJobInfo().userName << endl;
-        outputFile << "  * Device: " << "**Unassigned**" << endl;
-        outputFile << "  * Status: " << "**Unassigned**" << endl;
-        outputFile << "  * Total pages: " << job.giveJobInfo().pageCount << " pages" << endl;
-        //outputFile << "  * Total CO2: " << job.giveJobInfo().totalCO2 << "g CO2" << endl;
-        outputFile << "  * Total cost: " << job.giveJobInfo().totalCost << " cents" << endl;
-        outputFile << endl;
-    }
-    outputFile << "# ======================= #" << endl;
-
-    outputFile.close();
-    return true;
-}
+// bool StatusReport::generateStatusReport(vector<Job> jobs) {
+//
+//     // Create a text file and open it in write mode.
+//     ofstream outputFile("status_report.txt");
+//
+//     // Check if the file is opened successfully
+//     if (!outputFile.is_open()) {
+//         cerr << "Error: Unable to open output file." << endl;
+//         return false; // Return non-zero to indicate failure
+//     }
+//
+//     else if (outputFile.is_open()) {
+//         cout << "Successfully opened output file." << endl;
+//     }
+//
+//     //bool foundDevice = false;
+//     Device device;
+//     vector<Device> devices = device.devices;
+//     outputFile << "# === [System Status] === #" << endl;
+//     outputFile << endl;
+//
+//     // Device information
+//     outputFile << "--== Devices ==--" << endl;
+//     outputFile << endl;
+//
+//     for (const auto& device1 : devices) {
+//         outputFile << "* " << device1.giveDeviceInfo().deviceName << ":" << endl;
+//         outputFile << "  * CO2: " << device1.giveDeviceInfo().emissions << "g/page" << endl;
+//         outputFile << "  * " << device1.giveDeviceInfo().speed << " pages / minute" << endl;
+//         outputFile << "  * " << device1.giveDeviceInfo().deviceType << endl;
+//         outputFile << "  * " << device1.giveDeviceInfo().costpp << " cents / page" << endl;
+//     }
+//     outputFile << endl;
+//     // Job information
+//     outputFile << "--== Processed Jobs ==--" << endl;
+//     outputFile << endl;
+//     vector<vector<pair<string, vector<Job>>>> tempVector = device.processedJobsVector;
+//     for (const auto& firstVector : tempVector) {
+//         for (auto &firstDevice : firstVector){
+//             for (auto &processedJob: firstDevice.second){
+//                 outputFile << "[Job #" << processedJob.giveJobInfo().jobNumber << "]" << endl;
+//                 outputFile << "  * Owner: " << processedJob.giveJobInfo().userName << endl;
+//                 outputFile << "  * Device: " << firstDevice.first << endl;
+//                 //outputFile << "  * Status: " << job.giveJobInfo().status << endl;
+//                 outputFile << "  * Total pages: " << processedJob.giveJobInfo().pageCount << " pages" << endl;
+//                 //outputFile << "  * Total CO2: " << job.giveJobInfo().totalCO2 << "g CO2" << endl;
+//                 outputFile << "  * Total cost: " << processedJob.giveJobInfo().totalCost << " cents" << endl;
+//                 outputFile << endl;
+//             }
+//         }
+//         /*
+//         outputFile << "[Job #" << job1.giveJobInfo().jobNumber << "]" << endl;
+//         outputFile << "  * Owner: " << job1.giveJobInfo().userName << endl;
+//         outputFile << "  * Device: " << device.giveDeviceInfo().deviceName << endl;
+//         //outputFile << "  * Status: " << job.giveJobInfo().status << endl;
+//         outputFile << "  * Total pages: " << job1.giveJobInfo().pageCount << " pages" << endl;
+//         //outputFile << "  * Total CO2: " << job.giveJobInfo().totalCO2 << "g CO2" << endl;
+//         outputFile << "  * Total cost: " << job1.giveJobInfo().totalCost << " cents" << endl;
+//         outputFile << endl;
+//          */
+//     }
+//     outputFile << "--== Waiting Jobs ==--" << endl;
+//     for (auto &job : jobs) {
+//         outputFile << "[Job #" << job.giveJobInfo().jobNumber << "]" << endl;
+//         outputFile << "  * Owner: " << job.giveJobInfo().userName << endl;
+//         outputFile << "  * Device: " << "**Unassigned**" << endl;
+//         outputFile << "  * Status: " << "**Unassigned**" << endl;
+//         outputFile << "  * Total pages: " << job.giveJobInfo().pageCount << " pages" << endl;
+//         //outputFile << "  * Total CO2: " << job.giveJobInfo().totalCO2 << "g CO2" << endl;
+//         outputFile << "  * Total cost: " << job.giveJobInfo().totalCost << " cents" << endl;
+//         outputFile << endl;
+//     }
+//     outputFile << "# ======================= #" << endl;
+//
+//     outputFile.close();
+//     return true;
+// }

@@ -15,7 +15,6 @@
 #include <vector>
 
 using namespace std;
-
     /**
      * Constructor die een Device-object initialiseert met een naam, emissies en snelheid.
      *
@@ -33,9 +32,20 @@ private:
     int speed;
     int cost_per_page;
     int accumulatedPages;
+    int totalEmissions;
+    int totalEarnings;
 
 public:
+    static vector<Device>* getDevicesBW();
+    static vector<Device>* getDevicesCOLOR();
+    static vector<Device>* getDevicesSCAN();
 
+    bool operator==(const Device& other) const {
+        return deviceName == other.deviceName && deviceType == other.deviceType;
+    }
+    static bool compareByAccuPages(const Device& a, const Device& b) {
+        return a.accumulatedPages < b.accumulatedPages;
+    }
     // Constructor
     // Device(const string &name = "", int emissions = 0, int speed = 0, float cost_per_page = 0);
 

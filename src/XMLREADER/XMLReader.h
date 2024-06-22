@@ -27,6 +27,7 @@ struct DeviceInfo {
     int costpp;
     int accumulatedPages;
     int totalEmissions;
+    int totalEarnings;
 };
 struct JobInfo {
     int jobNumber;

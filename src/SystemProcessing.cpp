@@ -48,7 +48,7 @@ bool System::schedulerManual(const string& selectedDeviceName, int selectedJobNu
             //job1.jobs.erase(jobIter);
             cout << "Remaining Jobs in the system: " <<  endl;
             //device.unprocessedJobs.clear();
-            for (const auto& job : jobs) {
+            for (auto& job : jobs) {
                 JobInfo infoJob = job.giveJobInfo();
                 //Job job2(infoJob.jobNumber, infoJob.pageCount, infoJob.jobType, infoJob.userName, infoJob.totalCost);
                 cout << "Job Number: " << infoJob.jobNumber << ", Page Count: " << infoJob.pageCount << ", Job Type: "<< infoJob.jobType << ", Username: "<< infoJob.userName << endl;

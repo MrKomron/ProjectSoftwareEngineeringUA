@@ -8,9 +8,11 @@
 
 class PrinterSystem {
 public:
-    void systemStart();
-    void systemStartTests();
+    static void systemStart();
+    static void systemStartTests();
+    static int systemOff();
 };
+
 
 
 #endif //PROJECTSOFTWAREENGINEERINGUA_PRINTERSYSTEM_H

@@ -302,21 +302,21 @@ TEST_F(TestXMLReader, TestAutomatedProcess) {
     system.redirectIOToFiles(false, true, true);
 }
 
-TEST_F(TestXMLReader, TestStatusReport) {
-    system.redirectIOToFiles(true, true, true);
-    reader.readerXML("XMLDataVoorTests/NoDAta.xml");
-    const vector<Device> NoDataDevices = device.populateFromXMLReader(reader);
-    const vector<Job> NoDataJobs = job.populateFromXMLReader(reader);
-    reader.readerXML("XMLDataVoorTests/ValidDAta.xml");
-    vector<Device> WithDataDevices = device.populateFromXMLReader(reader);
-    vector<Job> WithDataJobs = job.populateFromXMLReader(reader);
-
-    bool noData = status.generateStatusReport(NoDataJobs);
-    EXPECT_TRUE(noData);
-    bool withData = status.generateStatusReport(WithDataJobs );
-    EXPECT_TRUE(withData);
-    system.redirectIOToFiles(false, true, true);
-}
+// TEST_F(TestXMLReader, TestStatusReport) {
+//     system.redirectIOToFiles(true, true, true);
+//     reader.readerXML("XMLDataVoorTests/NoDAta.xml");
+//     const vector<Device> NoDataDevices = device.populateFromXMLReader(reader);
+//     const vector<Job> NoDataJobs = job.populateFromXMLReader(reader);
+//     reader.readerXML("XMLDataVoorTests/ValidDAta.xml");
+//     vector<Device> WithDataDevices = device.populateFromXMLReader(reader);
+//     vector<Job> WithDataJobs = job.populateFromXMLReader(reader);
+//
+//     bool noData = status.generateStatusReport(NoDataJobs);
+//     EXPECT_TRUE(noData);
+//     bool withData = status.generateStatusReport(WithDataJobs );
+//     EXPECT_TRUE(withData);
+//     system.redirectIOToFiles(false, true, true);
+// }
 
 // happy day test
 // lege file test

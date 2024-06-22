@@ -9,6 +9,7 @@
 #include <algorithm>
 #include "Device.h"
 #include "XMLREADER/XMLReader.h"
+#include "loggerClass.h"
 
 using namespace std;
 
@@ -48,6 +49,8 @@ DeviceInfo Device::giveDeviceInfo() const {
     info.speed = speed;
     info.costpp = cost_per_page;
     info.accumulatedPages = accumulatedPages;
+    info.totalEmissions = totalEmissions;
+    info.totalEarnings = totalEarnings;
     return info;
 }
 vector<vector<pair<string, vector<Job>>>> Device::processedJobsVector;
@@ -190,7 +193,7 @@ DeviceInfo Device::getDeviceInfo(string deviceNameToFind) {
     }
     cerr << "No device found with the name " <<deviceNameToFind<< " in the list of devices" << endl;
     // If no matching device is found, return a default DeviceInfo object
-    return giveDeviceInfo();
+    return DeviceInfo();
 }
 void Device::writeDeviceInfoOutputToFile(vector<Device>& deviceList, string& fileName) {
     ofstream outFile(fileName);

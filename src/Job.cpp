@@ -8,6 +8,10 @@
 #include <fstream>
 #include <iostream>
 #include "Job.h"
+
+#include <algorithm>
+
+#include "loggerClass.h"
 #include "XMLREADER/XMLReader.h"
 
 using namespace std;
@@ -51,7 +55,7 @@ JobInfo Job::giveJobInfo() const {
 void Job::printJobList(vector<Job> jobList) {
     for (auto &job : jobList){
         job.printJobInfo();
-    } 
+    }
 }
 void Job::writeJobListOutputToFile(vector<Job>& jobList, string& fileName) {
     ofstream outFile(fileName);

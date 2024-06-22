@@ -14,7 +14,6 @@
 #include <vector>
 
 using namespace std;
-
 class Job {
 private:
     int jobNumber;
@@ -77,5 +76,6 @@ public:
     int getTotalCost() const { return totalCost; }
     void writeJobListOutputToFile(vector<Job>& jobList, string& fileName);
 };
+
 
 #endif //TESTFOLDER_JOB_H

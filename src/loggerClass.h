@@ -7,6 +7,7 @@
 #include <string>
 #include <iostream>
 #include "XMLREADER/XMLReader.h"
+#include "Job.h"
 using namespace std;
 
 class loggerLines {
@@ -52,6 +53,13 @@ public:
     static void noDeviceTypeExist(string jobType);
     static void noDeviceSystem();
     static void noJobSystem();
+};
+
+class StatusReportPrinter
+{
+public:
+    static bool generateStatusReport(vector<Job> jobs);
+
 };
 
 #endif //PROJECTSOFTWAREENGINEERINGUA_LOGGERCLASS_H

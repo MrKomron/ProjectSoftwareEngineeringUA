@@ -1,2 +1,0 @@
-Username is missing or empty for a job. Continuing onto the next attribute.
-Invalid Job! Some elements may be missing.
