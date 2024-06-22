@@ -1,6 +1,2 @@
-Number of Device entries: 0
+Number of Device entries: 1
 Number of Job entries: 0
-Number of Device entries: 2
-Number of Job entries: 2
-Successfully opened output file.
-Successfully opened output file.
