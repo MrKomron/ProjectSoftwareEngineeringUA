@@ -18,7 +18,7 @@
 #include "DesignByContract.h"
 
 using namespace std;
-
+// Test
 
 class Device {
 private:
