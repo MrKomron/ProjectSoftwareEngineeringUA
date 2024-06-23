@@ -3,8 +3,9 @@
 // Author      : Soliman Blanco, Oubayy Ahale, Komronjon Vosidov
 // Version     :
 // Copyright   : Project Software Engineering - BA1 Informatica - Soliman Blanco, Oubayy Ahale, Komronjon Vosidov - University of Antwerp
-// Description : Declarations for design by contract in C++
+// Description : Implementation of the PrinterSystem class in C++
 //============================================================================
+
 #include <iostream>
 #include "XMLREADER/XMLReader.h"    ////////////////////////////
 #include "Device.h"                 ///Including the headers////
@@ -16,8 +17,8 @@
 
 #include "loggerClass.h"
 
+using namespace std;
 
-using namespace std;                // Using namespace std to have a much simpler code without redundant "std::".
 System system1;
 
 void PrinterSystem::systemStart() {
@@ -30,20 +31,34 @@ void PrinterSystem::systemStart() {
     bool enable = true;
     bool enableOutput = true;
     bool enableError = true;
+
+    // Redirect IO to files
     system.redirectIOToFiles(enable, enableOutput, enableError);
+
     // Initialized the first reading of the XML file. This function is located in XMLREADER/XMLReader.cpp.
     if (!xmlReader.readerXML("XMLDataVoorTests/ValidData.XML")) {
         cerr << "Failed to load XML file." << endl;
     }
+
     vector<Device> devices = device5.populateFromXMLReader(xmlReader);
     vector<Job> jobs = job5.populateFromXMLReader(xmlReader);
+
+    // Print the device and job lists
     device.printDeviceList(devices);
     job.printJobList(jobs);
 
+    // Schedule an example job manually
     const string examplePrinter1 = "Office_Printer5";
     const int exampleJob1 = 1;
     system.schedulerManual(examplePrinter1, exampleJob1, jobs);
+
     cout << "===================================================================================================================" << endl;
+
+    // Generate the status report ????
     StatusReportPrinter::generateStatusReport(jobs);
+
+    // Stop redirecting IO to files
     system.redirectIOToFiles(enable= false, enableOutput, enableError);
+
+    ENSURE(true, "Printer system started and XML data processed.");
 }

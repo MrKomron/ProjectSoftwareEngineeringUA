@@ -132,10 +132,8 @@ public:
 
     vector<pair<string, vector<Job>>> processedJobs;
 
-    void setAccumulatedPages(int newAccumulatedPages) {
-        accumulatedPages = newAccumulatedPages;
-    }
-   // It is a comment
+    // Setter
+    void setAccumulatedPages(int newAccumulatedPages) { accumulatedPages = newAccumulatedPages; }
 
     //vector<Job> unprocessedJobs;
     // Set log errors flag

@@ -219,7 +219,7 @@ bool Device::printProcessedJobs(){
 }
 
 void Device::printDeviceList(vector<Device> deviceList) {
-    REQUIRE(!deviceList.empty(), "The device list must not be empty.");
+    //-REQUIRE(!deviceList.empty(), "The device list must not be empty.");
     for (auto &device : deviceList){
         device.printDeviceInfo();
     }

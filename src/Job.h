@@ -3,9 +3,9 @@
 // Author      : Soliman Blanco, Oubayy Ahale, Komronjon Vosidov
 // Version     :
 // Copyright   : Project Software Engineering - BA1 Informatica - Soliman Blanco, Oubayy Ahale, Komronjon Vosidov - University of Antwerp
-// Description : Declarations for design by contract in C++
+// Description : Declarations of the Job class in C++
 //============================================================================
-//
+
 #ifndef JOB_H
 #define JOB_H
 
@@ -91,12 +91,14 @@ public:
      */
     void setNewTotalCost(int newTotalCost) { totalCost = newTotalCost; }
 
-    // Getters
-
-    void set_total_emmisions(int total_emmisions)
-    {
-     totalEmissions = total_emmisions;
-    }
+    // Setters
+    /**
+     * Sets the total emissions for the job.
+     *
+     * \n REQUIRE(totalEmissions >= 0, "Total emissions must be non-negative.");
+     * \n ENSURE(this->totalEmissions == totalEmissions, "Total emissions are correctly updated.");
+     */
+    void set_total_emmisions(int total_emmisions) { totalEmissions = total_emmisions; }
 
     // Getter functions
     int getJobNumber() const { return jobNumber; }
