@@ -44,6 +44,8 @@ add_executable(release_target
         src/StatusReport.cpp
         src/SystemProcessing.cpp
         src/PrinterSystem.cpp
+        src/PrinterSystem.h
+        src/DesignByContract.h
         src/loggerClass.cpp
 
 )
@@ -61,7 +63,10 @@ add_executable(debug_target
         src/XMLREADER/tinyxmlparser.cpp
         src/SystemProcessing.cpp
         src/PrinterSystem.cpp
+        src/PrinterSystem.h
         src/EmissionsManager.cpp
+        src/EmissionsManager.h
+        src/DesignByContract.h
         src/loggerClass.cpp
 )
 

@@ -5,24 +5,19 @@
 // Copyright   : Project Software Engineering - BA1 Informatica - Soliman Blanco, Oubayy Ahale, Komronjon Vosidov - University of Antwerp
 // Description : Declarations for design by contract in C++
 //============================================================================
-#ifndef TESTFOLDER_DEVICE_H
-#define TESTFOLDER_DEVICE_H
+#ifndef DEVICE_H
+#define DEVICE_H
+
 #include <fstream>
 #include <iostream>
-#include "XMLREADER/XMLReader.h"
-#include "Job.h"
 #include <string>
 #include <vector>
+#include "XMLREADER/XMLReader.h"
+#include "Job.h"
+#include "DesignByContract.h"
 
 using namespace std;
-    /**
-     * Constructor die een Device-object initialiseert met een naam, emissies en snelheid.
-     *
-     * REQUIRE(true, "Er zijn geen precondities voor deze constructor.");
-     * ENSURE(this->name == name, "Device naam niet correct geïnitialiseerd.");
-     * ENSURE(this->emissions == emissions, "Device emissies niet correct geïnitialiseerd.");
-     * ENSURE(this->speed == speed, "Device snelheid niet correct geïnitialiseerd.");
-     */
+
 
 class Device {
 private:
@@ -34,6 +29,8 @@ private:
     int accumulatedPages;
     int totalEmissions;
     int totalEarnings;
+
+    //Device* _initCheck; //!use pointer to myself to verify whether I am properly initialized
 
 public:
     static vector<Device>* getDevicesBW();
@@ -49,69 +46,116 @@ public:
     // Constructor
     // Device(const string &name = "", int emissions = 0, int speed = 0, float cost_per_page = 0);
 
+    /**
+     * Constructor that initializes a Device object with a name, emissions, type, speed, cost per page, and accumulated pages.
+     *
+     * \n REQUIRE(true, "There are no preconditions for this constructor.");
+     * \n ENSURE(this->deviceName == name, "Device name not correctly initialized.");
+     * \n ENSURE(this->emissions == emissions, "Device emissions not correctly initialized.");
+     * \n ENSURE(this->deviceType == deviceType, "Device type not correctly initialized.");
+     * \n ENSURE(this->speed == speed, "Device speed not correctly initialized.");
+     * \n ENSURE(this->cost_per_page == cost_per_page, "Device cost per page not correctly initialized.");
+     * \n ENSURE(this->accumulatedPages == accumulatedPages, "Device accumulated pages not correctly initialized.");
+     */
     Device(const string& name = "", int emissions = 0, const string& deviceType = "", int speed = 0, int cost_per_page = 0,
          int accumulatedPages = 0, int totalEmissions = 0, int totalEarnings = 0):
          deviceName(name), emissions(emissions), deviceType(deviceType), speed(speed), cost_per_page(cost_per_page),
          accumulatedPages(accumulatedPages), totalEmissions(totalEmissions),
          totalEarnings(totalEarnings) {}
-    /**
-     * Vult de lijst met apparaten op basis van gegevens van de XMLReader.
-     *
-     * REQUIRE(xmlReader.isInitialized() && xmlReader.hasValidStructure(), "xmlReader moet geïnitialiseerd zijn en een geldige XML-structuur geladen hebben.");
-     * ENSURE(DeviceList::isFilled(), "De statische lijst met apparaten is gevuld met apparaten uit de XMLReader.");
-     */
 
-    // Function to populate devices from XMLReader
+    /**
+     * Populates the device list based on data from the XMLReader.
+     *
+     * \n REQUIRE(xmlReader.properlyInitialized(), "xmlReader must be properly initialized and contain a valid XML structure.");
+     * \n ENSURE(!devices.empty(), "The device list is populated with devices from the XMLReader.");
+     */
     vector<Device> populateFromXMLReader(const XMLReader &xmlReader);
 
     /**
-      * Print de informatie van het apparaat.
-      *
-      * REQUIRE(this->isInitialized(), "Het Device-object moet correct geïnitialiseerd zijn.");
-      * ENSURE(noChangeInState(), "Informatie over het apparaat is afgedrukt. Er is geen verandering in de status van het object.");
-      */
-
-    // Print device information
+     * Prints the device information.
+     *
+     * \n REQUIRE(this->properlyInitialized(), "The Device object must be properly initialized.");
+     * \n ENSURE(true, "Device information is printed. No change in the state of the object.");
+     */
     void printDeviceInfo() const;
 
     /**
-     * Schrijft de informatie van het apparaat naar een output bestand.
+     * Returns the device information.
      *
-     * REQUIRE(outputFile.isOpen() && outputFile.isReadyForWriting(), "outputFile moet open zijn en klaar voor schrijfoperaties.");
-     * ENSURE(informationWritten(outputFile) && noChangeInState(), "Informatie over het apparaat is geschreven naar het outputFile. Er is geen verandering in de status van het object.");
+     * \n REQUIRE(this->properlyInitialized(), "The Device object must be properly initialized.");
+     * \n ENSURE(!this->deviceName.empty(), "The device information is correctly returned.");
      */
-
-    // Give device information
     DeviceInfo giveDeviceInfo() const;
+
     /**
-     * xxx
+     * Processes a job manually and updates the processed jobs list.
      *
-     * REQUIRE(this->isInitialized(), "Het Device-object moet correct geïnitialiseerd zijn.");
-     * ENSURE(!this->getName().empty(), "De naam van het apparaat is niet leeg.");
+     * \n REQUIRE(!selectedDevice.deviceName.empty(), "The selected device must be valid.");
+     * \n REQUIRE(!job.jobType.empty(), "The job must have a valid type.");
+     * \n ENSURE(job.totalCost > 0, "The job total cost must be calculated and updated.");
      */
-    vector<pair<string, vector<Job>>> processedJobs;
-    static vector<Device> devices;
-    static vector<vector<pair<string, vector<Job>>>> processedJobsVector;
-    //vector<Job> unprocessedJobs;
-    vector<Job> getUnprocessedJobs();
-    // Set log errors flag
-    // Print processed jobs
-    bool printProcessedJobs();
-    // Manually process job for selected device
     bool manualProcess(const DeviceInfo& selectedDevice, JobInfo& job);
+
+    /**
+     * Prints the list of processed jobs.
+     *
+     * \n REQUIRE(true, "There are no preconditions for this function.");
+     * \n ENSURE(true, "Processed jobs information is printed. No change in the state of the objects.");
+     */
+    bool printProcessedJobs();
+
+    /**
+     * Retrieves device information for a specific device name.
+     *
+     * \n REQUIRE(!deviceNameToFind.empty(), "The device name to find must not be empty.");
+     * \n ENSURE(!deviceInfo.deviceName.empty(), "The device information is correctly retrieved if the device is found.");
+     */
+    DeviceInfo getDeviceInfo(string deviceNameToFind);
+
+    /**
+     * Writes the device information to an output file.
+     *
+     * \n REQUIRE(!deviceList.empty(), "The device list must not be empty.");
+     * \n REQUIRE(!fileName.empty(), "The file name must not be empty.");
+     * \n ENSURE(true, "Device information is written to the file. No change in the state of the objects.");
+     */
+    void writeDeviceInfoOutputToFile(vector<Device>& deviceList, string& fileName);
+
+    /**
+     * Prints the list of devices.
+     *
+     * \n REQUIRE(!devices.empty(), "The device list must not be empty.");
+     * \n ENSURE(true, "Device list information is printed. No change in the state of the objects.");
+     */
+    void printDeviceList(vector<Device> devices);
+
+    vector<pair<string, vector<Job>>> processedJobs;
+
     void setAccumulatedPages(int newAccumulatedPages) {
         accumulatedPages = newAccumulatedPages;
     }
 
-    void printDeviceList(vector<Device> devices);
-    DeviceInfo getDeviceInfo(string deviceNameToFind);
+    //vector<Job> unprocessedJobs;
+    // Set log errors flag
+    // Print processed jobs
+    // Manually process job for selected device
     //void resetAccumulatedPages();
-    void writeDeviceInfoOutputToFile(vector<Device>& deviceList, string& fileName);
+
+    // Getters
+    vector<Job> getUnprocessedJobs();
     string getDeviceName() const {return deviceName;};
     int getEmissions() const {return emissions;};
     string getDeviceType() const {return deviceType;};
     int getSpeed() const {return speed;};
     int getCostPerPage() const {return cost_per_page;};
     int getAccumulatedPages() const {return accumulatedPages;};
+
+    //Static members
+    static vector<Device> devices;
+    static vector<vector<pair<string, vector<Job>>>> processedJobsVector;
+
+    // Initialization check
+    //bool properlyInitialized() const { return _initCheck == this; }
 };
-#endif //TESTFOLDER_DEVICE_H
+
+#endif //DEVICE_H
