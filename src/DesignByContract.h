@@ -5,7 +5,7 @@
 // Copyright   : Project Software Engineering - BA1 Informatica - Serge Demeyer - University of Antwerp
 // Description : Declarations for design by contract in C++
 //============================================================================
-
+//
 #include <assert.h>
 #include <exception>
 

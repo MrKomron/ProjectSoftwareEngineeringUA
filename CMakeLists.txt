@@ -16,6 +16,7 @@ link_directories(./gtest/lib)
 
 # Set source files for RELEASE target
 # Only add cpp files, no h files!
+#
 # Only add files with functionality here, no test files!
 set(RELEASE_SOURCE_FILES
         src/main.cpp

@@ -6,7 +6,7 @@
 // Version     :
 // Description : Implementation of the EmissionsManager class in C++
 //============================================================================
-
+//
 #include "EmissionsManager.h"
 #include <iostream>
 

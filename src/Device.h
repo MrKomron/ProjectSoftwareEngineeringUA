@@ -5,6 +5,7 @@
 // Copyright   : Project Software Engineering - BA1 Informatica - Soliman Blanco, Oubayy Ahale, Komronjon Vosidov - University of Antwerp
 // Description : Declarations for design by contract in C++
 //============================================================================
+//
 #ifndef DEVICE_H
 #define DEVICE_H
 

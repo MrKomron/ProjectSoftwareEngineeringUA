@@ -6,7 +6,7 @@
 // Version     :
 // Description : Declaration of the EmissionsManager class in C++
 //============================================================================
-
+//
 #ifndef PROJECTSOFTWAREENGINEERINGUA_EMISSIONSMANAGER_H
 #define PROJECTSOFTWAREENGINEERINGUA_EMISSIONSMANAGER_H
 
