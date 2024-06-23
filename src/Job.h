@@ -21,6 +21,7 @@ private:
     string jobType;
     string userName;
     int totalCost = 0;
+    int totalEmissions;
 
 public:
 
@@ -34,7 +35,8 @@ public:
      * ENSURE(this->name.empty(), "Gebruikersnaam niet correct geïnitialiseerd als lege string.");
      */
 
-    Job(int jobNumber = 0, int pageCount = 0, const string& jobType = "", const string& userName = "", int totalCost = 0);
+    // Job(int jobNumber = 0, int pageCount = 0, const string& jobType = "", const string& userName = "", int totalCost = 0);
+    explicit Job(int jobNumber = 0, int pageCount = 0, const string& jobType = "", const string& userName = "", int totalCost = 0, int totalEmissions =0);
 
     /**
      * Vult de lijst met jobs op basis van gegevens van de XMLReader.
@@ -68,6 +70,12 @@ public:
     void printJobList(vector<Job> jobs);
     static vector<Job> jobs;
     void setNewTotalCost(int newTotalCost) {totalCost = newTotalCost;}
+
+    void set_total_emmisions(int total_emmisions)
+    {
+     totalEmissions = total_emmisions;
+    }
+
     // Getter functions
     int getJobNumber() const { return jobNumber; }
     int getPageCount() const { return pageCount; }

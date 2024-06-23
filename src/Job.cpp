@@ -15,8 +15,8 @@
 #include "XMLREADER/XMLReader.h"
 
 using namespace std;
-Job::Job(int number, int count, const string& jobType, const string& name, int totalCost)
-        : jobNumber(number), pageCount(count), jobType(jobType), userName(name), totalCost(totalCost){}
+Job::Job(int number, int count, const string& jobType, const string& name, int totalCost, int totalEmissions)
+        : jobNumber(number), pageCount(count), jobType(jobType), userName(name), totalCost(totalCost),  totalEmissions(totalEmissions){}
 
 vector<Job> Job::jobs;
 // Static member function to populate jobs from XMLReader
@@ -24,23 +24,26 @@ vector<Job> Job::populateFromXMLReader(const XMLReader& xmlReader) {
     // Access vectors from XMLReader
     const vector<JobInfo>& jobInfoList = xmlReader.getJobInfoList();
     // Print the size of jobInfoList to verify if it's populated correctly
-    cout << "Number of Job entries: " << jobInfoList.size() << endl;
+
+    // cout << "Number of Job entries: " << jobInfoList.size() << endl;
+    outputPrinter::numberEntriesJob(jobInfoList.size());
     // Clear any existing jobs before populating new ones
     jobs.clear();
     // Populate Job objects using data from jobInfoList vector
     for (const auto& jobInfo : jobInfoList) {
-        Job job1(jobInfo.jobNumber, jobInfo.pageCount, jobInfo.jobType, jobInfo.userName, jobInfo.totalCost);
+        Job job1(jobInfo.jobNumber, jobInfo.pageCount, jobInfo.jobType, jobInfo.userName, jobInfo.totalCost, jobInfo.totalEmissions);
         jobs.push_back(job1);
     }
     return jobs;
 }
 // This is a function use to print each one of the contents in the list of Jobs.
 void Job::printJobInfo() const {
-    cout << "Job Number: " << jobNumber << endl;
-    cout << "Page Count: " << pageCount << endl;
-    cout << "Job Type: " << jobType << endl;
-    cout << "User Name: " << userName << endl;
-    cout << "Total Cost: " << totalCost << endl;
+    outputPrinter::printerInfoJob(jobNumber, pageCount, jobType, userName, totalCost, totalEmissions);
+    // cout << "Job Number: " << jobNumber << endl;
+    // cout << "Page Count: " << pageCount << endl;
+    // cout << "Job Type: " << jobType << endl;
+    // cout << "User Name: " << userName << endl;
+    // cout << "Total Cost: " << totalCost << endl;
 }
 
 JobInfo Job::giveJobInfo() const {

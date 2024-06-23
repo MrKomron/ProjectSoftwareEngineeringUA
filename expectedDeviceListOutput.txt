@@ -1,4 +1,3 @@
-Number of Device entries: 2
 Device Name: Office_Printer5
 Emissions: 3
 Type: bw

@@ -22,7 +22,7 @@ public:
 class outputPrinter{
 public:
     static void startingPrint();
-    static void startingScan();
+    // static void startingScan();
     static void allPagesPrinted();
     static void allPagesScanned();
     static void printerBWFinished(string deviceName, int jobNumber, string jobUser, int pageCount, int totalCost);
@@ -44,6 +44,13 @@ public:
     static void printUnprocessedJobs(int jobNumber, int pageCount, string jobType, string userName, int totalCost);
     static void startUnprocessedJobs();
     static void emptyLine(){cout << endl;}
+    static void printProcessedJobs();
+    static void startingScan(int scannedPages);
+    static void neemDeviceNaam();
+    static void neemJobvector();
+    static void writeDeviceInfoOutputToFile();
+    static void printProcessedJobsDevice(int jobNumber, int pageCount, string jobType, string userName, int totalCost);
+    static void neemJobvector(int jobNumber, int pageCount, string jobType,string userName,int totalCost, int totalEmmisions);
 };
 class errorPrinter{
 public:

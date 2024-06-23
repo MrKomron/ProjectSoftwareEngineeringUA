@@ -41,9 +41,24 @@ void outputPrinter::accumulatedPagesDeviceAutomated(std::string deviceName, int 
 void outputPrinter::startingPrint() {
     cout << "Starting the printing process..." << endl;
 }
-void outputPrinter::startingScan() {
-    cout << "Starting the scanning process..." << endl;
+// void outputPrinter::startingScan() {
+//     cout << "Starting the scanning process..." << endl;
+// }
+
+void outputPrinter::startingScan(int scannedPages) {
+    cout << "Scanned pages: " << scannedPages << endl;
 }
+
+
+void outputPrinter::neemJobvector(int jobNumber, int pageCount, string jobType,string userName,int totalCost, int totalEmissions)
+{
+    cout << "Job Number: " << jobNumber << endl;
+    cout << "Page Count: " << pageCount << endl;
+    cout << "Job Type: " << jobType << endl;
+    cout << "User Name: " << userName << endl;
+    cout << "Total Cost: " << totalCost << endl;
+}
+
 void outputPrinter::allPagesPrinted() {
     cout << endl;
     cout << "All pages printed." << endl;
@@ -161,6 +176,12 @@ void outputPrinter::remainingAvailableJobs(string deviceName) {
     cout << "Available unassigned jobs for device " << deviceName << ":" << endl;
 }
 
+void outputPrinter::printProcessedJobs()
+{
+    cout << "========================   Contents of processedJobs vector   ========================" << endl;
+    cout << endl;
+}
+
 void errorPrinter::noDeviceSystem() {
     cerr << "No Device in the system." << endl;
 }
@@ -176,9 +197,31 @@ void errorPrinter::noJobNumberFound(int jobNumber) {
 void errorPrinter::jobTypeNotMatch(int jobNumber) {
     cerr << "Job " << jobNumber << " type does not match the type of the Device." << endl;
 }
+
+void outputPrinter::writeDeviceInfoOutputToFile()
+{
+    // outFile << "Device Name: " << device.getDeviceName() << "\n";
+    // outFile << "Emissions: " << device.getEmissions() << "\n";
+    // outFile << "Type: " << device.getDeviceType() << "\n";
+    // outFile << "Speed: " << device.getSpeed() << "\n";
+    // outFile << "Cost per page: " << device.getCostPerPage() << "\n";
+    // outFile << "Accumulated Pages: " << device.getAccumulatedPages() << "\n";
+}
+
+void outputPrinter::printProcessedJobsDevice(int jobNumber, int pageCount, string jobType, string userName, int totalCost)
+{
+    cout << "Job Number: " << jobNumber << endl;
+    cout << "Page Count: " << pageCount << endl;
+    cout << "Job Type: " << jobType << endl;
+    cout << "Username: " << userName << endl;
+    cout << "Total cost of this job: " << totalCost << endl;
+}
+
 void errorPrinter::noDeviceFoundName(string deviceName) {
     cerr << "No device found with the name " <<deviceName<< " in the list of devices" << endl;
 }
+
+
 
 bool StatusReportPrinter::generateStatusReport(vector<Job> jobs) {
     // Create a text file and open it in write mode.

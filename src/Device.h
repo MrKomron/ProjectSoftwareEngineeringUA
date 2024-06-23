@@ -49,7 +49,11 @@ public:
     // Constructor
     // Device(const string &name = "", int emissions = 0, int speed = 0, float cost_per_page = 0);
 
-    Device(const string& name = "", int emissions = 0, const string& deviceType = "", int speed = 0, int cost_per_page = 0, int accumulatedPages = 0);
+    Device(const string& name = "", int emissions = 0, const string& deviceType = "", int speed = 0, int cost_per_page = 0,
+         int accumulatedPages = 0, int totalEmissions = 0, int totalEarnings = 0):
+         deviceName(name), emissions(emissions), deviceType(deviceType), speed(speed), cost_per_page(cost_per_page),
+         accumulatedPages(accumulatedPages), totalEmissions(totalEmissions),
+         totalEarnings(totalEarnings) {}
     /**
      * Vult de lijst met apparaten op basis van gegevens van de XMLReader.
      *
