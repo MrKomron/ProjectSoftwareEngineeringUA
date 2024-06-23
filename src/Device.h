@@ -135,6 +135,7 @@ public:
     void setAccumulatedPages(int newAccumulatedPages) {
         accumulatedPages = newAccumulatedPages;
     }
+   // It is a comment
 
     //vector<Job> unprocessedJobs;
     // Set log errors flag
