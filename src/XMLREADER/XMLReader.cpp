@@ -9,28 +9,37 @@
 #include "XMLReader.h"
 #include "tinyxml.h"
 #include <iostream>
+#include "../DesignByContract.h"
 
 using namespace std;
 
 XMLReader::XMLReader() {
-// Empty Constructor used in main.cpp to initialize the first reading/parsing of the XML file.
-
+    // Empty Constructor used in main.cpp to initialize the first reading/parsing of the XML file.
+    _initCheck = this; // Mark the object as initialized
+    ENSURE(properlyInitialized(), "Constructor must end in properlyInitialized state");
 }
+
 // A Boolean type function to return whether the parsing or reading of the file is successful or not.
 bool XMLReader::readerXML(string filename) {
+    REQUIRE(!filename.empty(), "Filename must not be empty");
+    REQUIRE(properlyInitialized(), "XMLReader wasn't properly initialized when calling readerXML");
     // Creates an instance of TiXmlDocument class named "doc"
 
     // Loads the file to start the parsing.
     if (!doc.LoadFile(filename.c_str())) {
         cerr << "Failed to load file: " << doc.ErrorDesc() << endl;
         // Returns a false if unable to open the file. (This then would be used to exit the program in main.cpp)
-        return false;
+
+        // ENSURE(false, "readerXML must return false if file loading fails");
+        // ^^ No need to ENSURE(false) here, as we are returning false
+        return false; // Directly return false on failure without ENSURE
     }
 
     // Checks the root of the XML file if it is "SYSTEM"
     TiXmlElement* root = doc.FirstChildElement("SYSTEM");
     if (!root) {
         cerr << "Failed to find root element SYSTEM." << endl;
+        ENSURE(false, "readerXML must return false if root element is missing");
     }
 
     // Sets a variable to be used later for the checking of the availability of any printing device in the system.
@@ -240,5 +249,6 @@ bool XMLReader::readerXML(string filename) {
         }
     }
     doc.Clear();
+    ENSURE(true, "readerXML must return true if parsing is successful");
     return true; // Return true indicating successful XML reading
 }

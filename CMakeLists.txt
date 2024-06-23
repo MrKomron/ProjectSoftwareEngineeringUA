@@ -45,6 +45,7 @@ add_executable(release_target
         src/SystemProcessing.cpp
         src/PrinterSystem.cpp
         src/PrinterSystem.h
+        src/DesignByContract.h
 )
 
 # Create DEBUG target
@@ -63,6 +64,7 @@ add_executable(debug_target
         src/PrinterSystem.h
         src/EmissionsManager.cpp
         src/EmissionsManager.h
+        src/DesignByContract.h
 )
 
 # Link library

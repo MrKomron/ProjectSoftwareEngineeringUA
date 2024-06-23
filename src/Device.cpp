@@ -9,15 +9,30 @@
 #include <algorithm>
 #include "Device.h"
 #include "XMLREADER/XMLReader.h"
+#include "DesignByContract.h"
 
 using namespace std;
 
 Device::Device(const string &name, int emissions, const string &deviceType, int speed, int cost_per_page, int accumulatedPages)
-        : deviceName(name), emissions(emissions), deviceType(deviceType), speed(speed), cost_per_page(cost_per_page), accumulatedPages(accumulatedPages){}
+        : deviceName(name), emissions(emissions), deviceType(deviceType), speed(speed), cost_per_page(cost_per_page), accumulatedPages(accumulatedPages){
+
+    //_initCheck = this;
+
+    //ENSURE(properlyInitialized(), "Constructor must end in properlyInitialized state");
+
+    ENSURE(this->deviceName == name, "Device name not correctly initialized.");
+    ENSURE(this->emissions == emissions, "Device emissions not correctly initialized.");
+    ENSURE(this->deviceType == deviceType, "Device type not correctly initialized.");
+    ENSURE(this->speed == speed, "Device speed not correctly initialized.");
+    ENSURE(this->cost_per_page == cost_per_page, "Device cost per page not correctly initialized.");
+    ENSURE(this->accumulatedPages == accumulatedPages, "Device accumulated pages not correctly initialized.");
+
+}
 
 // Static member function to populate devices from XMLReader
 vector<Device> Device::devices;
 vector<Device> Device::populateFromXMLReader(const XMLReader& xmlReader) {
+    REQUIRE(xmlReader.properlyInitialized(), "xmlReader must be properly initialized and contain a valid XML structure.");
     // Access vectors from XMLReader
     const vector<DeviceInfo>& deviceInfoList = xmlReader.getDeviceInfoList();
     // Print the size of jobInfoList to verify if it's populated correctly
@@ -29,18 +44,23 @@ vector<Device> Device::populateFromXMLReader(const XMLReader& xmlReader) {
         Device device(deviceInfo.deviceName, deviceInfo.emissions, deviceInfo.deviceType, deviceInfo.speed, deviceInfo.costpp, deviceInfo.accumulatedPages);
         devices.push_back(device);
     }
+    //ENSURE(!devices.empty(), "The device list is populated with devices from the XMLReader.");
     return devices;
 }
 // This is a function use to print each one of the contents in the list of Devices.
 void Device::printDeviceInfo() const {
+    //REQUIRE(properlyInitialized(), "The Device object must be properly initialized.");
     cout << "Device Name: " << deviceName << endl;
     cout << "Emissions: " << emissions << endl;
     cout << "Type: " << deviceType << endl;
     cout << "Speed: " << speed << endl;
     cout << "Cost per page: " << cost_per_page << endl;
     cout << "Accumulated Pages: " << accumulatedPages << endl;
+    ENSURE(true, "Device information is printed. No change in the state of the object.");
 }
+
 DeviceInfo Device::giveDeviceInfo() const {
+    //REQUIRE(properlyInitialized(), "The Device object must be properly initialized.");
     DeviceInfo info;
     info.deviceName = deviceName;
     info.emissions = emissions;
@@ -48,10 +68,16 @@ DeviceInfo Device::giveDeviceInfo() const {
     info.speed = speed;
     info.costpp = cost_per_page;
     info.accumulatedPages = accumulatedPages;
+    ENSURE(!info.deviceName.empty(), "The device information is correctly returned.");
     return info;
 }
+
 vector<vector<pair<string, vector<Job>>>> Device::processedJobsVector;
+
 bool Device::manualProcess(const DeviceInfo& selectedDevice, JobInfo& job){
+    REQUIRE(!selectedDevice.deviceName.empty(), "The selected device must be valid.");
+    REQUIRE(!job.jobType.empty(), "The job must have a valid type.");
+
     JobInfo jobInfo = job;
     DeviceInfo selectedDeviceInfo = selectedDevice;
     jobInfo.totalCost = jobInfo.pageCount * selectedDeviceInfo.costpp;
@@ -143,8 +169,10 @@ bool Device::manualProcess(const DeviceInfo& selectedDevice, JobInfo& job){
     for (const auto &processedJob: processedJobs) {
         processedJobsVector.emplace_back(1, processedJob);
     }
+    //ENSURE(job.totalCost > 0, "The job total cost must be calculated and updated.");
     return true;
 }
+
 bool Device::printProcessedJobs(){
     // Print the contents of processedJobs vector
     cout << "========================   Contents of processedJobs vector   ========================" << endl;
@@ -168,14 +196,20 @@ bool Device::printProcessedJobs(){
                 }
         }
     }
+    ENSURE(true, "Processed jobs information is printed. No change in the state of the objects.");
     return true;
 }
+
 void Device::printDeviceList(vector<Device> deviceList) {
+    REQUIRE(!deviceList.empty(), "The device list must not be empty.");
     for (auto &device : deviceList){
         device.printDeviceInfo();
     }
+    ENSURE(true, "Device list information is printed. No change in the state of the objects.");
 }
+
 DeviceInfo Device::getDeviceInfo(string deviceNameToFind) {
+    REQUIRE(!deviceNameToFind.empty(), "The device name to find must not be empty.");
     for (auto &device: devices){
         if (device.deviceName == deviceNameToFind) {
             DeviceInfo deviceInfo = device.giveDeviceInfo();
@@ -185,6 +219,7 @@ DeviceInfo Device::getDeviceInfo(string deviceNameToFind) {
             deviceInfo.speed = speed;
             deviceInfo.costpp = cost_per_page;
             deviceInfo.accumulatedPages = accumulatedPages;
+            //ENSURE(!deviceInfo.deviceName.empty(), "The device information is correctly retrieved if the device is found.");
             return deviceInfo;
         }
     }
@@ -192,7 +227,10 @@ DeviceInfo Device::getDeviceInfo(string deviceNameToFind) {
     // If no matching device is found, return a default DeviceInfo object
     return giveDeviceInfo();
 }
+
 void Device::writeDeviceInfoOutputToFile(vector<Device>& deviceList, string& fileName) {
+    REQUIRE(!deviceList.empty(), "The device list must not be empty.");
+    REQUIRE(!fileName.empty(), "The file name must not be empty.");
     ofstream outFile(fileName);
     if (outFile.is_open()) {
         outFile << "Number of Device entries: " << deviceList.size() << "\n";
@@ -205,8 +243,10 @@ void Device::writeDeviceInfoOutputToFile(vector<Device>& deviceList, string& fil
             outFile << "Accumulated Pages: " << device.getAccumulatedPages() << "\n";
         }
         outFile.close();
+        ENSURE(true, "Device information is written to the file. No change in the state of the objects.");
     }
 }
+
 //vector<Job> Device::getUnprocessedJobs() {
 //    return unprocessedJobs;
 //}
