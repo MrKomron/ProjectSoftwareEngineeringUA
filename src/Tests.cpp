@@ -105,7 +105,7 @@ TEST_F(OutputComparisonTest, CompareDeviceListOutput) {
     system.redirectIOToFiles(true, true, true);
     reader.readerXML("XMLDataVoorTests/ValidData.xml");
     vector<Device> deviceList = device.populateFromXMLReader(reader);
-    device.printDeviceList(deviceList);
+    device.printDeviceList();
     string deviceListOutputFileName = "expectedDeviceListOutput.txt";
     device.writeDeviceInfoOutputToFile(deviceList, deviceListOutputFileName);
     // Read actual job list output
@@ -156,13 +156,13 @@ TEST_F(TestXMLReader, LoadFail) {
 TEST_F(TestXMLReader, TestName) {
     system.redirectIOToFiles(true, true, true);
     EXPECT_TRUE(reader.getDeviceInfoList().empty());
-    reader.readerXML("XMLDataVoorTests/NoName.xml");
+    reader.readerXML("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\XMLDataVoorTests\\NoName.xml");
 
     // Read actual error output
-    string actualErrors = readFile("errors.txt");
+    string actualErrors = readFile("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\errors.txt");
     // Read expected error output
-    string expectedError = readFile("expectedErrors/noNameExpected.txt");
-    ASSERT_EQ(actualErrors, expectedError);
+    string expectedError = readFile("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\expectedErrors\\noNameExpected.txt");
+    ASSERT_EQ(expectedError, actualErrors);
 
     system.redirectIOToFiles(false, true, true);
 }
@@ -170,10 +170,10 @@ TEST_F(TestXMLReader, TestName) {
 TEST_F(TestXMLReader, TestEmissions) {
     system.redirectIOToFiles(true, true, true);
     EXPECT_TRUE(reader.getDeviceInfoList().empty());
-    reader.readerXML("XMLDataVoorTests/NoEmissions.xml");
-    string actualErrors = readFile("errors.txt");
-    string expectedError = readFile("expectedErrors/noEmissionsExpected.txt");
-    ASSERT_EQ(actualErrors, expectedError);
+    reader.readerXML("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\XMLDataVoorTests\\NoEmissions.xml");
+    string actualErrors = readFile("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\errors.txt");
+    string expectedError = readFile("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\expectedErrors\\noEmissionsExpected.txt");
+    ASSERT_EQ(expectedError, actualErrors);
 
     system.redirectIOToFiles(false, true, true);
 }
@@ -181,14 +181,14 @@ TEST_F(TestXMLReader, TestEmissions) {
 TEST_F(TestXMLReader, TestSpeed) {
     system.redirectIOToFiles(true, true, true);
     EXPECT_TRUE(reader.getDeviceInfoList().empty());
-    reader.readerXML("XMLDataVoorTests/NoSpeed.xml");
+    reader.readerXML("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\XMLDataVoorTests\\NoSpeed.XML");
 
     //EXPECT_TRUE(!actualErrors.empty());
     //EXPECT_TRUE(reader.getDeviceInfoList().empty());
 
-    string actualErrors = readFile("errors.txt");
-    string expectedError = readFile("expectedErrors/noSpeedExpected.txt");
-    ASSERT_EQ(actualErrors, expectedError);
+    string actualErrors = readFile("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\errors.txt");
+    string expectedError = readFile("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\expectedErrors\\noSpeedExpected.txt");
+    ASSERT_EQ(expectedError, actualErrors);
 
     system.redirectIOToFiles(false, true, true);
 }
@@ -196,48 +196,48 @@ TEST_F(TestXMLReader, TestSpeed) {
 TEST_F(TestXMLReader, TestJobNumber) {
     system.redirectIOToFiles(true, true, true);
     EXPECT_TRUE(reader.getJobInfoList().empty());
-    reader.readerXML("XMLDataVoorTests/NoJobNumber.xml");
+    reader.readerXML("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\XMLDataVoorTests\\NoJobNumber.XML");
 
     //EXPECT_TRUE(!actualErrors.empty());
     //EXPECT_TRUE(reader.getJobInfoList().empty());
 
-    string actualErrors = readFile("errors.txt");
-    string expectedError = readFile("expectedErrors/noJobNumberExpected.txt");
-    ASSERT_EQ(actualErrors, expectedError);
+    string actualErrors = readFile("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\errors.txt");
+    string expectedError = readFile("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\expectedErrors\\noJobNumberExpected.txt");
+    ASSERT_EQ(expectedError, actualErrors);
     system.redirectIOToFiles(false, true, true);
 }
 
 TEST_F(TestXMLReader, TestPageCount) {
     system.redirectIOToFiles(true, true, true);
     EXPECT_TRUE(reader.getJobInfoList().empty());
-    reader.readerXML("XMLDataVoorTests/noPageCount.XML");
+    reader.readerXML("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\XMLDataVoorTests\\noPageCount.XML");
 
     //EXPECT_TRUE(!actualErrors.empty());
     //EXPECT_TRUE(reader.getJobInfoList().empty());
 
-    string actualErrors = readFile("errors.txt");
-    string expectedError = readFile("expectedErrors/noPageCountExpected.txt");
-    ASSERT_EQ(actualErrors, expectedError);
+    string actualErrors = readFile("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\errors.txt");
+    string expectedError = readFile("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\expectedErrors\\noPageCountExpected.txt");
+    ASSERT_EQ(expectedError, actualErrors);
     system.redirectIOToFiles(false, true, true);
 }
 
 TEST_F(TestXMLReader, TestUserName) {
     system.redirectIOToFiles(true, true, true);
     EXPECT_TRUE(reader.getJobInfoList().empty());
-    reader.readerXML("XMLDataVoorTests/NoUserName.xml");
+    reader.readerXML("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\XMLDataVoorTests\\NoUserName.XML");
 
     //EXPECT_TRUE(!actualErrors.empty());
     //EXPECT_TRUE(reader.getJobInfoList().empty());
 
-    string actualErrors = readFile("errors.txt");
-    string expectedError = readFile("expectedErrors/noUserNameExpected.txt");
-    ASSERT_EQ(actualErrors, expectedError);
+    string actualErrors = readFile("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\errors.txt");
+    string expectedError = readFile("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\expectedErrors\\noUserNameExpected.txt");
+    ASSERT_EQ(expectedError, actualErrors);
     system.redirectIOToFiles(false, true, true);
 }
 
 TEST_F(TestXMLReader, TestSuccessfulParse) {
     system.redirectIOToFiles(true, true, true);
-    reader.readerXML("XMLDataVoorTests/ValidData.xml");
+    reader.readerXML("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\XMLDataVoorTests\\ValidData.XML");
     string actualErrors = readFile("errors.txt");
     EXPECT_TRUE(actualErrors.empty());
     auto deviceInfoList = reader.getDeviceInfoList();
@@ -270,7 +270,7 @@ TEST_F(TestXMLReader, TestSuccessfulParse) {
 }
 TEST_F(TestXMLReader, TestManualProcess) {
     system.redirectIOToFiles(true, true, true);
-    reader.readerXML("XMLDataVoorTests/testManualProcess.xml");
+    reader.readerXML("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\XMLDataVoorTests\\testManualProcess.xml");
     vector<Device> tempDevices = device.populateFromXMLReader(reader);
     vector<Job> tempJobs = job.populateFromXMLReader(reader);
     size_t jobExpected = 1;
@@ -287,7 +287,7 @@ TEST_F(TestXMLReader, TestManualProcess) {
 
 TEST_F(TestXMLReader, TestAutomatedProcess) {
     system.redirectIOToFiles(true, true, true);
-    reader.readerXML("XMLDataVoorTests/testAutomatedProcess.xml");
+    reader.readerXML("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\XMLDataVoorTests\\testAutomatedProcess.xml");
     vector<Device> tempDevices = device.populateFromXMLReader(reader);
     vector<Job> tempJobs = job.populateFromXMLReader(reader);
     size_t jobCurrent = 18;

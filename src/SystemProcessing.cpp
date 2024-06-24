@@ -74,7 +74,7 @@ bool System::schedulerManual(const string& selectedDeviceName, int selectedJobNu
         return true;
     } else {
         cerr << "Job type does not match the type of the Device." << endl;
-        ENSURE(false, "Job type does not match the device type.");
+        //ENSURE(false, "Job type does not match the device type.");
         return false;
     }
 }

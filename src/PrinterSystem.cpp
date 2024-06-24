@@ -29,32 +29,35 @@ void PrinterSystem::systemStart() {
     Job job5;
     System system;
     bool enable = true;
-    bool enableOutput = true;
+    bool enableOutput = false;
     bool enableError = true;
 
     // Redirect IO to files
     system.redirectIOToFiles(enable, enableOutput, enableError);
 
     // Initialized the first reading of the XML file. This function is located in XMLREADER/XMLReader.cpp.
-    if (!xmlReader.readerXML("XMLDataVoorTests/ValidData.XML")) {
+    if (!xmlReader.readerXML("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\XMLDataVoorTests\\ValidData.XML")) {
         cerr << "Failed to load XML file." << endl;
     }
 
     vector<Device> devices = device5.populateFromXMLReader(xmlReader);
     vector<Job> jobs = job5.populateFromXMLReader(xmlReader);
-
-    // Print the device and job lists
-    device.printDeviceList(devices);
-    job.printJobList(jobs);
-
+    loggerLines::lines();
     // Schedule an example job manually
     const string examplePrinter1 = "Office_Printer5";
     const int exampleJob1 = 1;
     system.schedulerManual(examplePrinter1, exampleJob1, jobs);
-
-    cout << "===================================================================================================================" << endl;
-
+    loggerLines::lines();
+    const string examplePrinter2 = "Office_Printer6";
+    const int exampleJob2 = 2;
+    system.schedulerManual(examplePrinter2, exampleJob2, jobs);
+    loggerLines::lines();
+    // Print the device and job lists
+    device.printDeviceList();
+    //job.printJobList(jobs);
+    loggerLines::lines();
     // Generate the status report ????
+    SimpleComputationPrinter::generateSimpleComputation();
     StatusReportPrinter::generateStatusReport(jobs);
 
     // Stop redirecting IO to files

@@ -95,7 +95,7 @@ public:
      * \n REQUIRE(!job.jobType.empty(), "The job must have a valid type.");
      * \n ENSURE(job.totalCost > 0, "The job total cost must be calculated and updated.");
      */
-    bool manualProcess(const DeviceInfo& selectedDevice, JobInfo& job);
+    bool manualProcess(DeviceInfo& selectedDevice, JobInfo& job);
 
     /**
      * Prints the list of processed jobs.
@@ -128,13 +128,20 @@ public:
      * \n REQUIRE(!devices.empty(), "The device list must not be empty.");
      * \n ENSURE(true, "Device list information is printed. No change in the state of the objects.");
      */
-    void printDeviceList(vector<Device> devices);
+    void printDeviceList();
 
     vector<pair<string, vector<Job>>> processedJobs;
 
-    // Setter
-    void setAccumulatedPages(int newAccumulatedPages) { accumulatedPages = newAccumulatedPages; }
-
+    // Setters
+    void setAccumulatedPages(int newAccumulatedPages) {
+        accumulatedPages = newAccumulatedPages;
+    }
+    void setTotalEmissions(int newTotalEmissions) {
+        totalEmissions = newTotalEmissions;
+    }
+    void setTotalEarnings(int newTotalEarnings) {
+        totalEarnings = newTotalEarnings;
+    }
     //vector<Job> unprocessedJobs;
     // Set log errors flag
     // Print processed jobs
@@ -149,10 +156,12 @@ public:
     int getSpeed() const {return speed;};
     int getCostPerPage() const {return cost_per_page;};
     int getAccumulatedPages() const {return accumulatedPages;};
+    int getTotalEmissions() const {return totalEmissions;};
+    int getTotalEarnings() const {return totalEarnings;};
 
     //Static members
     static vector<Device> devices;
-    static vector<vector<pair<string, vector<Job>>>> processedJobsVector;
+    static vector<pair<string, vector<Job>>> processedJobsVector;
 
     // Initialization check
     //bool properlyInitialized() const { return _initCheck == this; }

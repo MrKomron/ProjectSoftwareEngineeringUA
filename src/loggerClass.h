@@ -90,7 +90,8 @@ public:
      * \n REQUIRE(scannedPages >= 0, "Scanned pages must be non-negative.");
      * \n ENSURE(true, "Scanned pages count is printed.");
      */
-    static void startingScan(int scannedPages);
+    static void startingScan();
+
 
     /**
      * Prints job details.
@@ -261,5 +262,16 @@ public:
      */
     static bool generateStatusReport(vector<Job> jobs);
 };
+class SimpleComputationPrinter
+{
+public:
+    /**
+     * Generates a simple computation report and writes it to a file.
+    *
+    * \n REQUIRE(!devices.empty(), "Device list must not be empty.");
+    * \n ENSURE(result == true, "Simple computation is successfully generated.");
+     */
+    static bool generateSimpleComputation();
 
+};
 #endif //PROJECTSOFTWAREENGINEERINGUA_LOGGERCLASS_H

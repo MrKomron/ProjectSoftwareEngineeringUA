@@ -40,7 +40,6 @@ vector<Device> Device::populateFromXMLReader(const XMLReader& xmlReader) {
     // Access vectors from XMLReader
     const vector<DeviceInfo>& deviceInfoList = xmlReader.getDeviceInfoList();
     // Print the size of jobInfoList to verify if it's populated correctly
-    // cout << "Number of Device entries: " << deviceInfoList.size() << endl;
     outputPrinter::numberEntriesDevice(deviceInfoList.size());
     // Clear any existing devices before populating new ones.
     devices.clear();
@@ -56,12 +55,6 @@ vector<Device> Device::populateFromXMLReader(const XMLReader& xmlReader) {
 void Device::printDeviceInfo() const {
     //REQUIRE(properlyInitialized(), "The Device object must be properly initialized.");
     outputPrinter::printerInfoDevice(deviceName, emissions, deviceType, speed, cost_per_page, accumulatedPages, totalEmissions, totalEarnings);
-    // cout << "Device Name: " << deviceName << endl;
-    // cout << "Emissions: " << emissions << endl;
-    // cout << "Type: " << deviceType << endl;
-    // cout << "Speed: " << speed << endl;
-    // cout << "Cost per page: " << cost_per_page << endl;
-    // cout << "Accumulated Pages: " << accumulatedPages << endl;
     ENSURE(true, "Device information is printed. No change in the state of the object.");
 }
 
@@ -80,14 +73,25 @@ DeviceInfo Device::giveDeviceInfo() const {
     return info;
 }
 
-vector<vector<pair<string, vector<Job>>>> Device::processedJobsVector;
+vector<pair<string, vector<Job>>> Device::processedJobsVector;
 
-bool Device::manualProcess(const DeviceInfo& selectedDevice, JobInfo& job){
+bool Device::manualProcess(DeviceInfo& selectedDevice, JobInfo& job){
     REQUIRE(!selectedDevice.deviceName.empty(), "The selected device must be valid.");
     REQUIRE(!job.jobType.empty(), "The job must have a valid type.");
-
     JobInfo jobInfo = job;
     DeviceInfo selectedDeviceInfo = selectedDevice;
+
+    auto deviceIter = find_if(Device::devices.begin(), Device::devices.end(), [&](Device &dev) {
+        DeviceInfo deviceInfo = dev.giveDeviceInfo();
+        return deviceInfo.deviceName == selectedDeviceInfo.deviceName;
+    });
+
+    int tempAccuPages = selectedDeviceInfo.accumulatedPages +  jobInfo.pageCount;
+    int tempTotalEmissions = jobInfo.pageCount * selectedDeviceInfo.emissions;
+    int tempTotalEarnings = jobInfo.pageCount * selectedDeviceInfo.costpp;
+    deviceIter->setAccumulatedPages(tempAccuPages);
+    deviceIter->setTotalEmissions(tempTotalEmissions);
+    deviceIter->setTotalEarnings(tempTotalEarnings);
     jobInfo.totalCost = jobInfo.pageCount * selectedDeviceInfo.costpp;
     Job job2(jobInfo.jobNumber, jobInfo.pageCount, jobInfo.jobType, jobInfo.userName, jobInfo.totalCost,jobInfo.totalEmissions);
     job2.setNewTotalCost(jobInfo.totalCost);
@@ -95,31 +99,17 @@ bool Device::manualProcess(const DeviceInfo& selectedDevice, JobInfo& job){
         int pageCount = jobInfo.pageCount; // Access pageCount directly from jobInfo
         // Process the first job in the job list
         int printedPages = 0;
-        // cout << "Starting the printing process..." << endl;
         outputPrinter::startingPrint();
         while (printedPages < pageCount) {
             ++printedPages; // Increment printed pages
             // Check if all pages have been printed
             if (printedPages == pageCount) {
                 cout << endl;
-                // cout << "All pages printed." << endl;
                 outputPrinter::allPagesPrinted();
                 if (jobInfo.jobType == "bw") {
-                    // cout << "Printer " << selectedDeviceInfo.deviceName << " finished black-and-white job:" << endl;
-                    // cout << "\t Job Number: " << jobInfo.jobNumber << endl;
-                    // cout << "\t Submitted by: " << jobInfo.userName << endl;
-                    // cout << "\t" << jobInfo.pageCount << " pages" << endl;
-                    // cout << "Total cost of this job: " << jobInfo.totalCost << endl;
-                    // cout << endl;
                     outputPrinter::printerBWFinished(deviceName, jobInfo.jobNumber, jobInfo.userName, pageCount, jobInfo.totalCost);
                 }
                 if (jobInfo.jobType == "color") {
-                    // cout << "Printer " << selectedDeviceInfo.deviceName << " finished color-printing job:" << endl;
-                    // cout << "\t Job Number: " << jobInfo.jobNumber << endl;
-                    // cout << "\t Submitted by: " << jobInfo.userName << endl;
-                    // cout << "\t" << jobInfo.pageCount << " pages" << endl;
-                    // cout << "Total cost of this job: " << jobInfo.totalCost << endl;
-                    // cout << endl;
                     outputPrinter::printerCOLFinished(deviceName, jobInfo.jobNumber, jobInfo.userName, pageCount, jobInfo.totalCost);
                 }
                 break; // Exit the loop
@@ -144,24 +134,14 @@ bool Device::manualProcess(const DeviceInfo& selectedDevice, JobInfo& job){
         int pageCount = jobInfo.pageCount; // Access pageCount directly from jobInfo
         // Process the first job in the job list
         int scannedPages = 0;
-        // cout << "Starting the scanning process..." << endl;
-        outputPrinter::startingScan(scannedPages);
+        outputPrinter::startingScan();
         while (scannedPages < pageCount) {
             ++scannedPages; // Increment printed pages
-            // cout << "Scanned pages: " << scannedPages << endl;
-            outputPrinter::startingScan(scannedPages);
             // Check if all pages have been printed
             if (scannedPages == pageCount) {
-                // cout << "All pages scanned." << endl;
                 outputPrinter::allPagesScanned();
                 if (jobInfo.jobType == "scan") {
                     outputPrinter::scannerFinished( deviceName, jobInfo.jobNumber, jobInfo.userName, pageCount, jobInfo.totalCost);
-                    // cout << "Printer " << selectedDeviceInfo.deviceName << " finished scanning job:" << endl;
-                    // cout << "\t Job Number: " << jobInfo.jobNumber << endl;
-                    // cout << "\t Submitted by: " << jobInfo.userName << endl;
-                    // cout << "\t" << jobInfo.pageCount << " pages" << endl;
-                    // cout << "Total cost of this job: " << jobInfo.totalCost << endl;
-                    // cout << endl;
                 }
             }
         }
@@ -183,7 +163,7 @@ bool Device::manualProcess(const DeviceInfo& selectedDevice, JobInfo& job){
     }
     processedJobsVector.clear();
     for (const auto &processedJob: processedJobs) {
-        processedJobsVector.emplace_back(1, processedJob);
+        processedJobsVector.push_back(processedJob);
     }
     //ENSURE(job.totalCost > 0, "The job total cost must be calculated and updated.");
     return true;
@@ -191,36 +171,27 @@ bool Device::manualProcess(const DeviceInfo& selectedDevice, JobInfo& job){
 
 bool Device::printProcessedJobs(){
     // Print the contents of processedJobs vector
-    // cout << "========================   Contents of processedJobs vector   ========================" << endl;
     outputPrinter::printProcessedJobs();
     cout << endl;
     // Takes the pair in the vector of pairs
     for (const auto &processedJobs2: processedJobsVector) {
         // Take the device's name and processed jobs from the pairs
-        for (const auto &processedJob2: processedJobs2) {
-                // Take the name of the device
-                cout << "Device Name: " << processedJob2.first << endl;
-                cout << "Jobs:" << endl;
-                // Take the job vector
-                for (const auto &job9: processedJob2.second) {
-                    JobInfo jobInfo = job9.giveJobInfo(); // Get job9 information from the vector
-                    outputPrinter:: printProcessedJobsDevice(jobInfo.jobNumber, jobInfo.pageCount, jobInfo.jobType, jobInfo.userName, jobInfo.totalCost);
-                    // cout << "Job Number: " << jobInfo.jobNumber << endl;
-                    // cout << "Page Count: " << jobInfo.pageCount << endl;
-                    // cout << "Job Type: " << jobInfo.jobType << endl;
-                    // cout << "Username: " << jobInfo.userName << endl;
-                    // cout << "Total cost of this job: " << jobInfo.totalCost << endl;
-                    // cout << endl;
-                }
+        cout << "Device Name: " << processedJobs2.first << endl;
+        cout << "Jobs:" << endl;
+        // Take the job vector
+        for (const auto &job9: processedJobs2.second) {
+            JobInfo jobInfo = job9.giveJobInfo(); // Get job9 information from the vector
+            outputPrinter::printProcessedJobsDevice(jobInfo.jobNumber, jobInfo.pageCount, jobInfo.jobType,
+                                                    jobInfo.userName, jobInfo.totalCost);
         }
     }
     ENSURE(true, "Processed jobs information is printed. No change in the state of the objects.");
     return true;
 }
 
-void Device::printDeviceList(vector<Device> deviceList) {
+void Device::printDeviceList() {
     //-REQUIRE(!deviceList.empty(), "The device list must not be empty.");
-    for (auto &device : deviceList){
+    for (auto &device : Device::devices){
         device.printDeviceInfo();
     }
     ENSURE(true, "Device list information is printed. No change in the state of the objects.");
@@ -241,14 +212,13 @@ DeviceInfo Device::getDeviceInfo(string deviceNameToFind) {
             return deviceInfo;
         }
     }
-    // cerr << "No device found with the name " <<deviceNameToFind<< " in the list of devices" << endl;
     errorPrinter::noDeviceFoundName(deviceName);
     // If no matching device is found, return a default DeviceInfo object
     return DeviceInfo();
 }
 
 void Device::writeDeviceInfoOutputToFile(vector<Device>& deviceList, string& fileName) {
-    REQUIRE(!deviceList.empty(), "The device list must not be empty.");
+    //++++REQUIRE(!deviceList.empty(), "The device list must not be empty.");
     REQUIRE(!fileName.empty(), "The file name must not be empty.");
     ofstream outFile(fileName);
     if (outFile.is_open()) {
@@ -266,10 +236,3 @@ void Device::writeDeviceInfoOutputToFile(vector<Device>& deviceList, string& fil
         ENSURE(true, "Device information is written to the file. No change in the state of the objects.");
     }
 }
-
-//vector<Job> Device::getUnprocessedJobs() {
-//    return unprocessedJobs;
-//}
-//void Device::resetAccumulatedPages() {
-//    int accumulatedPages = 0;
-//}

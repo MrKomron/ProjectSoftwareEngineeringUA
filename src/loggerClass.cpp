@@ -62,16 +62,16 @@ void outputPrinter::startingPrint() {
 }
 
 
-// void outputPrinter::startingScan() {
-//     cout << "Starting the scanning process..." << endl;
-// }
-
+void outputPrinter::startingScan() {
+     cout << "Starting the scanning process..." << endl;
+ }
+/*====
 void outputPrinter::startingScan(int scannedPages) {
     REQUIRE(scannedPages >= 0, "Scanned pages must be non-negative.");
     cout << "Scanned pages: " << scannedPages << endl;
     ENSURE(true, "Scanned pages count is printed.");
 }
-
+*/
 void outputPrinter::neemJobvector(int jobNumber, int pageCount, string jobType, string userName, int totalCost, int totalEmissions) {
     REQUIRE(jobNumber >= 0, "Job number must be non-negative.");
     REQUIRE(pageCount >= 0, "Page count must be non-negative.");
@@ -137,6 +137,7 @@ void outputPrinter::printerInfoDevice(string deviceName, int emissions, string d
     cout << "Accumulated Pages: " << accumulatedPages << endl;
     cout << "Total Emissions: " << totalEmissions << endl;
     cout << "Total Earnings: " << totalEarnings << endl;
+    cout << endl;
     ENSURE(true, "Device information is printed.");
 }
 
@@ -340,30 +341,18 @@ bool StatusReportPrinter::generateStatusReport(vector<Job> jobs) {
     // Job information
     outputFile << "--== Processed Jobs ==--" << endl;
     outputFile << endl;
-    vector<vector<pair<string, vector<Job>>>> tempVector = device.processedJobsVector;
+    vector<pair<string, vector<Job>>> tempVector = device.processedJobsVector;
     for ( auto& firstVector : tempVector) {
-        for (auto &firstDevice : firstVector){
-            for (auto &processedJob: firstDevice.second){
-                outputFile << "[Job #" << processedJob.giveJobInfo().jobNumber << "]" << endl;
-                outputFile << "  * Owner: " << processedJob.giveJobInfo().userName << endl;
-                outputFile << "  * Device: " << firstDevice.first << endl;
-                //outputFile << "  * Status: " << job.giveJobInfo().status << endl;
-                outputFile << "  * Total pages: " << processedJob.giveJobInfo().pageCount << " pages" << endl;
-                //outputFile << "  * Total CO2: " << job.giveJobInfo().totalCO2 << "g CO2" << endl;
-                outputFile << "  * Total cost: " << processedJob.giveJobInfo().totalCost << " cents" << endl;
-                outputFile << endl;
-            }
+        for (auto &processedJob: firstVector.second) {
+            outputFile << "[Job #" << processedJob.giveJobInfo().jobNumber << "]" << endl;
+            outputFile << "  * Owner: " << processedJob.giveJobInfo().userName << endl;
+            outputFile << "  * Device: " << firstVector.first << endl;
+            //outputFile << "  * Status: " << job.giveJobInfo().status << endl;
+            outputFile << "  * Total pages: " << processedJob.giveJobInfo().pageCount << " pages" << endl;
+            //outputFile << "  * Total CO2: " << job.giveJobInfo().totalCO2 << "g CO2" << endl;
+            outputFile << "  * Total cost: " << processedJob.giveJobInfo().totalCost << " cents" << endl;
+            outputFile << endl;
         }
-        /*
-        outputFile << "[Job #" << job1.giveJobInfo().jobNumber << "]" << endl;
-        outputFile << "  * Owner: " << job1.giveJobInfo().userName << endl;
-        outputFile << "  * Device: " << device.giveDeviceInfo().deviceName << endl;
-        //outputFile << "  * Status: " << job.giveJobInfo().status << endl;
-        outputFile << "  * Total pages: " << job1.giveJobInfo().pageCount << " pages" << endl;
-        //outputFile << "  * Total CO2: " << job.giveJobInfo().totalCO2 << "g CO2" << endl;
-        outputFile << "  * Total cost: " << job1.giveJobInfo().totalCost << " cents" << endl;
-        outputFile << endl;
-         */
     }
     outputFile << "--== Waiting Jobs ==--" << endl;
     for (auto &job : jobs) {
@@ -380,5 +369,79 @@ bool StatusReportPrinter::generateStatusReport(vector<Job> jobs) {
 
     outputFile.close();
     ENSURE(true, "Status report is successfully generated.");
+    return true;
+}
+bool SimpleComputationPrinter::generateSimpleComputation() {
+    // Create a text file and open it in write mode.
+    ofstream outputFile("simple_computation.txt");
+
+    // Check if the file is opened successfully
+    if (!outputFile.is_open()) {
+        cerr << "Error: Unable to open output file." << endl;
+        return false; // Return non-zero to indicate failure
+    } else {
+        cout << "Successfully opened output file." << endl;
+    }
+
+    outputFile << "# === [System Computational Report] === #" << endl;
+    outputFile << endl;
+
+    vector<Device> devices = Device::devices;
+
+    long totalCO2Emissions = 0;
+    long totalEarnings = 0;
+    long totalJobsDone = 0;
+
+    vector<Device> tempBW;
+    vector<Device> tempCOLOR;
+    vector<Device> tempSCAN;
+    for (auto &device : devices) {
+        string type;
+        if (device.getDeviceType() == "bw") {
+            type = "Black and White";
+        } else if (device.getDeviceType() == "color") {
+            type = "Colored";
+        } else if (device.getDeviceType() == "scan") {
+            type = "Scan";
+        } else {
+            continue; // Skip devices that are not of the specified types
+        }
+        long deviceTotalCO2 = device.getTotalEmissions();
+        long deviceTotalEarnings = device.getTotalEarnings();
+        long deviceJobsDone = 0;
+        // Save the job information in processedJobs under the processed device
+        // Iterate through processedJobs to find the device name
+        for (auto &processedJob : Device::processedJobsVector) {
+            // If device name matches, push the job into the existing vector
+            if (processedJob.first == device.getDeviceName()) {
+                deviceJobsDone = processedJob.second.size();
+                break;
+            }
+        }
+
+        totalCO2Emissions += deviceTotalCO2;
+        totalEarnings += deviceTotalEarnings;
+        totalJobsDone += deviceJobsDone;
+
+        outputFile << "--== " << type << " ==--" << endl;
+        outputFile << device.getDeviceName() << ":" << endl;
+        outputFile << "\t* CO2: " << device.getEmissions() << "g/page" << endl;
+        outputFile << "\t* " << device.getSpeed() << " pages / minute" << endl;
+        outputFile << "\t* " << device.getDeviceType() << endl;
+        outputFile << "\t* " << device.getCostPerPage() << " cents / page" << endl;
+        outputFile << "\t* Total CO2: " << deviceTotalCO2 << "g" << endl;
+        outputFile << "\t* Total Earnings: " << deviceTotalEarnings << " cents" << endl;
+        outputFile << "\t* Total Jobs Done: " << deviceJobsDone << endl;
+        outputFile << endl;
+    }
+
+    outputFile << "--== Total ==--" << endl;
+    outputFile << "Total Jobs done by all devices in the system: " << totalJobsDone << endl;
+    outputFile << "Total Emissions of all devices in the system: " << totalCO2Emissions << endl;
+    outputFile << "Total Earnings of all devices in the system: " << totalEarnings << endl;
+    outputFile << "# ======================= #" << endl;
+
+    outputFile.close();
+    ENSURE(true, "Simple computation is successfully generated.");
     return true;
 }

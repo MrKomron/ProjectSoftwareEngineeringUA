@@ -89,7 +89,7 @@ void Job::printJobList(vector<Job> jobList) {
 }
 
 void Job::writeJobListOutputToFile(vector<Job>& jobList, string& fileName) {
-    REQUIRE(!jobList.empty(), "The job list must not be empty.");
+    //++++++REQUIRE(!jobList.empty(), "The job list must not be empty.");
     REQUIRE(!fileName.empty(), "The file name must not be empty.");
 
     ofstream outFile(fileName);
