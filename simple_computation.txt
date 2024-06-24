@@ -1,0 +1,27 @@
+# === [System Computational Report] === #
+
+--== Black and White ==--
+Office_Printer5:
+	* CO2: 3g/page
+	* 40 pages / minute
+	* bw
+	* 20 cents / page
+	* Total CO2: 3g
+	* Total Earnings: 20 cents
+	* Total Jobs Done: 1
+
+--== Black and White ==--
+Office_Printer6:
+	* CO2: 3g/page
+	* 40 pages / minute
+	* bw
+	* 20 cents / page
+	* Total CO2: 6g
+	* Total Earnings: 40 cents
+	* Total Jobs Done: 1
+
+--== Total ==--
+Total Jobs done by all devices in the system: 2
+Total Emissions of all devices in the system: 9
+Total Earnings of all devices in the system: 60
+# ======================= #
