@@ -16,6 +16,7 @@
 #include "Job.h"
 #include "StatusReport.h"
 #include "SystemProcessing.h"
+#include "loggerClass.h"
 
 using namespace std;
 
@@ -37,8 +38,7 @@ protected:
     Device device;
     friend class Job;
     Job job;
-    friend class StatusReport;
-    StatusReport status;
+
     //friend class StatusReport;
     //StatusReport report;
 
@@ -46,12 +46,14 @@ protected:
     // should define it if you need to initialize the variables.
     // Otherwise, this can be skipped.
     virtual void SetUp() {
+
     }
 
     // virtual void TearDown() will be called after each test is run.
     // You should define it if there is cleanup work to do.  Otherwise,
     // you don't have to provide it.
     virtual void TearDown() {
+
     }
 };
 
@@ -74,8 +76,6 @@ protected:
     Device device;
     friend class Job;
     Job job;
-    friend class StatusReport;
-    StatusReport status;
 
     // Perform any setup needed before each test
     virtual void SetUp() override {
@@ -87,33 +87,33 @@ protected:
         // Optionally, delete files if needed, or restore states if needed
     }
 };
-/*
+
 TEST_F(OutputComparisonTest, CompareOutputs) {
     system.redirectIOToFiles(true, true, true);
     reader.readerXML("XMLDataVoorTests/NoData.xml");
     vector<Device> deviceList = device.populateFromXMLReader(reader);
     vector<Job> jobList = job.populateFromXMLReader(reader);
-    device.printDeviceList(deviceList);
+    device.printDeviceList();
     job.printJobList(jobList);
     string actualErrors = readFile("errors.txt");
     string expectedErrors = readFile("expectedErrors.txt");
-    ASSERT_EQ(actualErrors, expectedErrors);
+    ASSERT_EQ(expectedErrors, actualErrors);
     system.redirectIOToFiles(false, true, true);
 }
-*/
+
 TEST_F(OutputComparisonTest, CompareDeviceListOutput) {
     system.redirectIOToFiles(true, true, true);
     reader.readerXML("XMLDataVoorTests/ValidData.xml");
     vector<Device> deviceList = device.populateFromXMLReader(reader);
     device.printDeviceList();
-    string deviceListOutputFileName = "expectedDeviceListOutput.txt";
-    device.writeDeviceInfoOutputToFile(deviceList, deviceListOutputFileName);
+    //string deviceListOutputFileName = "expectedDeviceListOutput.txt";
+    //device.writeDeviceInfoOutputToFile(deviceList, deviceListOutputFileName);
     // Read actual job list output
     string actualOutput = readFile("output.txt");
     // Read expected job list output
     string expectedOutput = readFile("expectedDeviceListOutput.txt");
 
-    // ASSERT_EQ(actualOutput, expectedOutput);
+    ASSERT_EQ(expectedOutput, actualOutput);
 
     system.redirectIOToFiles(false, true, true);
 }
@@ -126,8 +126,8 @@ TEST_F(OutputComparisonTest, CompareJobListOutput) {
     vector<Job> jobList = job.populateFromXMLReader(reader);
     // Print job list
     job.printJobList(jobList);
-    string jobListOutputFileName = "expectedJobListOutput.txt";
-    job.writeJobListOutputToFile(jobList, jobListOutputFileName);
+    //string jobListOutputFileName = "expectedJobListOutput.txt";
+    //job.writeJobListOutputToFile(jobList, jobListOutputFileName);
     // Read actual job list output
     string actualOutput = readFile("output.txt");
 
@@ -135,7 +135,52 @@ TEST_F(OutputComparisonTest, CompareJobListOutput) {
     string expectedOutput = readFile("expectedJobListOutput.txt");
 
     // Compare actual and expected job list outputs
-    // ASSERT_EQ(actualOutput, expectedOutput);
+    ASSERT_EQ(expectedOutput, actualOutput);
+}
+TEST_F(TestXMLReader, TestStatusReport) {
+    system.redirectIOToFiles(true, true, true);
+    reader.readerXML("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\XMLDataVoorTests\\ValidData.XML");
+    vector<Device> WithDataDevices = device.populateFromXMLReader(reader);
+    vector<Job> WithDataJobs = job.populateFromXMLReader(reader);
+
+    // Ensure WithDataDevices and WithDataJobs are properly populated
+    ASSERT_FALSE(WithDataDevices.empty());
+    ASSERT_FALSE(WithDataJobs.empty());
+
+    // Schedule example jobs manually
+    const string examplePrinter1 = "Office_Printer5";
+    const int exampleJob1 = 1;
+    bool result1 = system.schedulerManual(examplePrinter1, exampleJob1, WithDataJobs);
+    ASSERT_TRUE(result1);
+
+    const string examplePrinter2 = "Office_Printer6";
+    const int exampleJob2 = 2;
+    bool result2 = system.schedulerManual(examplePrinter2, exampleJob2, WithDataJobs);
+    ASSERT_TRUE(result2);
+
+    // Generate the status report
+    StatusReportPrinter::generateStatusReport(WithDataJobs);
+    // Read the actual and expected report
+    string actualReport = readFile("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\status_report.txt");
+    string expectedReport = readFile("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\expectedStatusReport.txt");
+
+    // Compare the actual and expected report
+    ASSERT_EQ(expectedReport, actualReport);
+
+    system.redirectIOToFiles(false, true, true);
+}
+TEST_F(TestXMLReader, TestSimpleComputation) {
+    system.redirectIOToFiles(true, true, true);
+    SimpleComputationPrinter::generateSimpleComputation();
+
+    // Read the actual and expected report
+    string actualReport = readFile("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\simple_computation.txt");
+    string expectedReport = readFile("C:\\Users\\Boss\\Desktop\\A.J._23-24\\PSE\\ProjectSoftwareEngineeringUA\\expectedSimpleComputation.txt");
+
+    // Compare the actual and expected report
+    ASSERT_EQ(expectedReport, actualReport);
+
+    system.redirectIOToFiles(false, true, true);
 }
 // Test case for when the file loads successfully
 TEST_F(TestXMLReader, LoadSuccess) {
@@ -301,22 +346,6 @@ TEST_F(TestXMLReader, TestAutomatedProcess) {
     EXPECT_TRUE(result);
     system.redirectIOToFiles(false, true, true);
 }
-
-// TEST_F(TestXMLReader, TestStatusReport) {
-//     system.redirectIOToFiles(true, true, true);
-//     reader.readerXML("XMLDataVoorTests/NoDAta.xml");
-//     const vector<Device> NoDataDevices = device.populateFromXMLReader(reader);
-//     const vector<Job> NoDataJobs = job.populateFromXMLReader(reader);
-//     reader.readerXML("XMLDataVoorTests/ValidDAta.xml");
-//     vector<Device> WithDataDevices = device.populateFromXMLReader(reader);
-//     vector<Job> WithDataJobs = job.populateFromXMLReader(reader);
-//
-//     bool noData = status.generateStatusReport(NoDataJobs);
-//     EXPECT_TRUE(noData);
-//     bool withData = status.generateStatusReport(WithDataJobs );
-//     EXPECT_TRUE(withData);
-//     system.redirectIOToFiles(false, true, true);
-// }
 
 // happy day test
 // lege file test

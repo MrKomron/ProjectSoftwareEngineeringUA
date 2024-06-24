@@ -148,6 +148,9 @@ bool XMLReader::readerXML(string filename) {
         if (!validDevice) cerr << "Device not valid! Some elements may be missing."<< endl;
         // If the device is valid, add it to the list
         if (validDevice) {
+            deviceInfo.accumulatedPages = 0;
+            deviceInfo.totalEmissions = 0;
+            deviceInfo.totalEarnings = 0;
             // Sets the data in the list of devices.
             deviceInfoList.push_back(deviceInfo);
             // Initialize the value to true.

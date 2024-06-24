@@ -176,8 +176,7 @@ bool Device::printProcessedJobs(){
     // Takes the pair in the vector of pairs
     for (const auto &processedJobs2: processedJobsVector) {
         // Take the device's name and processed jobs from the pairs
-        cout << "Device Name: " << processedJobs2.first << endl;
-        cout << "Jobs:" << endl;
+        coutDevicePrinter::printProcessedJobsHeader(processedJobs2.first);
         // Take the job vector
         for (const auto &job9: processedJobs2.second) {
             JobInfo jobInfo = job9.giveJobInfo(); // Get job9 information from the vector

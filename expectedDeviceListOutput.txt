@@ -1,12 +1,19 @@
+Number of Device entries: 2
 Device Name: Office_Printer5
 Emissions: 3
 Type: bw
 Speed: 40
 Cost per page: 20
-Accumulated Pages: 30
+Accumulated Pages: 0
+Total Emissions: 0
+Total Earnings: 0
+
 Device Name: Office_Printer6
 Emissions: 3
 Type: bw
 Speed: 40
 Cost per page: 20
-Accumulated Pages: 30
+Accumulated Pages: 0
+Total Emissions: 0
+Total Earnings: 0
+

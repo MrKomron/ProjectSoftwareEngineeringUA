@@ -2,6 +2,7 @@
 // Created by admin on 4/30/2024.
 //
 
+
 #include "loggerClass.h"
 #include "XMLREADER/XMLReader.h"
 #include <iostream>
@@ -444,4 +445,9 @@ bool SimpleComputationPrinter::generateSimpleComputation() {
     outputFile.close();
     ENSURE(true, "Simple computation is successfully generated.");
     return true;
+}
+
+void coutDevicePrinter::printProcessedJobsHeader(string name) {
+    cout << "Device Name: " << name << endl;
+    cout << "Jobs:" << endl;
 }

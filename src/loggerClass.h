@@ -234,7 +234,11 @@ public:
     static void neemJobvector();
     static void writeDeviceInfoOutputToFile();
 };
+class coutDevicePrinter{
+public:
+    static void printProcessedJobsHeader(string name);
 
+};
 class errorPrinter{
 public:
 

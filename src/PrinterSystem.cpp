@@ -29,7 +29,7 @@ void PrinterSystem::systemStart() {
     Job job5;
     System system;
     bool enable = true;
-    bool enableOutput = false;
+    bool enableOutput = true;
     bool enableError = true;
 
     // Redirect IO to files
@@ -41,7 +41,9 @@ void PrinterSystem::systemStart() {
     }
 
     vector<Device> devices = device5.populateFromXMLReader(xmlReader);
+    device5.printDeviceList();
     vector<Job> jobs = job5.populateFromXMLReader(xmlReader);
+    job5.printJobList(jobs);
     loggerLines::lines();
     // Schedule an example job manually
     const string examplePrinter1 = "Office_Printer5";
